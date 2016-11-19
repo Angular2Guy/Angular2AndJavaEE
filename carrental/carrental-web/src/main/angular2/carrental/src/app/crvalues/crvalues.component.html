@@ -1,0 +1,29 @@
+<form novalidate [formGroup]="form">
+	<table class="table borderless">
+		<tr>
+			<th></th>
+			<th>{{'ANZVERSPERS' | translate}}</th>
+			<th>{{'LOHNSUMMECHFPROV' | translate}}</th>
+			<th>{{'LOHNSUMMECHFDEF' | translate}}</th>
+		</tr>
+		<tr>
+			<td>{{'FRAUEN' | translate}}</td>
+			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="anzahlPkw"/></div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
+			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="mieteAbgerechnetPkw"/></div></td>
+		</tr>
+		<tr>
+			<td>{{'MAENNER' | translate}}</td>
+			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="anzahlLkw"/></div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
+			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="mieteAbgerechnetLkw"/></div></td>
+		</tr>
+		<tr>
+			<td>{{'TOTAL' | translate}}</td>
+			<td><div class="divboxmodel">{{crvalues.anzahlTotal}}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal}}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal}}</div></td>
+		</tr>
+	</table>
+</form>
+{{form.valid}}
