@@ -39,3 +39,29 @@ Install Angular Cli "npm install -g angular-cli@latest"
 Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/neon/stable/updates/"
 Add the Server Runtime Environment for Wildfly and connect it to the wildfly installation.
 Install Eclipse Typescript Plugin "http://eclipse-update.palantir.com/eclipse-typescript/"
+Optionally install Webstorm for the UI.
+
+Development Setup
+-----------------
+Check out the carrental project. 
+Open a shell and cd into the directory carrental-web/src/main/angular2/carrental
+Execute npm install for dependency resolution
+Execute ng serve to start the UI
+Start Wildfly in Eclipse
+
+Build Setup
+-----------
+It is a multi module project. 
+The ear project configures the Ear.
+The ejb project builds the ejbs to provide the data for the rest service.
+The war project builds the war. Jax-Rs provides the rest services to serve the data of the ejbs. Npm install provides the dependency resolution for Angular Cli. Angular Cli builds a tree shaken, uglified bundle. 
+The ear is build.
+
+Project Goal
+------------
+To provide a maven project that can be build on continous build server and provide an optimized ui bundle. 
+To provide a development setup that provides fast feedback on the java ee server and on the UI. 
+The fast feedback on the rest service is provided by the wildfly integration in eclipse.
+The fast feedback on the ui is provided by the angular cli integration. Angular Cli is used to provide the ui with fast feedback on change. Angular Cli can generate components, pipes and more. It builds Typescript into Javascript. It provides test wrappers and can execute them. 
+
+With such a setup Angular 2 can be used in an Java EE environment.
