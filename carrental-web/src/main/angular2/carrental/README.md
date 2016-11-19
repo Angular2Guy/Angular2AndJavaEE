@@ -3,6 +3,7 @@
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
 
 For translation ng-translate is used.
+
 For Css setup bootstrap is used.
 
 ## Development server
