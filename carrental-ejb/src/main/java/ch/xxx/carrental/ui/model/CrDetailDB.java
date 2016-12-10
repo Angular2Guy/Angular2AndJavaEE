@@ -1,0 +1,55 @@
+package ch.xxx.carrental.ui.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlElement;
+
+@Entity
+@Table(name = "CrDetail")
+public class CrDetailDB {
+	
+	@Id
+	@GeneratedValue
+	private Long mietNr;
+	@XmlElement(required=true)
+	private String jahr;
+	@OneToMany(mappedBy="crDetail",fetch=FetchType.EAGER,cascade=CascadeType.REMOVE, orphanRemoval=true)
+	private List<CrPeriodDB> crPeriods = new ArrayList<>();
+	@OneToMany(mappedBy="crDetail",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE, orphanRemoval=true)
+	private List<CrMessageDB> crMessages = new ArrayList<>();
+	
+	public Long getMietNr() {
+		return mietNr;
+	}
+	public void setMietNr(Long mietNr) {
+		this.mietNr = mietNr;
+	}
+	public String getJahr() {
+		return jahr;
+	}
+	public void setJahr(String jahr) {
+		this.jahr = jahr;
+	}
+	public List<CrPeriodDB> getCrPeriods() {
+		return crPeriods;
+	}
+	public void setCrPeriods(List<CrPeriodDB> crPeriods) {
+		this.crPeriods = crPeriods;
+	}
+	public List<CrMessageDB> getCrMessages() {
+		return crMessages;
+	}
+	public void setCrMessages(List<CrMessageDB> crMessages) {
+		this.crMessages = crMessages;
+	}
+	
+	
+}
