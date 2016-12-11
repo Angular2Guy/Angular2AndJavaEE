@@ -20,6 +20,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import ch.xxx.carrental.ui.dto.CrTableRow;
 import ch.xxx.carrental.ui.service.CrTableService;
@@ -30,11 +32,26 @@ public class CrTableServiceSLB implements CrTableService {
 	
 	@EJB
 	private CrServerSIB server;
+	@PersistenceContext
+	private EntityManager em;
+	private Converter conv = new Converter();
 	
 	@AutoLogging
 	@Override
 	public List<CrTableRow> readCrRowsByMiete(String mieteNr) {
-		return server.readCrRowsByMiete(mieteNr);
+//		List<CrDetailDB> resultList = em.createQuery("select * from CrDetailDB c where c.mieteNr=:mieteNr", CrDetailDB.class).setParameter("mieteNr", mieteNr).getResultList();
+//		List<CrTableRow> rows = new ArrayList<CrTableRow>();
+//		resultList.forEach(d -> d.getCrPeriods().forEach(per -> per.getCrPortfolios().forEach(port -> rows.add(conv.convertTableRow(port, d.getJahr(), d.getMietNr())))));
+//		for(CrDetailDB res: resultList) {
+//			for(CrPeriodDB p: res.getCrPeriods()) {
+//				for(CrPortfolioDB port: p.getCrPortfolios()) {
+//					CrTableRow row = conv.convertTableRow(port, res.getJahr(), res.getMietNr());
+//					rows.add(row);
+//				}
+//			}
+//		}
+//		return rows;
+		return server.readCrRowsByMiete(mieteNr);		
 	}
 
 }

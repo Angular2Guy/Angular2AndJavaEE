@@ -35,7 +35,7 @@ public class CrTableRow {
 	@XmlElement(required=false)
 	private String grund;
 	@XmlElement(required=false)
-	private BigDecimal fahrzeugeTotal;
+	private Integer fahrzeugeTotal;
 	@XmlElement(required=false)
 	private BigDecimal mieteGeplantTotal;
 	@XmlElement(required=false)
@@ -55,7 +55,7 @@ public class CrTableRow {
 		
 	}
 
-	public CrTableRow(String mietNr, String jahr, String status, String grund, BigDecimal fahrzeugeTotal,
+	public CrTableRow(String mietNr, String jahr, String status, String grund, Integer fahrzeugeTotal,
 			BigDecimal mieteGeplantTotal, BigDecimal mieteAbgerechnetTotal, Integer anzahlPkw, Integer anzahlLkw,
 			Date mutatedAt, String mutatedBy, boolean mahnstop) {
 		super();
@@ -103,14 +103,6 @@ public class CrTableRow {
 
 	public void setGrund(String grund) {
 		this.grund = grund;
-	}
-
-	public BigDecimal getFahrzeugeTotal() {
-		return fahrzeugeTotal;
-	}
-
-	public void setFahrzeugeTotal(BigDecimal fahrzeugeTotal) {
-		this.fahrzeugeTotal = fahrzeugeTotal;
 	}
 
 	public BigDecimal getMieteGeplantTotal() {
@@ -167,6 +159,14 @@ public class CrTableRow {
 
 	public void setMahnstop(boolean mahnstop) {
 		this.mahnstop = mahnstop;
+	}
+
+	public Integer getFahrzeugeTotal() {
+		return fahrzeugeTotal;
+	}
+
+	public void setFahrzeugeTotal(Integer fahrzeugeTotal) {
+		this.fahrzeugeTotal = fahrzeugeTotal;
 	}
 			
 }

@@ -16,6 +16,8 @@ public class CrPortfolioDB {
 	@GeneratedValue
 	private Long id;
 	private String bezeichnung;
+	private String status;
+	private String grund;
 	private Integer anzahlPkw;
 	private Integer anzahlLkw;
 	private Integer anzahlTotal;
@@ -99,6 +101,18 @@ public class CrPortfolioDB {
 	}
 	public void setCrPeriod(CrPeriodDB crPeriod) {
 		this.crPeriod = crPeriod;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getGrund() {
+		return grund;
+	}
+	public void setGrund(String grund) {
+		this.grund = grund;
 	}
 	
 }

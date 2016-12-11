@@ -81,7 +81,7 @@ public class CrServerSIB {
 	}
 
 	private void initCrTable(Calendar from, Calendar to) {
-		CrTableRow lsdTableRow1 = new CrTableRow("1", "2015", "Aktiv", "Geschaeflich", BigDecimal.valueOf(20000), BigDecimal.valueOf(30000), BigDecimal.valueOf(20000), 10, 12, from.getTime(), "p12345", true);
+		CrTableRow lsdTableRow1 = new CrTableRow("1", "2015", "Aktiv", "Geschaeflich", 20, BigDecimal.valueOf(30000), BigDecimal.valueOf(20000), 10, 12, from.getTime(), "p12345", true);
 		CrTableRow lsdTableRow2 = new CrTableRow("1", "2016", "Passiv", "Privat", null, null, null, null, null, from.getTime(), "p12345", false);
 		crTableRows.addAll(Arrays.asList(lsdTableRow1, lsdTableRow2));
 	}
