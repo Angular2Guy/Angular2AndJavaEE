@@ -18,18 +18,18 @@ public class CrDetailDB {
 	
 	@Id
 	@GeneratedValue
-	private Long mietNr;
-	@XmlElement(required=true)
+	private Long id;
+	private String mietNr;
 	private String jahr;
 	@OneToMany(mappedBy="crDetail",fetch=FetchType.EAGER,cascade=CascadeType.REMOVE, orphanRemoval=true)
 	private List<CrPeriodDB> crPeriods = new ArrayList<>();
 	@OneToMany(mappedBy="crDetail",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE, orphanRemoval=true)
 	private List<CrMessageDB> crMessages = new ArrayList<>();
 	
-	public Long getMietNr() {
+	public String getMietNr() {
 		return mietNr;
 	}
-	public void setMietNr(Long mietNr) {
+	public void setMietNr(String mietNr) {
 		this.mietNr = mietNr;
 	}
 	public String getJahr() {

@@ -15,6 +15,8 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -22,6 +24,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
+import ch.xxx.carrental.ui.model.CrDetailDB;
 import ch.xxx.carrental.ui.service.CrDetailService;
 
 @Local(CrDetailService.class)
@@ -38,10 +41,10 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@AutoLogging
 	@Override
 	public CrDetail readCrDetail(String mietNr, String jahr) {
-//		List<CrDetailDB> resultList = em.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
-//				.setParameter("mietNr", mietNr).setParameter("jahr", jahr).getResultList();
-//		CrDetail lsdDetail = resultList.isEmpty() ? null : conv.convert((resultList.get(0)));
-		CrDetail lsdDetail = server.readCrDetail(mietNr, jahr);
+		List<CrDetailDB> resultList = em.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
+				.setParameter("mietNr", mietNr).setParameter("jahr", jahr).getResultList();
+		CrDetail lsdDetail = resultList.isEmpty() ? null : conv.convert((resultList.get(0)));
+//		CrDetail lsdDetail = server.readCrDetail(mietNr, jahr);
 		return lsdDetail;
 	}
 
