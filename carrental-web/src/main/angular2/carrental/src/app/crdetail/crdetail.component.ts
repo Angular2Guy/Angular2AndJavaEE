@@ -22,8 +22,8 @@ import {CrValuesComponent} from '../crvalues/crvalues.component';
 
 @Component({  
   selector: 'app-crdetail',
-  templateUrl: 'crdetail.component.html',
-  styleUrls: ['crdetail.component.css'],
+  templateUrl: './crdetail.component.html',
+  styleUrls: ['./crdetail.component.css'],
 })
 export class CrdetailComponent  implements OnInit, OnDestroy {
   errorMsg: string;

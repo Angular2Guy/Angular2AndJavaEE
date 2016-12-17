@@ -19,8 +19,8 @@ import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader}
 
 @Component({  
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css']
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'carrental works!';

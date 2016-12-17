@@ -20,8 +20,8 @@ import { CrValuesValidators } from '../shared/crvalues.validators';
 
 @Component({    
     selector: 'app-crvalues',
-    templateUrl: 'crvalues.component.html',
-    styleUrls: ['crvalues.component.css']         
+    templateUrl: './crvalues.component.html',
+    styleUrls: ['./crvalues.component.css']         
 })
 export class CrValuesComponent implements OnInit {
     form: FormGroup;

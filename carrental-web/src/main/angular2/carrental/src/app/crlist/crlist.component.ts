@@ -21,8 +21,8 @@ import {CrTableRow} from '../crTypes';
 
 @Component({  
   selector: 'app-crlist',
-  templateUrl: 'crlist.component.html',
-  styleUrls: ['crlist.component.css'], 
+  templateUrl: './crlist.component.html',
+  styleUrls: ['./crlist.component.css'], 
   providers: [CrRestService],      
 })
 export class CrlistComponent implements OnInit, OnDestroy {
