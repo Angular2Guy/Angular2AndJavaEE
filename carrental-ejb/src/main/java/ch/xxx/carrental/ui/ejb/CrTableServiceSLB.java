@@ -26,28 +26,31 @@ import javax.persistence.PersistenceContext;
 
 import ch.xxx.carrental.ui.dto.CrTableRow;
 import ch.xxx.carrental.ui.model.CrDetailDB;
-import ch.xxx.carrental.ui.model.CrPeriodDB;
-import ch.xxx.carrental.ui.model.CrPortfolioDB;
 import ch.xxx.carrental.ui.service.CrTableService;
 
 @Local(CrTableService.class)
 @Stateless
 public class CrTableServiceSLB implements CrTableService {
-	
+
 	@EJB
 	private CrServerSIB server;
 	@PersistenceContext
 	private EntityManager em;
 	private Converter conv = new Converter();
-	
+
 	@AutoLogging
 	@Override
 	public List<CrTableRow> readCrRowsByMiete(String mietNr) {
-		List<CrDetailDB> resultList = em.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr", CrDetailDB.class).setParameter("mietNr", mietNr).getResultList();
-		List<CrTableRow> rows = new ArrayList<CrTableRow>();
-		resultList.forEach(d -> d.getCrPeriods().forEach(per -> per.getCrPortfolios().forEach(port -> rows.add(conv.convertTableRow(port, d.getJahr(), d.getMietNr())))));
-		return rows;
-//		return server.readCrRowsByMiete(mieteNr);		
+		if (Utils.checkForWildfly()) {
+			List<CrDetailDB> resultList = em
+					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr", CrDetailDB.class)
+					.setParameter("mietNr", mietNr).getResultList();
+			List<CrTableRow> rows = new ArrayList<CrTableRow>();
+			resultList.forEach(d -> d.getCrPeriods().forEach(per -> per.getCrPortfolios()
+					.forEach(port -> rows.add(conv.convertTableRow(port, d.getJahr(), d.getMietNr())))));
+			return rows;
+		}
+		return server.readCrRowsByMiete(mietNr);
 	}
 
 }
