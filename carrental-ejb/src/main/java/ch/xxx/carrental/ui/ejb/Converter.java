@@ -73,7 +73,7 @@ public class Converter {
 		return portfolio;
 	}
 	
-	public CrTableRow convertTableRow(CrPortfolioDB db, String jahr, Long mietNr) {
+	public CrTableRow convertTableRow(CrPortfolioDB db, String jahr, String mietNr) {
 		CrTableRow row = new CrTableRow();
 		row.setAnzahlLkw(db.getAnzahlLkw());
 		row.setAnzahlPkw(db.getAnzahlPkw());
@@ -81,7 +81,7 @@ public class Converter {
 		row.setGrund(db.getGrund());
 		row.setStatus(db.getStatus());
 		row.setJahr(jahr);
-		row.setMietNr(mietNr.toString());
+		row.setMietNr(mietNr);
 		row.setMutatedAt(new Date());
 		row.setMutatedBy("xxx");
 		row.setMieteAbgerechnetTotal(db.getMieteAbgerechnetTotal());
