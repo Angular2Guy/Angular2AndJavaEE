@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="a8156a194b08696ecdfefce4e842fd512936e9b5" datatype="html">
+        <source>Link to crdetail</source>
+        <target>Link zu crdetail</target>
+      </trans-unit>
+      <trans-unit id="46cd206b89c45079faeb067971e6d05b75988915" datatype="html">
+        <source>Link to crlist</source>
+        <target>Link zu crlist</target>
+      </trans-unit>
+      <trans-unit id="180d82afad81ca151b44ede20754803ce09d720a" datatype="html">
+        <source>Year</source>
+        <target>Jahr</target>
+      </trans-unit>
+      <trans-unit id="81b97b8ea996ad1e4f9fca8415021850214884b1" datatype="html">
+        <source>State</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="dde9144c16e9eec954d15720f2bf5e94e2582806" datatype="html">
+        <source>Reason</source>
+        <target>Grund</target>
+      </trans-unit>
+      <trans-unit id="6063af7ce54770a1668d8fed5a4afddf924e4c56" datatype="html">
+        <source>Vehicles total</source>
+        <target>Fahrzeuge Total</target>
+      </trans-unit>
+      <trans-unit id="da3f67f40078e2407d6c9d8024ce4498a34cbacf" datatype="html">
+        <source>Rent planned total</source>
+        <target>Miete geplant Total</target>
+      </trans-unit>
+      <trans-unit id="13f0b57851ee196307adb28e879b83fb7f0b90e8" datatype="html">
+        <source>Rent accounted for</source>
+        <target>Miete abgerechnet Total</target>
+      </trans-unit>
+      <trans-unit id="5a4c19129bfcc95e3fa6e29fe02cf6edc02cb6bd" datatype="html">
+        <source>Number of cars</source>
+        <target>Anzahl Pkw</target>
+      </trans-unit>
+      <trans-unit id="85f17bf117d51c14c282651c401c4cf11d15aa9c" datatype="html">
+        <source>Number of Trucks</source>
+        <target>Anzahl Lkw</target>
+      </trans-unit>
+      <trans-unit id="1470eabded471793a7ef2271e2a1dc30a1a3265f" datatype="html">
+        <source>Date</source>
+        <target>Datum</target>
+      </trans-unit>
+      <trans-unit id="c363aafcf81ee80b73c6ca3643dd551b562ee2af" datatype="html">
+        <source>Mutated by</source>
+        <target>Mutierer</target>
+      </trans-unit>
+      <trans-unit id="86c42900132fc48f6872a01c0e152311bd51d806" datatype="html">
+        <source>Dunning block</source>
+        <target>Mahnstop</target>
+      </trans-unit>
+      <trans-unit id="c6ca0e82bf042dc98becebbf72a4682e18c1e00d" datatype="html">
+        <source>crdetail works!</source>
+        <target>crdetail works!</target>
+      </trans-unit>
+      <trans-unit id="2d71a4f5d2717a999880a6f96bebae1bab827ca2" datatype="html">
+        <source>Rental periode</source>
+        <target>Mietperiode</target>
+      </trans-unit>
+      <trans-unit id="b4f775784d8a3164b133fb8634a38051154c945e" datatype="html">
+        <source>to</source>
+        <target>bis</target>
+      </trans-unit>
+      <trans-unit id="d377eb63907483fbc30ab5805912e2ea7ca35ecb" datatype="html">
+        <source>Tenant</source>
+        <target>Mieter</target>
+      </trans-unit>
+      <trans-unit id="4f8b2bb476981727ab34ed40fde1218361f92c45" datatype="html">
+        <source>Details</source>
+        <target>Details</target>
+      </trans-unit>
+      <trans-unit id="388b58f4db7c5a5a5624b8bf14f8b227ee4a140b" datatype="html">
+        <source>Number of Vehicles</source>
+        <target>Anzahl Fahrzeuge</target>
+      </trans-unit>
+      <trans-unit id="97a8df168c6512ca1c1274172d0d135b546360b2" datatype="html">
+        <source>Rent planned</source>
+        <target>Miete geplant</target>
+      </trans-unit>
+      <trans-unit id="069b35e4642c987966d6d640c063a9898714cf66" datatype="html">
+        <source>Rent accounted for</source>
+        <target>Miete abgerechnet</target>
+      </trans-unit>
+      <trans-unit id="1159f7edef3b8490e5bee043eba3cc40a5f47cbf" datatype="html">
+        <source>Woman</source>
+        <target>Frauen</target>
+      </trans-unit>
+      <trans-unit id="5c0adeba65a260e210b9ae56587d8c44f79733db" datatype="html">
+        <source>Men</source>
+        <target>Maenner</target>
+      </trans-unit>
+      <trans-unit id="d04d5b5d13ac9acf9750f1807f0227eeee98b247" datatype="html">
+        <source>Total</source>
+        <target>Total</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

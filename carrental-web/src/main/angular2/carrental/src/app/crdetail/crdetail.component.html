@@ -1,20 +1,20 @@
-<p>
+<p i18n>
   crdetail works!
 </p>
 <table style="width:100%">
   <tr *ngFor="let period of crPeriods">
     <td style="width:15%">
-    	{{'MIETPERIODE' | translate}}<br/>
-    	{{period.from | date:'dd.MM.yyyy'}} {{'BIS' | translate}} {{period.to | date:'dd.MM.yyyy'}}
+    	<ng-container i18n>Mietperiode</ng-container><br/>    	
+    	{{period.from | date:'dd.MM.yyyy'}} <ng-container i18n>bis</ng-container> {{period.to | date:'dd.MM.yyyy'}}
     </td>
     <td style="width:85%">
 		<table style="width:100%">
 			<tr *ngFor="let pf of period.crPortfolios">
 				<td style="width:15%">
-					{{'MIETER' | translate}}<br/>
+					<ng-container i18n>Mieter</ng-container><br/>					
 					{{pf.bezeichnung}}
 				</td>
-				<td style="width:85%">{{'DETAILS' | translate}}
+				<td style="width:85%"><ng-container i18n>Details</ng-container>
 					<app-crvalues [crvalues]="pf"></app-crvalues>
 				</td>
 			</tr>

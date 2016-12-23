@@ -2,24 +2,24 @@
 	<table class="table borderless">
 		<tr>
 			<th></th>
-			<th>{{'ANZVERSPERS' | translate}}</th>
-			<th>{{'LOHNSUMMECHFPROV' | translate}}</th>
-			<th>{{'LOHNSUMMECHFDEF' | translate}}</th>
+			<th i18n>Anzahl Fahrzeuge</th>
+			<th i18n>Miete geplant</th>
+			<th i18n>Miete abgerechnet</th>
 		</tr>
 		<tr>
-			<td>{{'FRAUEN' | translate}}</td>
+			<td i18n>Frauen</td>
 			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="anzahlPkw"/></div></td>
 			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
 			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="mieteAbgerechnetPkw"/></div></td>
 		</tr>
 		<tr>
-			<td>{{'MAENNER' | translate}}</td>
+			<td i18n>Maenner</td>
 			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="anzahlLkw"/></div></td>
 			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
 			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="mieteAbgerechnetLkw"/></div></td>
 		</tr>
 		<tr>
-			<td>{{'TOTAL' | translate}}</td>
+			<td i18n>Total</td>
 			<td><div class="divboxmodel">{{crvalues.anzahlTotal}}</div></td>
 			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal}}</div></td>
 			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal}}</div></td>
