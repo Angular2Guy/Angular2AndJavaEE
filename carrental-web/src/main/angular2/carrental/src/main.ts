@@ -25,10 +25,12 @@ if (environment.production) {
   enableProdMode();
 }
 
-let TP = new TranslationProviders();
-TP.getTranslationFile().then((providers: any) => {
-  const options: any = { providers };
-  platformBrowserDynamic().bootstrapModule(AppModule, options);
-});
+//bootstrap for i18n with webpack still missing
 
-//platformBrowserDynamic().bootstrapModule(AppModule);
+//let TP = new TranslationProviders();
+//TP.getTranslationFile().then((providers: any) => {
+//  const options: any = { providers };
+//  platformBrowserDynamic().bootstrapModule(AppModule, options);
+//});
+
+platformBrowserDynamic().bootstrapModule(AppModule);

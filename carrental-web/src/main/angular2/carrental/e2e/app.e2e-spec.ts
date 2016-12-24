@@ -1,10 +1,10 @@
 import { CarrentalPage } from './app.po';
 
 describe('carrental App', function() {
-  let page: LsdeklPage;
+  let page: CarrentalPage;
 
   beforeEach(() => {
-    page = new LsdeklPage();
+    page = new CarrentalPage();
   });
 
   it('should display message saying app works', () => {

@@ -26,10 +26,10 @@ export class AppComponent {
   title = 'carrental works!';
   
   constructor(private _translate: TranslateService) {
-//      var userLang = navigator.language.split('-')[0]; // use navigator lang if available
-//        userLang = /(de|fr|it|en)/gi.test(userLang) ? userLang : 'en';
-//        this._translate.setDefaultLang('en');
-//        this._translate.use(userLang);
-      }
+    var userLang = navigator.language.split('-')[0]; // use navigator lang if available
+    userLang = /(de|fr|it|en)/gi.test(userLang) ? userLang : 'en';
+    this._translate.setDefaultLang('en');
+    this._translate.use(userLang);
+  }
 }
   

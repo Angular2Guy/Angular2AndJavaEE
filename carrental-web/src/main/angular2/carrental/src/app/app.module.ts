@@ -17,7 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-//import { TranslateModule} from 'ng2-translate/ng2-translate';
+import { TranslateModule} from 'ng2-translate/ng2-translate';
 
 import { AppComponent } from './app.component';
 import { CrlistComponent } from './crlist/crlist.component';
@@ -38,7 +38,7 @@ import { AppRoutingModule }  from './app-routing.module';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-//    TranslateModule.forRoot(),
+    TranslateModule.forRoot(),
     AppRoutingModule
   ],
   providers: [CrRestService],
