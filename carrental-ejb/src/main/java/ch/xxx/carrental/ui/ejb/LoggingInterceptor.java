@@ -22,7 +22,7 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
-import org.jboss.logging.Logger;
+import org.apache.log4j.Logger;
 
 import ch.xxx.carrental.ui.dto.BusinessException;
 

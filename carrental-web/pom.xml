@@ -78,6 +78,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
 		<!-- JSR-303 (Bean Validation) Implementation -->
 		<!-- Provides portable constraints such as @Email -->
 		<!-- Hibernate Validator is shipped in JBoss WildFly -->
@@ -109,7 +115,7 @@
 							<directory>${basedir}/target/angular2/carrental/dist</directory>
 							<includes>
 								<include>assets/**/*.*</include>
-								<include>*.*</include>								
+								<include>*.*</include>
 							</includes>
 						</resource>
 						<resource>
@@ -220,7 +226,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore/>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>

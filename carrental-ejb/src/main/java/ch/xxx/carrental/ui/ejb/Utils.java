@@ -18,7 +18,7 @@ package ch.xxx.carrental.ui.ejb;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.jboss.logging.Logger;
+import org.apache.log4j.Logger;
 
 public class Utils {
 	private static final Logger LOG = Logger.getLogger(Utils.class);

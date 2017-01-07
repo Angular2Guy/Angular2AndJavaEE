@@ -21,7 +21,7 @@ import javax.interceptor.InvocationContext;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Response;
 
-import org.jboss.logging.Logger;
+import org.apache.log4j.Logger;
 
 import ch.xxx.carrental.ui.dto.BusinessException;
 

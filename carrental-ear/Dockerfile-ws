@@ -1,0 +1,3 @@
+FROM airhacks/wlp-ping
+MAINTAINER Sven Loesekann
+COPY ./target/carrental-ear.ear ${DEPLOYMENT_DIR}
