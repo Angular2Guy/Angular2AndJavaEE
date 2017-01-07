@@ -2,8 +2,6 @@ Carrental: Example Using Angular2 with Angular Cli and Java EE 6 Deployed as an 
 ==============================================================================================
 Author: Sven Loesekann
 
-Level: Intermediate
-
 Technologies: EAR, Rest, Angular 2, Angular Cli
 
 Summary: Example Project for the integration of Maven, Angular, Java EE 6
@@ -16,6 +14,8 @@ What is it?
 The project shows the integration of Angular 2 with Angular Cli as UI. The Rest Services are provided by JavaEE 6. In this Example with WildFly. The Build is done with Maven. 
 
 The Development Setup is Eclipse with Typescript Plugin or Webstorm. JBoss is integrated with the JBoss Plugin to provide redeployments. Angular Cli provides the UI an redeploys the UI on change and makes the optimized production build.
+
+The Ear that is build can be tested in a Docker Image that Maven can build.
 
 Development requirements
 -------------------
@@ -58,7 +58,7 @@ Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/neon/stable/u
 
 Add the Server Runtime Environment for Wildfly and connect it to the wildfly installation.
 
-Install Eclipse Typescript Plugin "http://eclipse-update.palantir.com/eclipse-typescript/"
+Install Eclipse Typescript Plugin "http://oss.opensagres.fr/typescript.ide/1.1.0/"
 
 Optionally install Webstorm for the UI.
 
@@ -90,3 +90,7 @@ The fast feedback on the rest service is provided by the wildfly integration in 
 The fast feedback on the ui is provided by the angular cli integration. Angular Cli is used to provide the ui with fast feedback on change. Angular Cli can generate components, pipes and more. It builds Typescript into Javascript. It provides test wrappers and can execute them. 
 
 With such a setup Angular 2 can be used in an Java EE environment.
+
+Testing the Ear
+---------------
+To provide a method to test the Ear of the Build a Docker Image can be build. The image uses Wildfly and deploys the Ear in the server. The server can then be started and the optimized build can be tested. That enables testing the Ear without changing the setup of the development environment. Docker Images of other Application Servers a availiable and provide the opportunity to test the Ear on different platforms.
