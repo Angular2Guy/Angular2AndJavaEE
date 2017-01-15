@@ -1,3 +1,5 @@
-FROM airhacks/wlp-ping
+FROM websphere-liberty:javaee7
 MAINTAINER Sven Loesekann
-COPY ./target/carrental-ear.ear ${DEPLOYMENT_DIR}
+COPY ./target/carrental-ear.ear /config/dropins/
+COPY ./docker/conf/server.xml /config/
+COPY ./docker/lib/h2-1.4.193.jar /opt/ibm/wlp/usr/shared/resources/

@@ -16,17 +16,11 @@
  */
 package ch.xxx.carrental.test;
 
-import java.util.logging.Logger;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class MemberRegistrationTest {
-    @Deployment
+//    @Deployment
     public static Archive<?> createTestArchive() {
 //        return ShrinkWrap.create(WebArchive.class, "test.war")
 //                .addClasses(Member.class, MemberRegistration.class, Resources.class)
@@ -41,9 +35,9 @@ public class MemberRegistrationTest {
 //    MemberRegistration memberRegistration;
 
 //    @Inject
-    Logger log;
+//    Logger log;
 
-    @Test
+//    @Test
     public void testRegister() throws Exception {
 //        Member newMember = new Member();
 //        newMember.setName("Jane Doe");

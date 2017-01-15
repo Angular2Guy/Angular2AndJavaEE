@@ -116,6 +116,45 @@
 
 	<profiles>
 		<profile>
+			<id>prodDocker</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>prodDocker</name>
+					<value>WS</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-persistence-xml</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>		
+									<overwrite>true</overwrite>						
+									<outputDirectory>target/classes/META-INF</outputDirectory>
+									<resources>
+										<resource> 
+											<directory>conf/WS</directory>
+											<includes>
+												<include>*.xml</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
 			<!-- The default profile skips all tests, though you can tune it to run 
 				just unit tests based on a custom pattern -->
 			<!-- Seperate profiles are provided for running all tests, including Arquillian 
@@ -135,8 +174,14 @@
 					</plugin>
 				</plugins>
 			</build>
+			<repositories>
+				<repository>
+					<id>apache</id>
+					<name>apache repo</name>
+					<url>https://repo.maven.apache.org/maven2</url>
+				</repository>
+			</repositories>
 		</profile>
-
 		<profile>
 			<!-- An optional Arquillian testing profile that executes tests in your 
 				WildFly instance -->
@@ -144,6 +189,9 @@
 				shutting it down when done -->
 			<!-- Run with: mvn clean test -Parq-wildfly-managed -->
 			<id>arq-wildfly-managed</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>org.wildfly</groupId>
@@ -158,6 +206,9 @@
 				WildFly instance -->
 			<!-- Run with: mvn clean test -Parq-wildfly-remote -->
 			<id>arq-wildfly-remote</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>org.wildfly</groupId>
