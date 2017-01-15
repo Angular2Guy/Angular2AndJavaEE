@@ -113,8 +113,20 @@
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
 					</configuration>
-				</plugin>
-				<plugin>
+				</plugin>				
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>prodDockerWildfly</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
 					<groupId>io.fabric8</groupId>
 					<artifactId>docker-maven-plugin</artifactId>
 					<configuration>
@@ -122,9 +134,8 @@
 							<image>
 								<alias>carrental</alias>
 								<name>carrental:${project.version}</name>
-								<build>
-									<from>airhacks/wildfly-ping</from>
-									<dockerFileDir>${project.basedir}</dockerFileDir>
+								<build>									
+									<dockerFile>${project.basedir}/Dockerfile</dockerFile>
 									<ports>
 										<port>8080</port>
 									</ports>
@@ -142,18 +153,65 @@
 										<http>
 											<url>http://localhost:8080/carrental-web/</url>
 										</http>
-										<time>20000</time>
+										<time>30000</time>
 									</wait>
 								</run>
 							</image>
 						</images>
 					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+				</plugin>	
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>prodDockerWS</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>prodDocker</name>
+					<value>WS</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+					<groupId>io.fabric8</groupId>
+					<artifactId>docker-maven-plugin</artifactId>
+					<configuration>
+						<images>
+							<image>
+								<alias>carrentalws</alias>
+								<name>carrentalws:${project.version}</name>
+								<build>																										
+									<dockerFile>${project.basedir}/Dockerfile-ws</dockerFile>									
+									<ports>
+										<port>9080</port>
+									</ports>
+								</build>
 
-	<profiles>
+								<run>
+									<ports>
+										<port>9080:9080</port>
+									</ports>
+									<log>
+										<enabled>true</enabled>
+										<prefix>WS</prefix>
+									</log>
+									<wait>
+										<http>
+											<url>http://localhost:9080/carrental-web/</url>
+										</http>
+										<time>60000</time>
+									</wait>
+								</run>
+							</image>
+						</images>
+					</configuration>
+				</plugin>	
+				</plugins>
+			</build>
+		</profile>
+		
 		<profile>
 			<!-- When built in OpenShift the 'openshift' profile will be used when 
 				invoking mvn. -->
