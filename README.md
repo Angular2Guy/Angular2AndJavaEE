@@ -93,4 +93,4 @@ With such a setup Angular 2 can be used in an Java EE environment.
 
 Testing the Ear
 ---------------
-To provide a method to test the Ear of the Build a Docker Image can be build. The image uses Wildfly and deploys the Ear in the server. The server can then be started and the optimized build can be tested. That enables testing the Ear without changing the setup of the development environment. Docker Images of other Application Servers a availiable and provide the opportunity to test the Ear on different platforms.
+To provide a method to test the Ear of the Build a Docker Image can be build. The image uses Wildfly and deploys the Ear in the server. The server can then be started and the optimized build can be tested. That enables testing the Ear without changing the setup of the development environment. Docker Images of other Application Servers are availiable and provide the opportunity to test the Ear on different platforms. Images for Wildfly and Websphere Liberty can be build.
