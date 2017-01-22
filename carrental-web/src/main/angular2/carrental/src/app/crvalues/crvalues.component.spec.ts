@@ -46,7 +46,7 @@ describe('Component: CrValues', () => {
     component.ngOnInit();
     expect(!component.validate()).toBeTruthy();
   });
-});
+}); 
 
 class CrPortfolioImpl implements CrPortfolio {
     

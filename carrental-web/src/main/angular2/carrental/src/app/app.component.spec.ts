@@ -17,33 +17,75 @@
 
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AppRoutingModule }  from './app-routing.module';
+import { CrlistComponent } from './crlist/crlist.component';
+import { CrdetailComponent } from './crdetail/crdetail.component';
+import { CrValuesComponent } from './crvalues/crvalues.component';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HttpModule, Http, Response, ResponseOptions,XHRBackend } from '@angular/http';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import {APP_BASE_HREF} from '@angular/common';
+import {MockBackend, MockConnection} from "@angular/http/testing";
+
 
 describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        CrlistComponent,
+        CrdetailComponent,
+        CrValuesComponent
+      ], 
+      imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
+        TranslateModule.forRoot(),
+        AppRoutingModule
       ],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }]
     });
     TestBed.compileComponents();
   });
 
+  const mockBackendResponse = (connection: MockConnection, response: string) => {
+      connection.mockRespond(new Response(new ResponseOptions({body: response})));
+  };  
+  
   it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.configureTestingModule({
+        imports: [HttpModule, TranslateModule.forRoot()],
+        providers: [
+            {provide: XHRBackend, useClass: MockBackend}       ]
+    }).createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 
   it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture =  TestBed.configureTestingModule({
+        imports: [HttpModule, TranslateModule.forRoot()],
+        providers: [
+            {provide: XHRBackend, useClass: MockBackend}
+        ]
+    }).createComponent(AppComponent);    
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
+    expect(app.title).toEqual('carrental works!');
   }));
 
   it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.configureTestingModule({
+        imports: [HttpModule, TranslateModule.forRoot()],
+        providers: [
+            {provide: XHRBackend, useClass: MockBackend}
+        ]
+    }).createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('carrental works!');
-  }));
+  })); 
 });
