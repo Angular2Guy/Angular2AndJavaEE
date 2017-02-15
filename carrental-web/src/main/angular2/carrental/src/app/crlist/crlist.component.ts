@@ -22,24 +22,25 @@ import {CrTableRow} from '../crTypes';
 @Component({  
   selector: 'app-crlist',
   templateUrl: './crlist.component.html',
-  styleUrls: ['./crlist.component.css'], 
-  providers: [CrRestService],      
+  styleUrls: ['./crlist.component.css'],    
 })
 export class CrlistComponent implements OnInit, OnDestroy {
   tableRows: CrTableRow[];
   errorMsg: string;
   private sub: ISubscription;
+  private routeSub: ISubscription;
     
   constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService) {}
 
   ngOnInit(): void {
-      this.sub = this.route.params.subscribe(params => {
+      this.routeSub = this.route.params.subscribe(params => {
         let mnr = params['mnr'];
-        this.service.getCrTableRows(mnr).subscribe(tr => this.tableRows = <CrTableRow[]> tr, error => this.errorMsg = error);      
+        this.sub = this.service.getCrTableRows(mnr).subscribe(tr => this.tableRows = <CrTableRow[]> tr, error => this.errorMsg = error);      
       });
   }
   
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.routeSub.unsubscribe();
   }
 }

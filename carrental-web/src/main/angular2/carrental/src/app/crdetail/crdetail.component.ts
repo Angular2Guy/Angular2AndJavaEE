@@ -30,11 +30,12 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
   crDetail: CrDetail;
   crPeriods: CrPeriod[];
   private sub: ISubscription;
+  private routeSub: ISubscription;
     
   constructor(private route: ActivatedRoute, private router: Router, private service: CrRestService) {}
 
   ngOnInit(): void {
-      this.sub = this.route.params.subscribe(params => {
+      this.routeSub = this.route.params.subscribe(params => {
         let mnr = params['mnr'];
         let jahr = params['jahr'];
         this.sub = this.service.getCrDetail(mnr, jahr).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);          
@@ -42,6 +43,7 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();      
+    this.sub.unsubscribe();
+    this.routeSub.unsubscribe();
   }
 }
