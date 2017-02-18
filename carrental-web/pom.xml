@@ -270,6 +270,32 @@
 							</execution>
 						</executions>
 					</plugin>
+					<plugin>
+						<artifactId>exec-maven-plugin</artifactId>
+						<groupId>org.codehaus.mojo</groupId>
+						<version>1.4.0</version>
+						<executions>
+							<execution>
+								<id>angular-cli test</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<phase>test</phase>
+								<configuration>
+									<executable>ng</executable>
+									<arguments>
+										<argument>test</argument>
+										<argument>--browser</argument>
+										<argument>PhantomJS</argument>
+										<argument>--reporters</argument>
+										<argument>junit</argument>
+										<argument>--single-run</argument>
+									</arguments>
+									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -294,12 +320,38 @@
 								</goals>
 								<phase>generate-resources</phase>
 								<configuration>
-									<executable>node_modules/angular-cli/bin/ng</executable>
+									<executable>node_modules/@angular/cli/bin/ng</executable>
 									<arguments>
 										<argument>build</argument>
 										<argument>--prod</argument>
 										<argument>--base-href</argument>
 										<argument>"/carrental-web/"</argument>
+									</arguments>
+									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>exec-maven-plugin</artifactId>
+						<groupId>org.codehaus.mojo</groupId>
+						<version>1.4.0</version>
+						<executions>
+							<execution>
+								<id>angular-cli test</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<phase>test</phase>
+								<configuration>
+									<executable>node_modules/@angular/cli/bin/ng</executable>
+									<arguments>
+										<argument>test</argument>
+										<argument>--browser</argument>
+										<argument>PhantomJS</argument>
+										<argument>--reporters</argument>
+										<argument>junit</argument>
+										<argument>--single-run</argument>
 									</arguments>
 									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
 								</configuration>
