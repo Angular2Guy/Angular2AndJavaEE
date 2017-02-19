@@ -46,6 +46,10 @@ describe('Component: CrValues', () => {
     component.ngOnInit();
     expect(!component.validate()).toBeTruthy();
   });
+  
+//  it('make tests fail', () => {
+//      expect(false).toBeTruthy();
+//  })
 }); 
 
 class CrPortfolioImpl implements CrPortfolio {
