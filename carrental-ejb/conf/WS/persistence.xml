@@ -27,9 +27,10 @@
          can find it in the source at ear/src/main/application/META-INF/lsdekl-ds.xml -->
       <jta-data-source>datasources/carrentalDS</jta-data-source>      
       <properties>
-         <!-- Properties for Hibernate -->
+         <!-- Properties for Hibernate 
          <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
          <property name="eclipselink.ddl-generation.output-mode" value="database" />
+         -->
       </properties>
    </persistence-unit>
 </persistence>

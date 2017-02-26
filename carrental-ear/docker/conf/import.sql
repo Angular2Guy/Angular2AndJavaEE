@@ -16,6 +16,24 @@
 --
 
 -- You can use this file to load seed data into the database using SQL statements
+drop table CrDetail if exists;
+drop table CrMessage if exists;
+drop table CrPeriod if exists;
+drop table CrPortfolio if exists;
+drop table Registrant if exists;
+drop sequence if exists hibernate_sequence;
+
+create sequence hibernate_sequence start with 1 increment by 1;
+create table CrDetail (id bigint not null, jahr varchar(255), mietNr varchar(255), primary key (id));
+create table CrMessage (id bigint not null, msg varchar(255), msgType varchar(255), crDetail_id bigint, primary key (id));
+create table CrPeriod (id bigint not null, periodFrom timestamp, periodTo timestamp, crDetail_id bigint, primary key (id));
+create table CrPortfolio (id bigint not null, anzahlLkw integer, anzahlPkw integer, anzahlTotal integer, bezeichnung varchar(255), grund varchar(255), mieteAbgerechnetLkw decimal(19,2), mieteAbgerechnetPkw decimal(19,2), mieteAbgerechnetTotal decimal(19,2), mieteGeplantLkw decimal(19,2), mieteGeplantPkw decimal(19,2), mieteGeplantTotal decimal(19,2), status varchar(255), crPeriod_id bigint, primary key (id));
+create table Registrant (id bigint not null, email varchar(255) not null, name varchar(25) not null, phone_number varchar(12) not null, primary key (id));
+alter table Registrant add constraint UKit677o4jaydleb048j9oub9mk unique (email);
+alter table CrMessage add constraint FK307mgtbg8pb57nnf58h76dtyh foreign key (crDetail_id) references CrDetail;
+alter table CrPeriod add constraint FK3pujcxoaagpdqg16cqy4mdvce foreign key (crDetail_id) references CrDetail;
+alter table CrPortfolio add constraint FK2839jdedxgua8gwoh95vil7kv foreign key (crPeriod_id) references CrPeriod;
+
 insert into Registrant(id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212'); 
 insert into CrDetail(id, mietNr, jahr) values (-1, '1', '2015');
 insert into CrMessage(id, msgType, msg,crDetail_id) values (-1, 'Warning','This is a server warning.',-1);

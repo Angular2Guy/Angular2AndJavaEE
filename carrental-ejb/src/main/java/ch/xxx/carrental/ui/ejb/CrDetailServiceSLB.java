@@ -41,7 +41,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@AutoLogging
 	@Override
 	public CrDetail readCrDetail(String mietNr, String jahr) {
-		if (Utils.checkForWildfly()) {
+		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
 					.setParameter("mietNr", mietNr).setParameter("jahr", jahr).getResultList();

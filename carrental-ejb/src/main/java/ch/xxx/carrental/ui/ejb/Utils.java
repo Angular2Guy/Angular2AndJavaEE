@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 public class Utils {
 	private static final Logger LOG = Logger.getLogger(Utils.class);
 	
-	public static boolean checkForWildfly() {
+	public static boolean checkForWildflyorWS() {
 		String namingFactoryKey = null;
 		try {
 			InitialContext ic = new InitialContext();	
@@ -37,6 +37,6 @@ public class Utils {
 			return false;
 		}
 		LOG.info("key: '"+namingFactoryKey+"'");
-		return EjbNaming.JBOSS.getValue().equals(namingFactoryKey);
+		return EjbNaming.JBOSS.getValue().equals(namingFactoryKey) || EjbNaming.WEBSPHERE.getValue().equals(namingFactoryKey);
 	}
 }

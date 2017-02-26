@@ -41,7 +41,7 @@ public class CrTableServiceSLB implements CrTableService {
 	@AutoLogging
 	@Override
 	public List<CrTableRow> readCrRowsByMiete(String mietNr) {
-		if (Utils.checkForWildfly()) {
+		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr", CrDetailDB.class)
 					.setParameter("mietNr", mietNr).getResultList();
