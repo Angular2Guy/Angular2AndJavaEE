@@ -58,7 +58,7 @@ public class CrServerSIB {
 		from.set(2015, 0, 1);
 		Calendar to = Calendar.getInstance();
 		to.set(2015, 11,31);
-		CrDetail crDetail1 = new CrDetail("1","2015", crTableRows.get(0));
+		CrDetail crDetail1 = new CrDetail(false,"1","2015", crTableRows.get(0));
 		CrMessage crMessage1 = new CrMessage("1", MsgType.WARNING.toString(), "Warnung: Dies ist eine Warnung vom Server.");
 		crDetail1.getCrMessages().add(crMessage1);
 		CrPeriod crPeriod1 = new CrPeriod("1", from.getTime(), to.getTime());
@@ -70,7 +70,7 @@ public class CrServerSIB {
 		from.set(2016, 0, 1);
 		to = Calendar.getInstance();
 		to.set(2016, 11,31);
-		CrDetail crDetail2 = new CrDetail("1","2016", crTableRows.get(1));
+		CrDetail crDetail2 = new CrDetail(false, "1","2016", crTableRows.get(1));
 		CrMessage crMessage2 = new CrMessage("1", MsgType.ERROR.toString(), "Error: Dies ist ein Error vom Server.");
 		crDetail2.getCrMessages().add(crMessage2);
 		CrPeriod crPeriod2 = new CrPeriod("1", from.getTime(), to.getTime());

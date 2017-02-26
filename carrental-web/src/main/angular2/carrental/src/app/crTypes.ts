@@ -28,6 +28,7 @@ export interface CrTableRow {
     mahnstop: boolean;
 }
 export interface CrDetail {
+    changeable: boolean;
     mieteNr: string;
     jahr: string;
     crTableRow: CrTableRow;

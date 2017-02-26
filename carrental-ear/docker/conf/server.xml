@@ -39,7 +39,7 @@
 			javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
 			javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource" libraryRef="SharedLibrary_H2" />
 		<properties
-			URL="jdbc:h2:mem:test;INIT=runscript from '~/import.sql'\;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+			URL="jdbc:h2:mem:test;INIT=runscript from '/config/import.sql'\;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
 			 user="sa" password="sa" />
 	</dataSource>
 

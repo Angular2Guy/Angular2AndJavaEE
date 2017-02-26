@@ -26,11 +26,17 @@ public class Utils {
 	public static boolean checkForWildfly() {
 		String namingFactoryKey = null;
 		try {
-			InitialContext ic = new InitialContext();
-			namingFactoryKey = (String) ic.getEnvironment().get("java.naming.factory.url.pkgs");			
-		} catch (NamingException e) {
-			LOG.debug("No Wildfly found -> using singleton bean data service.");
+			InitialContext ic = new InitialContext();	
+			namingFactoryKey = (String) ic.getEnvironment().get(EjbNaming.JBOSS.getKey());
+			if(!EjbNaming.JBOSS.getValue().equals(namingFactoryKey)) {
+				Object o = ic.lookup(EjbNaming.WEBSPHERE.getKey()); 
+				namingFactoryKey = o != null ? o.getClass().getName() : "Not JBoss or Websphere";
+			}
+		} catch (NamingException e) {			
+			LOG.warn("No NamingFactory found -> using singleton bean data service.");
+			return false;
 		}
-		return EjbNaming.JBOSS.getKey().equals(namingFactoryKey);
+		LOG.info("key: '"+namingFactoryKey+"'");
+		return EjbNaming.JBOSS.getValue().equals(namingFactoryKey);
 	}
 }

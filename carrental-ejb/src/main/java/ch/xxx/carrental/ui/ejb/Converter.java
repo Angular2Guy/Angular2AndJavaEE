@@ -18,6 +18,7 @@ public class Converter {
 	
 	public CrDetail convert(CrDetailDB db) {
 		CrDetail crDetail = new CrDetail();
+		crDetail.setChangeable(true);
 		crDetail.setJahr(db.getJahr());
 		crDetail.setMietNr(db.getMietNr().toString());
 		crDetail.setCrMessages(db.getCrMessages() == null ? null : convertMsgList(db.getCrMessages()));

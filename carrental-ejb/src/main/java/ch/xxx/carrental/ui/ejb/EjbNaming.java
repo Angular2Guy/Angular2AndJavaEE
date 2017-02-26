@@ -16,15 +16,23 @@
 package ch.xxx.carrental.ui.ejb;
 
 public enum EjbNaming {
-	JBOSS("org.jboss.as.naming.interfaces:org.jboss.ejb.client.naming");
+	WEBSPHERE("datasources/carrentalDS","com.ibm.ws.rsadapter.jdbc.WSJdbcDataSource"),
+	JBOSS("java.naming.factory.url.pkgs","org.jboss.as.naming.interfaces:org.jboss.ejb.client.naming");
 	
 	private final String key;
+	private final String value;
 	
-	EjbNaming(String key) {
+	EjbNaming(String key, String value) {
 		this.key = key;
+		this.value = value;
 	}
 
 	public String getKey() {
 		return key;
 	}	
+	
+	public String getValue() {
+		return value;
+	}
+	
 }
