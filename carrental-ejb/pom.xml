@@ -134,7 +134,7 @@
 								<phase>prepare-package</phase>
 								<goals>
 									<goal>copy-resources</goal>
-								</goals>
+								</goals>								
 								<configuration>		
 									<overwrite>true</overwrite>						
 									<outputDirectory>target/classes/META-INF</outputDirectory>
@@ -142,7 +142,26 @@
 										<resource> 
 											<directory>conf/WS</directory>
 											<includes>
-												<include>*.xml</include>
+												<include>persistence.xml</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+							<execution>
+								<id>copy-log4j-xml</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>								
+								<configuration>		
+									<overwrite>true</overwrite>						
+									<outputDirectory>target/classes</outputDirectory>
+									<resources>
+										<resource> 
+											<directory>conf/WS</directory>
+											<includes>
+												<include>log4j.xml</include>
 											</includes>
 										</resource>
 									</resources>
