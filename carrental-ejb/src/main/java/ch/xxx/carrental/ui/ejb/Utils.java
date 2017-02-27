@@ -36,7 +36,8 @@ public class Utils {
 			LOG.warn("No NamingFactory found -> using singleton bean data service.");
 			return false;
 		}
-		LOG.info("key: '"+namingFactoryKey+"'");
-		return EjbNaming.JBOSS.getValue().equals(namingFactoryKey) || EjbNaming.WEBSPHERE.getValue().equals(namingFactoryKey);
+		boolean result = EjbNaming.JBOSS.getValue().equals(namingFactoryKey) || EjbNaming.WEBSPHERE.getValue().equals(namingFactoryKey);
+		LOG.info("Value: '"+namingFactoryKey+"'"+" Return: "+result);
+		return result;
 	}
 }
