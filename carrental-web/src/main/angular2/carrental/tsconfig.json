@@ -1,5 +1,7 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -7,13 +9,6 @@
     "experimentalDecorators": true,
     "lib": [
       "es2016"
-    ],
-    "outDir": "../dist/out-tsc-e2e",
-    "module": "commonjs",
-    "target": "es6",
-    "types":[
-      "jasmine",
-      "node"
     ]
   }
 }

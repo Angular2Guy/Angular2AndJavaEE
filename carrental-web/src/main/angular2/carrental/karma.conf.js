@@ -30,8 +30,7 @@ module.exports = function (config) {
       reports: [ 'html', 'lcovonly' ],
       fixWebpackSourcePaths: true
     },
-    angularCli: {
-      config: './.angular-cli.json',
+    angularCli: {      
       environment: 'dev'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
