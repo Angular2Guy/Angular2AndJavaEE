@@ -119,7 +119,7 @@
 							</includes>
 						</resource>
 						<resource>
-							<directory>${basedir}/target/angular2/carrental/src</directory>
+							<directory>${basedir}/target/angular2/carrental</directory>
 							<includes>
 								<include>i18n/*.json</include>
 							</includes>
