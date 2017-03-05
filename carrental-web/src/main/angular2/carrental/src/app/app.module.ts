@@ -25,13 +25,15 @@ import { CrdetailComponent } from './crdetail/crdetail.component';
 import { CrValuesComponent } from './crvalues/crvalues.component';
 import { CrRestService } from './crrest.service';
 import { AppRoutingModule }  from './app-routing.module';
+import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CrlistComponent,
     CrdetailComponent,
-    CrValuesComponent
+    CrValuesComponent,
+    CrvaluesdComponent,    
   ],
   imports: [
     BrowserModule,

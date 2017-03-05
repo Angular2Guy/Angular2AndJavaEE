@@ -29,10 +29,13 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
   errorMsg: string;
   crDetail: CrDetail;
   crPeriods: CrPeriod[];
+  crEditmode: boolean;
   private sub: ISubscription;
   private routeSub: ISubscription;
     
-  constructor(private route: ActivatedRoute, private router: Router, private service: CrRestService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private service: CrRestService) {
+      this.crEditmode = false;
+  }
 
   ngOnInit(): void {
       this.routeSub = this.route.params.subscribe(params => {
@@ -45,5 +48,9 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.sub.unsubscribe();
     this.routeSub.unsubscribe();
+  }
+  
+  toggleEditmode(): void {
+      this.crEditmode = !this.crEditmode;
   }
 }
