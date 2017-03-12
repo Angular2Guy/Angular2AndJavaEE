@@ -262,14 +262,15 @@
 									<arguments>
 										<argument>build</argument>
 										<argument>--prod</argument>
-										<argument>--base-href</argument>
-										<argument>"/carrental-web/"</argument>
+										<argument>--bh</argument>
+										<argument>/carrental-web/</argument>
 									</arguments>
 									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
 								</configuration>
 							</execution>
 						</executions>
 					</plugin>
+					
 					<plugin>
 						<artifactId>exec-maven-plugin</artifactId>
 						<groupId>org.codehaus.mojo</groupId>
@@ -278,14 +279,16 @@
 							<execution>
 								<id>angular-cli test</id>
 								<goals>
+									<!-- 
 									<goal>exec</goal>
+									 -->
 								</goals>
 								<phase>test</phase>
 								<configuration>
 									<executable>ng</executable>
 									<arguments>
 										<argument>test</argument>
-										<argument>--browser</argument>
+										<argument>--browsers</argument>
 										<argument>PhantomJS</argument>
 										<argument>--reporters</argument>
 										<argument>junit</argument>
@@ -324,8 +327,8 @@
 									<arguments>
 										<argument>build</argument>
 										<argument>--prod</argument>
-										<argument>--base-href</argument>
-										<argument>"/carrental-web/"</argument>
+										<argument>--bh</argument>
+										<argument>/carrental-web/</argument>
 									</arguments>
 									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
 								</configuration>
@@ -340,14 +343,16 @@
 							<execution>
 								<id>angular-cli test</id>
 								<goals>
+								<!-- 
 									<goal>exec</goal>
+							 	-->
 								</goals>
 								<phase>test</phase>
 								<configuration>
 									<executable>node_modules/@angular/cli/bin/ng</executable>
 									<arguments>
 										<argument>test</argument>
-										<argument>--browser</argument>
+										<argument>--browsers</argument>
 										<argument>PhantomJS</argument>
 										<argument>--reporters</argument>
 										<argument>junit</argument>
