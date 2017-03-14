@@ -279,9 +279,7 @@
 							<execution>
 								<id>angular-cli test</id>
 								<goals>
-									<!-- 
 									<goal>exec</goal>
-									 -->
 								</goals>
 								<phase>test</phase>
 								<configuration>
@@ -343,9 +341,7 @@
 							<execution>
 								<id>angular-cli test</id>
 								<goals>
-								<!-- 
 									<goal>exec</goal>
-							 	-->
 								</goals>
 								<phase>test</phase>
 								<configuration>
