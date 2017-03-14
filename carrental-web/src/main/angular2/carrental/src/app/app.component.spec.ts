@@ -21,6 +21,7 @@ import { AppRoutingModule }  from './app-routing.module';
 import { CrlistComponent } from './crlist/crlist.component';
 import { CrdetailComponent } from './crdetail/crdetail.component';
 import { CrValuesComponent } from './crvalues/crvalues.component';
+import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +38,8 @@ describe('AppComponent', () => {
         AppComponent,
         CrlistComponent,
         CrdetailComponent,
-        CrValuesComponent
+        CrValuesComponent,
+        CrvaluesdComponent
       ], 
       imports: [
         BrowserModule,
