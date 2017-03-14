@@ -79,7 +79,7 @@ Build Setup
 It is a multi module project. 
 The ear project configures the Ear.
 The ejb project builds the ejbs to provide the data for the rest service.
-The war project builds the war. Jax-Rs provides the rest services to serve the data of the ejbs. Npm install provides the dependency resolution for Angular Cli. Angular Cli builds a tree shaken, uglified bundle. (Angular Cli runs the tests with Karma on PhantomJS and breaks the build if they fail.) Currently PhantomJS supports ES5 until ES6 is supported this Feature is disabled.
+The war project builds the war. Jax-Rs provides the rest services to serve the data of the ejbs. Npm install provides the dependency resolution for Angular Cli. Angular Cli builds a tree shaken, uglified bundle. Angular Cli runs the tests with Karma on PhantomJS and breaks the build if they fail.
 The ear is build.
 
 Project Goal
