@@ -15,9 +15,9 @@
   "DATUM": "Date",
   "CHANGED_BY": "Mutated by",
   "MAHNSTOP": "Dunning block",
-  "ANZVERSPERS": "Number of Vehicles",
-  "LOHNSUMMECHFPROV": "Rent planned total",
-  "LOHNSUMMECHFDEF": "Rent accounted for",
+  "ANZFAHRZ": "Number of Vehicles",
+  "MIETEGEPLANT": "Rent planned total",
+  "MIETEABGERECHNET": "Rent accounted for",
   "FRAUEN":"Women",
   "MAENNER":"Men",
   "TOTAL":"Total"

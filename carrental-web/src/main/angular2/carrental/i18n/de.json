@@ -15,9 +15,9 @@
   "DATUM": "Datum",
   "CHANGED_BY": "Mutierer",
   "MAHNSTOP": "Mahnstop",
-  "ANZVERSPERS": "Anzahl Fahrzeuge",
-  "LOHNSUMMECHFPROV": "Miete geplant",
-  "LOHNSUMMECHFDEF": "Miete abgerechnet",
+  "ANZFAHRZ": "Anzahl Fahrzeuge",
+  "MIETEGEPLANT": "Miete geplant",
+  "MIETEABGERECHNET": "Miete abgerechnet",
   "FRAUEN":"Pkw",
   "MAENNER":"Lkw",
   "TOTAL":"Total"
