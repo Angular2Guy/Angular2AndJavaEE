@@ -36,6 +36,8 @@ export class CrValuesComponent implements OnInit, OnDestroy {
             mieteAbgerechnetPkw: ['', CrValuesValidators.positiveIntValidator],
             anzahlLkw: ['', CrValuesValidators.positiveIntValidator],
             mieteAbgerechnetLkw: ['', CrValuesValidators.positiveIntValidator]
+        },{
+            validator: this.validate.bind(this)
         });
     }
 
@@ -69,13 +71,17 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         //console.log("updateTotals("+value+") called.");
     }
 
-    validate(): boolean {
-        let invalidFcs = this.fcNames.filter(fcn => !this.validNumber(this.form.controls[fcn]));
+    validate(group: FormGroup): boolean {
+        let myFcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
+//        myFcNames.forEach(key => console.log(group.controls[key].value));
+//        console.log('-----------------------');
+        let invalidFcs =  myFcNames.filter(fcn => !CrValuesComponent.validNumber(group.controls[fcn].value));
         let valid = invalidFcs.length === 0;
         return valid;
     }
 
-    validNumber(value: AbstractControl): boolean {
+    static validNumber(value: AbstractControl): boolean {
+        if(!value) return false;
         let myValue = parseInt(value.value, 20);
         let ret = isNaN(myValue);
         if (!ret && myValue >= 0) {

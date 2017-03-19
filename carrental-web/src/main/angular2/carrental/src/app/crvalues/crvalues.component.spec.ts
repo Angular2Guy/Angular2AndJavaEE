@@ -49,7 +49,7 @@ describe('Component: CrValues', () => {
   
 //  it('make tests fail', () => {
 //      expect(false).toBeTruthy();
-//  })
+//  }) 
 }); 
 
 class CrPortfolioImpl implements CrPortfolio {
