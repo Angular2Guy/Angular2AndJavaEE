@@ -28,7 +28,7 @@ describe('Component: CrValues', () => {
     let param = new CrPortfolioImpl(null, null, null, null);
     component.crvalues = param;
     component.ngOnInit();
-    expect(!component.validate()).toBeTruthy();
+    expect(!component.form.valid).toBeTruthy();
   });
   
   it('validate should return true', () => {
@@ -36,7 +36,7 @@ describe('Component: CrValues', () => {
     let param = new CrPortfolioImpl(1, 1, 1, 1);
     component.crvalues = param;
     component.ngOnInit();
-    expect(component.validate()).toBeTruthy();
+    expect(component.form.valid).toBeTruthy();
   });
     
   it('validate should return false', () => {
@@ -44,7 +44,7 @@ describe('Component: CrValues', () => {
     let param = new CrPortfolioImpl(-1, -1, -1, -1);
     component.crvalues = param;
     component.ngOnInit();
-    expect(!component.validate()).toBeTruthy();
+    expect(!component.form.valid).toBeTruthy();
   });
   
 //  it('make tests fail', () => {
