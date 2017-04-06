@@ -27,7 +27,7 @@
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4",
     "bootstrap": "^3.2.6",
-    "intl": "1.2.5",
+    "intl": "^1.2.5",
     "ng2-translate": "5.0.0"
   },
   "devDependencies": {

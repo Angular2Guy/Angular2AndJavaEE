@@ -50,6 +50,14 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
   
+  convertStrToDate(dateStr: string, date: Date): void {
+      let dateArr = dateStr.split(".");
+      let myDateStr = dateArr[1]+"/"+dateArr[0]+"/"+dateArr[2];
+      date = new Date(myDateStr);
+//      console.log(dateStr);
+//      console.log(new Date(myDateStr).getTime());
+  }
+  
   toggleEditmode(): void {
       this.crEditmode = !this.crEditmode;
   }
