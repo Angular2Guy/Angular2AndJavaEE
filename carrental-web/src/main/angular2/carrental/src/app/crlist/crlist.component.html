@@ -5,6 +5,7 @@
 	<div class="row">
 		<table class="table table-striped borderless">				
 				<tr>
+					<!-- 
 					<th class="col-md-1">{{'JAHR' | translate}}</th>
 					<th class="col-md-1">{{'STATUS' | translate}}</th>
 					<th class="col-md-1">{{'GRUND' | translate}}</th>
@@ -16,7 +17,8 @@
 					<th class="col-md-1">{{'DATUM' | translate}}</th>
 					<th class="col-md-1">{{'CHANGED_BY' | translate}}</th>
 					<th class="col-md-1">{{'MAHNSTOP' | translate}}</th>
-					<!--
+					 -->
+					
 					<th class="col-md-1" i18n>Jahr</th>
 					<th class="col-md-1" i18n>Status</th>
 					<th class="col-md-1" i18n>Grund</th>
@@ -28,7 +30,7 @@
 					<th class="col-md-1" i18n>Datum</th>
 					<th class="col-md-1" i18n>Mutierer</th>
 					<th class="col-md-1" i18n>Mahnstop</th>
-					-->
+					
 				</tr>
 				<tr *ngFor="let row of tableRows">
 					<td class="col-md-1"><a [routerLink]="['/crdetail/mietenr',row.mietNr, 'jahr', row.jahr]">{{row.jahr}}</a></td>

@@ -15,7 +15,7 @@
  */
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { TranslationProviders } from './app/i18n-providers';
+import * as translateFn from './i18n-providers';
 import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
@@ -26,10 +26,9 @@ if (environment.production) {
 
 //bootstrap for i18n with webpack still missing
 
-//let TP = new TranslationProviders();
-//TP.getTranslationFile().then((providers: any) => {
-//  const options: any = { providers };
-//  platformBrowserDynamic().bootstrapModule(AppModule, options);
-//});
+translateFn.getTranslationProviders().then(providers => {
+    const options = { providers };
+    platformBrowserDynamic().bootstrapModule(AppModule, options);
+  });
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+//platformBrowserDynamic().bootstrapModule(AppModule);
