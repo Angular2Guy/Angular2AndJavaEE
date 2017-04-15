@@ -50,6 +50,7 @@
     "typescript": "~2.2.0",      
     "karma-junit-reporter": "~1.2.0",
     "karma-phantomjs-launcher": "~1.0.4",
-    "phantomjs-prebuilt": "~2.1.14"
+    "phantomjs-prebuilt": "~2.1.14",
+    "raw-loader": "~0.5.1"
   }
 }

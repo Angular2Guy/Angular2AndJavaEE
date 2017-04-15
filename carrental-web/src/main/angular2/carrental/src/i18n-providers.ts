@@ -4,7 +4,7 @@ import { TRANSLATIONS, TRANSLATIONS_FORMAT, LOCALE_ID } from '@angular/core';
 export function getTranslationProviders(): Promise<Object[]> {
   // Get the locale id from the global
   const locale = navigator.language.split('-')[0] as string;
-  
+  console.log("locale:"+locale);
   // return no providers if fail to get translation file for locale
   const noProviders: Object[] = [];
   // No locale or U.S. English: no translation providers
@@ -23,7 +23,6 @@ export function getTranslationProviders(): Promise<Object[]> {
 
 declare var require: any;
 
-function getTranslationFilesWithWebpack(locale: string) {
-    const translationFile = `./locale/messages.${locale}.xlf`;    
-    return null;
+function getTranslationFilesWithWebpack(locale: string) : Promise<string> {
+    return Promise.resolve(require('raw-loader!'+'./locale/messages.'+locale+'.xlf'));    
 }
