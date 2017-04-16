@@ -1,5 +1,7 @@
 package ch.xxx.carrental.ui.rest.model;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -22,15 +24,17 @@ public class CrDetailResource {
 	
 	@GET
 	@DisableCaching
-	public Response getAll(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin) {
+	public Response getAll(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin,@HeaderParam("Accept-Language") final String acceptLang) {
+		String[] langs = acceptLang.split(",");
+		Locale locale = Locale.forLanguageTag(langs[0]);
 		if (origin != null && origin.contains("http://localhost")) {
-			return Response.ok(service.readCrDetail(mietNr, jahr)).header("Access-Control-Allow-Origin", "*")
+			return Response.ok(service.readCrDetail(mietNr, jahr, locale)).header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
 					.header("Access-Control-Allow-Headers",
 							"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
 					.allow("OPTIONS").build();
 		} else {
-			return Response.ok(service.readCrDetail(mietNr, jahr)).build();
+			return Response.ok(service.readCrDetail(mietNr, jahr, locale)).build();
 		}
 	}
 	

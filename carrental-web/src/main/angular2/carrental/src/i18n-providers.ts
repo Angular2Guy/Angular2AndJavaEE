@@ -3,11 +3,11 @@ import { TRANSLATIONS, TRANSLATIONS_FORMAT, LOCALE_ID } from '@angular/core';
 
 export function getTranslationProviders(): Promise<Object[]> {
   // Get the locale id from the global
-  const locale = navigator.language.split('-')[0] as string;
+  const locale = navigator.language.split('-')[0] as string;  
   console.log("locale:"+locale);
   // return no providers if fail to get translation file for locale
   const noProviders: Object[] = [];
-  // No locale or U.S. English: no translation providers
+  // No locale or 'de': no translation providers
   if (!locale || locale === 'de') {
     return Promise.resolve(noProviders);
   }

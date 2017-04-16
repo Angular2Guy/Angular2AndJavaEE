@@ -16,6 +16,7 @@
 package ch.xxx.carrental.ui.ejb;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -40,7 +41,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 
 	@AutoLogging
 	@Override
-	public CrDetail readCrDetail(String mietNr, String jahr) {
+	public CrDetail readCrDetail(String mietNr, String jahr, Locale locale) {
 		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)

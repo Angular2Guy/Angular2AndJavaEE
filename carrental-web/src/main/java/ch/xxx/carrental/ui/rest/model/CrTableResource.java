@@ -1,5 +1,7 @@
 package ch.xxx.carrental.ui.rest.model;
 
+import java.util.Locale;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -20,14 +22,16 @@ public class CrTableResource {
 
 	@GET
 	@DisableCaching
-	public Response getAll(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin) {
+	public Response getAll(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin, @HeaderParam("Accept-Language") final String acceptLang) {		
+		String[] langs = acceptLang.split(",");
+		Locale locale = Locale.forLanguageTag(langs[0]);
 		if (origin != null && origin.contains("http://localhost")) {
-			return Response.ok(service.readCrRowsByMiete(mietNr)).header("Access-Control-Allow-Origin", "*")
+			return Response.ok(service.readCrRowsByMiete(mietNr, locale)).header("Access-Control-Allow-Origin", "*")
 					.header("Access-Control-Allow-Headers",
 							"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
 					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS").allow("OPTIONS").build();
 		} else {
-			return Response.ok(service.readCrRowsByMiete(mietNr)).build();
+			return Response.ok(service.readCrRowsByMiete(mietNr, locale)).build();
 		}
 
 	}
