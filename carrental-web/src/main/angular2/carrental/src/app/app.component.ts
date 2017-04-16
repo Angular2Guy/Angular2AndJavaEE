@@ -14,7 +14,6 @@
    limitations under the License.
  */
 import { Component } from '@angular/core';
-//import {TranslateService, TranslatePipe, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 
 
 @Component({  
@@ -26,11 +25,7 @@ export class AppComponent {
   title = 'carrental works!';
   
   constructor() {
-//  constructor(private _translate: TranslateService) {
-//    var userLang = navigator.language.split('-')[0]; // use navigator lang if available
-//    userLang = /(de|fr|it|en)/gi.test(userLang) ? userLang : 'en';
-//    this._translate.setDefaultLang('en');
-//    this._translate.use(userLang);
+
   }
 }
   

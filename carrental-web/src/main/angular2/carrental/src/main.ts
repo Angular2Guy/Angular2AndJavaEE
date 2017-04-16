@@ -24,8 +24,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-//bootstrap for i18n with webpack still missing
-
+//bootstrap for Angular i18n with Jit Compiler
 translateFn.getTranslationProviders().then(providers => {
     const options = { providers };
     platformBrowserDynamic().bootstrapModule(AppModule, options);

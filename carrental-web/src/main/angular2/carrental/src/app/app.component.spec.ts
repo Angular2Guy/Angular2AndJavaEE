@@ -26,7 +26,6 @@ import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, Response, ResponseOptions,XHRBackend } from '@angular/http';
-import { TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 import {APP_BASE_HREF} from '@angular/common';
 import {MockBackend, MockConnection} from "@angular/http/testing";
 
@@ -45,8 +44,7 @@ describe('AppComponent', () => {
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
-        TranslateModule.forRoot(),
+        HttpModule,        
         AppRoutingModule
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }]
@@ -60,7 +58,7 @@ describe('AppComponent', () => {
   
   it('should create the app', async(() => {
     const fixture = TestBed.configureTestingModule({
-        imports: [HttpModule, TranslateModule.forRoot()],
+        imports: [HttpModule],
         providers: [
             {provide: XHRBackend, useClass: MockBackend}       ]
     }).createComponent(AppComponent);
@@ -70,7 +68,7 @@ describe('AppComponent', () => {
 
   it(`should have as title 'app works!'`, async(() => {
     const fixture =  TestBed.configureTestingModule({
-        imports: [HttpModule, TranslateModule.forRoot()],
+        imports: [HttpModule],
         providers: [
             {provide: XHRBackend, useClass: MockBackend}
         ]
@@ -81,7 +79,7 @@ describe('AppComponent', () => {
 
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.configureTestingModule({
-        imports: [HttpModule, TranslateModule.forRoot()],
+        imports: [HttpModule],
         providers: [
             {provide: XHRBackend, useClass: MockBackend}
         ]
