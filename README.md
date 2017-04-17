@@ -1,8 +1,8 @@
-Carrental: Example Using Angular2 with Angular Cli and Java EE 6 Deployed as an EAR
+Carrental: Example Using Angular with Angular Cli and Java EE 6 Deployed as an EAR
 ==============================================================================================
 Author: Sven Loesekann
 
-Technologies: EAR, Rest, Angular 2, Angular Cli
+Technologies: EAR, Rest, Angular, Angular Cli
 
 Summary: Example Project for the integration of Maven, Angular, Java EE 6
 
@@ -11,7 +11,7 @@ Target Project: Java EE 6
 What is it?
 -----------
 
-The project shows the integration of Angular 2 with Angular Cli as UI. The Rest Services are provided by JavaEE 6. In this Example with WildFly. The Build is done with Maven. 
+The project shows the integration of Angular with Angular Cli as UI. The Rest Services are provided by JavaEE 6. In this Example with WildFly. The Build is done with Maven. 
 
 The Development Setup is Eclipse with Typescript Plugin or Webstorm. JBoss is integrated with the JBoss Plugin to provide redeployments. Angular Cli provides the UI an redeploys the UI on change and makes the optimized production build.
 
@@ -28,7 +28,7 @@ Wildfly 10 or newer. (Any JavaEE 6 Appserver will do)
 
 JBoss Plugin JBoss AS, WildFly & EAP Server Tools	3.2.0 or newer.
 
-Plugin TypeScript	1.8.0 or newer.
+Plugin Typescript.Java 1.2.0 or newer.
 
 Maven 3.3.3 or newer. 
 
@@ -36,7 +36,7 @@ Nodejs 6.9.x
 
 Npm 3.10.x 
 
-Angular Cli 1.0.0-beta.20 or newer. 
+Angular Cli 1.0.0 or newer. 
 
 Build Server requirements
 -------------------------
@@ -58,7 +58,7 @@ Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/neon/stable/u
 
 Add the Server Runtime Environment for Wildfly and connect it to the wildfly installation.
 
-Install Eclipse Typescript Plugin "http://oss.opensagres.fr/typescript.ide/1.1.0/"
+Install Eclipse Plugin Typescript.Java "http://oss.opensagres.fr/typescript.ide/1.2.0-SNAPSHOT/"
 
 Optionally install Webstorm for the UI.
 
@@ -89,7 +89,7 @@ To provide a development setup that provides fast feedback on the java ee server
 The fast feedback on the rest service is provided by the wildfly integration in eclipse.
 The fast feedback on the ui is provided by the angular cli integration. Angular Cli is used to provide the ui with fast feedback on change. Angular Cli can generate components, pipes and more. It builds Typescript into Javascript. It provides test wrappers and can execute them. 
 
-With such a setup Angular 2 can be used in an Java EE environment.
+With such a setup Angular can be used in an Java EE environment.
 
 Testing the Ear
 ---------------
