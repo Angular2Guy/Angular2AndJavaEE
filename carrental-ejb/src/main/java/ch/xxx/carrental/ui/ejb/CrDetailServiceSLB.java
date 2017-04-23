@@ -26,6 +26,8 @@ import javax.persistence.PersistenceContext;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
 import ch.xxx.carrental.ui.model.CrDetailDB;
+import ch.xxx.carrental.ui.model.CrPeriodDB;
+import ch.xxx.carrental.ui.model.CrPortfolioDB;
 import ch.xxx.carrental.ui.service.CrDetailService;
 
 @Local(CrDetailService.class)
@@ -55,18 +57,44 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@AutoLogging
 	@Override
 	public boolean createCrDetail(CrDetail crDetail) {
+		if (Utils.checkForWildflyorWS()) {
+			CrDetailDB crDetailDB = new CrDetailDB();
+			CrPeriodDB crPeriodDB = new CrPeriodDB();
+			crDetailDB.getCrPeriods().add(crPeriodDB);
+			CrPortfolioDB crPortfolioDB = new CrPortfolioDB();			
+			crPeriodDB.getCrPortfolios().add(crPortfolioDB);
+			conv.convert(crDetail, crDetailDB);
+			em.persist(crDetailDB);
+			return true;
+		}
 		return server.createCrDetail(crDetail);
 	}
 
 	@AutoLogging
 	@Override
 	public boolean updateCrDetail(CrDetail crDetail) {
+		if (Utils.checkForWildflyorWS()) {
+			List<CrDetailDB> resultList = em
+					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
+					.setParameter("mietNr", crDetail.getMietNr()).setParameter("jahr", crDetail.getJahr()).getResultList();			
+			return resultList.isEmpty() ? false : conv.convert(crDetail, (resultList.get(0)));
+		}
 		return server.updateCrDetail(crDetail);
 	}
 
 	@AutoLogging
 	@Override
 	public boolean deleteCrDetail(String mietNr, String jahr) {
+		if (Utils.checkForWildflyorWS()) {
+			List<CrDetailDB> resultList = em
+					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
+					.setParameter("mietNr", mietNr).setParameter("jahr", jahr).getResultList();
+			if(resultList.isEmpty()) {
+				return false;
+			}
+			em.remove(resultList.get(0));
+			return true;
+		}
 		return server.deleteCrDetail(mietNr, jahr);
 	}
 
