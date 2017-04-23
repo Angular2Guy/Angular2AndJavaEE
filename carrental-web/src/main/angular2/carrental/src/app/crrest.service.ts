@@ -37,7 +37,7 @@ export class CrRestService {
         this._reqOptionsArgs.headers.set( 'Content-Type', 'application/json' );
     }
 
-    getCrTableRows( policeNr: string ) {
+    getCrTableRows( policeNr: string ) : Observable<CrTableRow[]> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crTableUrlProd : this._crTableUrlDev;
         console.log( url );
         if ( environment.production ) {
@@ -55,8 +55,21 @@ export class CrRestService {
         return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackTableResponse( res ) ).catch( this.handleError );
     }
 
-    getCrDetail( policeNr: string, jahr: string ) {
+    getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        this.cleanDetailUrl(url);
+        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
+        return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackDetailResponse( res ) ).catch( this.handleError );
+    }
+
+    updateCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        this.cleanDetailUrl(url);
+        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
+        return this.http.put(url, JSON.stringify(crDetail), this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
+    }
+    
+    private cleanDetailUrl(url: string) : void {
         console.log( url );
         if ( environment.production ) {
             let start = url.indexOf( "/crdetail/" );
@@ -68,11 +81,9 @@ export class CrRestService {
                 url = this._crDetailUrlProd.substring( 1 );
                 console.log( url );
             }
-        }
-        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackDetailResponse( res ) ).catch( this.handleError );
+        }        
     }
-
+    
     private unpackTableResponse( res: Response ): CrTableRow[] {
         //console.log(res);     
         return <CrTableRow[]>res.json();

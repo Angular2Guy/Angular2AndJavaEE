@@ -2,6 +2,7 @@ package ch.xxx.carrental.ui.ejb;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
@@ -24,6 +25,36 @@ public class Converter {
 		crDetail.setCrMessages(db.getCrMessages() == null ? null : convertMsgList(db.getCrMessages()));
 		crDetail.setCrPeriods(db.getCrPeriods() == null ? null : convertPeriodList(db.getCrPeriods()));
 		return crDetail;
+	}
+	
+	public boolean convert(CrDetail from, CrDetailDB to) {
+		convert(from.getCrPeriods(), to.getCrPeriods());
+		return true;
+	}
+	
+	private void convert(List<CrPeriod> from, List<CrPeriodDB> to) {
+		from.forEach(crPeriod -> convert(crPeriod, to.stream().filter(crPeriodDB -> crPeriodDB.getId().toString().equals(crPeriod.getId())).findFirst()));
+	}
+	
+	private void convert(CrPeriod from,Optional<CrPeriodDB> to) {
+		to.get().setPeriodFrom(from.getFrom());
+		to.get().setPeriodTo(from.getTo());
+		from.getCrPortfolios().forEach(pf -> convert(pf, to.get().getCrPortfolios().stream().filter(pfDB -> pfDB.getId().toString().equals(pf.getId())).findFirst()));		
+	}
+	
+	private void convert(CrPortfolio from, Optional<CrPortfolioDB> to) {
+		to.get().setAnzahlLkw(from.getAnzahlLkw());
+		to.get().setAnzahlPkw(from.getAnzahlPkw());
+		to.get().setAnzahlTotal(from.getAnzahlTotal());
+		to.get().setBezeichnung(from.getBezeichnung());
+//		to.get().setGrund("Grund");
+		to.get().setMieteAbgerechnetLkw(from.getMieteAbgerechnetLkw());
+		to.get().setMieteAbgerechnetPkw(from.getMieteAbgerechnetPkw());
+		to.get().setMieteAbgerechnetTotal(from.getMieteAbgerechnetTotal());
+		to.get().setMieteGeplantLkw(from.getMieteGeplantLkw());
+		to.get().setMieteGeplantPkw(from.getMieteGeplantPkw());
+		to.get().setMieteGeplantTotal(from.getMieteGeplantTotal());
+//		to.get().setStatus();
 	}
 	
 	private List<CrMessage> convertMsgList(List<CrMessageDB> db) {

@@ -30,8 +30,9 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
   crDetail: CrDetail;
   crPeriods: CrPeriod[];
   crEditmode: boolean;
-  private sub: ISubscription;
-  private routeSub: ISubscription;
+  private mnr: string;
+  private jahr: string;
+  private routeSub: ISubscription;  
     
   constructor(private route: ActivatedRoute, private router: Router, private service: CrRestService) {
       this.crEditmode = false;
@@ -39,14 +40,13 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.routeSub = this.route.params.subscribe(params => {
-        let mnr = params['mnr'];
-        let jahr = params['jahr'];
-        this.sub = this.service.getCrDetail(mnr, jahr).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);          
+        this.mnr = params['mnr'];
+        this.jahr = params['jahr'];
+        this.service.getCrDetail(this.mnr, this.jahr).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);
       });      
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
     this.routeSub.unsubscribe();
   }
   
@@ -60,5 +60,9 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
   
   toggleEditmode(): void {
       this.crEditmode = !this.crEditmode;
+  }
+  
+  update(): void {
+      this.service.updateCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);      
   }
 }
