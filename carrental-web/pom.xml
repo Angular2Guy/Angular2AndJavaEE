@@ -121,7 +121,7 @@
 						<resource>
 							<directory>${basedir}/target/angular2/carrental</directory>
 							<includes>
-								<include>i18n/*.json</include>
+								<include>locale/*.xlf</include>
 							</includes>
 						</resource>
 						<resource>
