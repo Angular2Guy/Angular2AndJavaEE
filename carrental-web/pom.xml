@@ -119,7 +119,7 @@
 							</includes>
 						</resource>
 						<resource>
-							<directory>${basedir}/target/angular2/carrental</directory>
+							<directory>${basedir}/target/angular2/carrental/src</directory>
 							<includes>
 								<include>locale/*.xlf</include>
 							</includes>
