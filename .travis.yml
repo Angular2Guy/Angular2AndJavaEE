@@ -4,6 +4,7 @@ jdk:
   - oraclejdk8
 
 node_js:
+  - "iojs"
   - "6"
 
 services:
