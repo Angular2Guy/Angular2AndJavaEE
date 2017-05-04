@@ -1,14 +1,15 @@
-language: java node_js
+language: java
     
 jdk:
   - oraclejdk8
 
-node_js:
-  - "iojs"
-  - "6"
-
 services:
   - docker
+
+before_install:
+  - nvm install 6.9
+  - nvm use 6.9
+
       
 script:
   mvn clean install
