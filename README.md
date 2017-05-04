@@ -2,6 +2,9 @@ Carrental: Example Using Angular with Angular Cli and Java EE 6 Deployed as an E
 ==============================================================================================
 Author: Sven Loesekann
 
+[![Build Status](https://travis-ci.org/Angular2Guy/Angular2AndJavaEE.svg?branch=master)]
+
+
 Technologies: EAR, Rest, Angular, Angular Cli
 
 Summary: Example Project for the integration of Maven, Angular, Java EE 6
