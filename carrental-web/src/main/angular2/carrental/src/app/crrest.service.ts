@@ -38,50 +38,35 @@ export class CrRestService {
     }
 
     getCrTableRows( policeNr: string ) : Observable<CrTableRow[]> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crTableUrlProd : this._crTableUrlDev;
-        console.log( url );
-        if ( environment.production ) {
-            let start = url.indexOf( "/crlist/" );
-            console.log( "start=" + start );
-            if ( start > -1 ) {
-                let end = url.indexOf( "/rest/" );
-                url = url.substring( 0, start ) + url.substring( end, url.length );
-            } else {
-                url = this._crTableUrlProd.substring( 1 );
-                console.log( url );
-            }
-        }
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crTableUrlProd : this._crTableUrlDev;       
+        url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr );
+        console.log(url);
         return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackTableResponse( res ) ).catch( this.handleError );
     }
 
     getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
-        this.cleanDetailUrl(url);
+        url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
+        console.log(url);
         return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackDetailResponse( res ) ).catch( this.handleError );
     }
 
     updateCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
-        this.cleanDetailUrl(url);
+        url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         return this.http.put(url, JSON.stringify(crDetail), this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
     }
     
-    private cleanDetailUrl(url: string) : void {
+    private cleanUrl(url: string) : string {
         console.log( url );
         if ( environment.production ) {
-            let start = url.indexOf( "/crdetail/" );
-            console.log( "start=" + start );
-            if ( start > -1 ) {
-                let end = url.indexOf( "/rest/" );
-                url = url.substring( 0, start ) + url.substring( end, url.length );
-            } else {
-                url = this._crDetailUrlProd.substring( 1 );
-                console.log( url );
-            }
-        }        
+            url = url.replace('//','/');            
+            console.log( url );            
+        }  
+        return url;
     }
     
     private unpackTableResponse( res: Response ): CrTableRow[] {
