@@ -1,69 +1,90 @@
 <p i18n>crdetail works!</p>
-<div *ngIf="!crEditmode">
-	<table style="width: 100%">
-		<tr *ngFor="let period of crPeriods">
-			<td style="width: 15%"><ng-container i18n>Mietperiode</ng-container><br />
-				{{period.from | date:'dd.MM.yyyy'}} <ng-container i18n>bis</ng-container>
-				{{period.to | date:'dd.MM.yyyy'}}<br/>
-				<button type="button" class="btn btn-primary" (click)="toggleEditmode()">
-                      Edit
-                    </button>
-			</td>
-				
-			<td style="width: 85%">
-				<table style="width: 100%">
-					<tr *ngFor="let pf of period.crPortfolios">
-						<td style="width: 15%"><ng-container i18n>Mieter</ng-container><br />
-							{{pf.bezeichnung}}</td>
-						<td style="width: 85%"><ng-container i18n>Details</ng-container>
-							<app-crvaluesd [crvalues]="pf"></app-crvaluesd></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+<div class="wrapper">
+<div *ngIf="!crEditmode" class="flex-container-column">
+	<div *ngFor="let period of crPeriods" class="flex-column">
+		<div class="flex-container-row">
+			<div class="flex-row1">
+				<div class="row-content">
+					<ng-container i18n>Mietperiode</ng-container><br />
+					{{period.from | date:'dd.MM.yyyy'}} <ng-container i18n>bis</ng-container>
+					{{period.to | date:'dd.MM.yyyy'}}<br/>
+					<button type="button" class="btn btn-primary" (click)="toggleEditmode()">
+	                      Edit
+                    </button>			
+                    </div>
+			</div>
+			<div class="flex-row2">	
+				<div class="flex-container-column">
+					<div *ngFor="let pf of period.crPortfolios" class="flex-column">
+						<div class="flex-container-row">
+							<div class="flex-row1">
+								<div class="row-content">
+									<ng-container i18n>Mieter</ng-container><br />
+									{{pf.bezeichnung}}
+								</div>
+							</div>
+							<div class="flex-row2">
+								<ng-container i18n>Details</ng-container>
+								<app-crvaluesd [crvalues]="pf"></app-crvaluesd>
+							</div>	
+						</div>						
+					</div>								
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div *ngIf="crEditmode">
-	<table style="width: 100%">
-		<tr *ngFor="let period of crPeriods">
-			<td style="width: 15%"><ng-container i18n>Mietperiode</ng-container><br />				
-				
-				<div class='input-group date' id='datetimepicker1'>
-                    <input type='text' #periodFrom class="form-control" [value]="period.from | date:'dd.MM.yyyy'" (keyup.enter)="convertStrToDate(periodFrom.value, periodFrom)"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+<div *ngIf="crEditmode" class="flex-container-column">
+	<div *ngFor="let period of crPeriods" class="flex-column">
+		<div class="flex-container-row">
+			<div class="flex-row1">	
+				<div class="row-content">
+					<ng-container i18n>Mietperiode</ng-container><br />				
+					
+					<div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' #periodFrom class="form-control" [value]="period.from | date:'dd.MM.yyyy'" (keyup.enter)="convertStrToDate(periodFrom.value, periodFrom)"/>
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+					
+					 <ng-container i18n>bis</ng-container>
+					 <div class='input-group date' id='datetimepicker1'>
+	                    <input type='text' #periodTo class="form-control" [value]="period.to | date:'dd.MM.yyyy'" (keyup.enter)="convertStrToDate(periodTo.value, periodTo)"/>
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-calendar"></span>
+	                    </span>
+	                </div>
+					
+					<button type="button" class="btn btn-primary" (click)="toggleEditmode()">
+	                      Display
+	                </button>
+	                <!--
+	                <button type="button" class="btn btn-primary" (click)="update()">
+	                      Update
+	                </button>
+	                -->
                 </div>
-				
-				 <ng-container i18n>bis</ng-container>
-				 <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' #periodTo class="form-control" [value]="period.to | date:'dd.MM.yyyy'" (keyup.enter)="convertStrToDate(periodTo.value, periodTo)"/>
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-				
-				<button type="button" class="btn btn-primary" (click)="toggleEditmode()">
-                      Display
-                </button>
-                <!--
-                <button type="button" class="btn btn-primary" (click)="update()">
-                      Update
-                </button>
-                --> 
-			</td>
-			<td style="width: 85%">
-				<table style="width: 100%">
-					<tr *ngFor="let pf of period.crPortfolios">
-						<td style="width: 15%"><ng-container i18n>Mieter</ng-container><br />
-							<input type='text' class="form-control" [(value)]="pf.bezeichnung" />
-						</td>
-						<td style="width: 85%"><ng-container i18n>Details</ng-container>
-							<app-crvalues [crvalues]="pf"></app-crvalues></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+            </div>
+            <div class="flex-row2">	
+				<div class="flex-container-column">
+					<div *ngFor="let pf of period.crPortfolios" class="flex-column">
+						<div class="flex-container-row">
+							<div class="flex-row1">
+								<div class="row-content">
+									<ng-container i18n>Mieter</ng-container><br />
+									<input type='text' class="form-control" [(value)]="pf.bezeichnung" />
+								</div>
+							</div>
+							<div class="flex-row2">
+								<ng-container i18n>Details</ng-container>
+								<app-crvalues [crvalues]="pf"></app-crvalues>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

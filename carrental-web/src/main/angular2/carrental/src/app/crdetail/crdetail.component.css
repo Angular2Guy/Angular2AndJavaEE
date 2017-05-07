@@ -1,0 +1,32 @@
+.wrapper {
+	width: 100%;	
+}
+.flex-container-column {	
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+}
+.flex-container-row {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+    width: 100%;
+}
+
+.flex-column {
+	flex: 1 0 100px;
+	width: 100%;	
+}
+
+.flex-row1 {
+	flex: 1 0 15%;
+	display: flex;	
+	align-items: center;
+	flex-wrap: wrap;
+}
+.flex-row2 {
+	flex: 1 0 85%;
+}
+.row-content {
+			
+}
