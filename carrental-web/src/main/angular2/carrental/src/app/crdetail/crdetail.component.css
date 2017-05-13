@@ -28,5 +28,11 @@
 	flex: 1 0 85%;
 }
 .row-content {
-			
+	width: 100%;
+	height: 70%;				
 }
+
+.bottom-buttons {
+	height: 30%;
+	text-align: center;	
+} 

@@ -4,14 +4,16 @@
 	<div *ngFor="let period of crPeriods" class="flex-column">
 		<div class="flex-container-row">
 			<div class="flex-row1">
-				<div class="row-content">
-					<ng-container i18n>Mietperiode</ng-container><br />
-					{{period.from | date:'dd.MM.yyyy'}} <ng-container i18n>bis</ng-container>
-					{{period.to | date:'dd.MM.yyyy'}}<br/>
+				<div class="row-content">					
+						<ng-container i18n>Mietperiode</ng-container><br />
+						{{period.from | date:'dd.MM.yyyy'}} <ng-container i18n>bis</ng-container>
+						{{period.to | date:'dd.MM.yyyy'}}					
+            	</div>
+				<div class="bottom-buttons">
 					<button type="button" class="btn btn-primary" (click)="toggleEditmode()">
-	                      Edit
-                    </button>			
-                    </div>
+		                Edit
+                   	</button>
+        	    </div>			
 			</div>
 			<div class="flex-row2">	
 				<div class="flex-container-column">
@@ -56,16 +58,26 @@
 	                        <span class="glyphicon glyphicon-calendar"></span>
 	                    </span>
 	                </div>
-					
-					<button type="button" class="btn btn-primary" (click)="toggleEditmode()">
-	                      Display
-	                </button>
+	            </div>    
+				<div class="bottom-buttons button-center">
+		                <button type="button" class="btn btn-primary" (click)="toggleEditmode()">
+		                	New
+		                </button>
+		                <button type="button" class="btn btn-primary" (click)="toggleEditmode()">
+		                	Update
+		                </button>
+		                <button type="button" class="btn btn-primary" (click)="toggleEditmode()">
+		                	Delete
+		                </button>
+		                <button type="button"  class="btn btn-primary" (click)="toggleEditmode()">
+		                	Display
+		                </button>
+	            </div>
 	                <!--
 	                <button type="button" class="btn btn-primary" (click)="update()">
 	                      Update
 	                </button>
-	                -->
-                </div>
+	                -->                
             </div>
             <div class="flex-row2">	
 				<div class="flex-container-column">

@@ -57,7 +57,21 @@ export class CrRestService {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
+        return this.http.post(url, JSON.stringify(crDetail), this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
+    }
+    
+    putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        url = this.cleanUrl(url);
+        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         return this.http.put(url, JSON.stringify(crDetail), this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
+    }
+    
+    deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        url = this.cleanUrl(url);
+        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
+        return this.http.delete(url, this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
     }
     
     private cleanUrl(url: string) : string {
