@@ -52,8 +52,8 @@ export class CrRestService {
         console.log(url);
         return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackDetailResponse( res ) ).catch( this.handleError );
     }
-
-    updateCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+ 
+    createCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );

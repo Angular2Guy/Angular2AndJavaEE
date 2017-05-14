@@ -50,19 +50,15 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
     this.routeSub.unsubscribe();
   }
   
-  convertStrToDate(dateStr: string, date: Date): void {
-      let dateArr = dateStr.split(".");
-      let myDateStr = dateArr[1]+"/"+dateArr[0]+"/"+dateArr[2];
-      date = new Date(myDateStr);
-//      console.log(dateStr);
-//      console.log(new Date(myDateStr).getTime());
-  }
-  
   toggleEditmode(): void {
       this.crEditmode = !this.crEditmode;
   }
   
   update(): void {
-      this.service.updateCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);      
+      this.service.putCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);      
+  }
+  
+  create(): void {
+      this.service.createCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);
   }
 }

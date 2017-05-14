@@ -44,26 +44,16 @@
 				<div class="row-content">
 					<ng-container i18n>Mietperiode</ng-container><br />				
 					
-					<div class='input-group date' id='datetimepicker1'>
-	                    <input type='text' #periodFrom class="form-control" [value]="period.from | date:'dd.MM.yyyy'" (keyup.enter)="convertStrToDate(periodFrom.value, periodFrom)"/>
-	                    <span class="input-group-addon">
-	                        <span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-	                </div>
+					<app-crdate [myobject]="period" [myvalue]="'from'"></app-crdate>
 					
 					 <ng-container i18n>bis</ng-container>
-					 <div class='input-group date' id='datetimepicker1'>
-	                    <input type='text' #periodTo class="form-control" [value]="period.to | date:'dd.MM.yyyy'" (keyup.enter)="convertStrToDate(periodTo.value, periodTo)"/>
-	                    <span class="input-group-addon">
-	                        <span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-	                </div>
+					 <app-crdate [myobject]="period" [myvalue]="'to'"></app-crdate>
 	            </div>    
 				<div class="bottom-buttons button-center">
 		                <button type="button" class="btn btn-primary" (click)="toggleEditmode()">
 		                	New
 		                </button>
-		                <button type="button" class="btn btn-primary" (click)="toggleEditmode()">
+		                <button type="button" class="btn btn-primary" (click)="update()">
 		                	Update
 		                </button>
 		                <button type="button" class="btn btn-primary" (click)="toggleEditmode()">
@@ -86,7 +76,8 @@
 							<div class="flex-row1">
 								<div class="row-content">
 									<ng-container i18n>Mieter</ng-container><br />
-									<input type='text' class="form-control" [(value)]="pf.bezeichnung" />
+									<app-crdate [myobject]="pf" [myvalue]="'bezeichnung'" mytype="'text'"></app-crdate>
+									<!-- <input type='text' class="form-control" [(value)]="pf.bezeichnung" />-->
 								</div>
 							</div>
 							<div class="flex-row2">

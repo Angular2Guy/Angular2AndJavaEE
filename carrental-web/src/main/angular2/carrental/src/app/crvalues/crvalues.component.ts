@@ -44,16 +44,16 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     ngOnInit() {
         let fc = <FormControl>this.form.controls[this.fcNames[0]];
         fc.setValue(this.crvalues.anzahlPkw);        
-        this.updateTotalsSub.push(fc.valueChanges.subscribe((value) => this.updateTotals(value)));      
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlPkw = value; this.updateTotals(value)}));      
         fc = <FormControl>this.form.controls[this.fcNames[1]];
         fc.setValue(this.crvalues.anzahlLkw);        
-        this.updateTotalsSub.push(fc.valueChanges.subscribe((value) => this.updateTotals(value)));
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlLkw = value; this.updateTotals(value)}));
         fc = <FormControl>this.form.controls[this.fcNames[2]];
         fc.setValue(this.crvalues.mieteAbgerechnetPkw);
-        this.updateTotalsSub.push(fc.valueChanges.subscribe((value) => this.updateTotals(value)));        
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetPkw; this.updateTotals(value)}));        
         fc = <FormControl>this.form.controls[this.fcNames[3]];
         fc.setValue(this.crvalues.mieteAbgerechnetLkw);  
-        this.updateTotalsSub.push(fc.valueChanges.subscribe((value) => this.updateTotals(value)));    
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetLkw; this.updateTotals(value)}));    
 //        this.validate();
         this.crvalues.mieteGeplantTotal = this.crvalues.mieteGeplantPkw + this.crvalues.mieteGeplantLkw;
         this.updateTotals(null);
@@ -65,7 +65,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         }
     }
     
-    updateTotals(value: any): void {
+    updateTotals(value: any): void {        
         this.crvalues.anzahlTotal = parseInt(this.form.controls[this.fcNames[0]].value)  + parseInt(this.form.controls[this.fcNames[1]].value);
         this.crvalues.mieteAbgerechnetTotal = parseInt(this.form.controls[this.fcNames[2]].value) + parseInt(this.form.controls[this.fcNames[3]].value);
         //console.log("updateTotals("+value+") called.");

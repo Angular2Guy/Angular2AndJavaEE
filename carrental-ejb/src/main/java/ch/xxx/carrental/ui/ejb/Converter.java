@@ -34,13 +34,13 @@ public class Converter {
 	}
 	
 	private void convert(List<CrPeriod> from, List<CrPeriodDB> to) {
-		from.forEach(crPeriod -> convert(crPeriod, to.stream().filter(crPeriodDB -> crPeriodDB.getId().toString().equals(crPeriod.getId())).findFirst()));
+		from.forEach(crPeriod -> convert(crPeriod, to.stream().filter(crPeriodDB -> crPeriodDB.getId().equals(crPeriod.getId())).findFirst()));
 	}
 	
 	private void convert(CrPeriod from,Optional<CrPeriodDB> to) {
 		to.get().setPeriodFrom(from.getFrom());
 		to.get().setPeriodTo(from.getTo());
-		from.getCrPortfolios().forEach(pf -> convert(pf, to.get().getCrPortfolios().stream().filter(pfDB -> pfDB.getId().toString().equals(pf.getId())).findFirst()));		
+		from.getCrPortfolios().forEach(pf -> convert(pf, to.get().getCrPortfolios().stream().filter(pfDB -> pfDB.getId().equals(pf.getId())).findFirst()));		
 	}
 	
 	private void convert(CrPortfolio from, Optional<CrPortfolioDB> to) {
