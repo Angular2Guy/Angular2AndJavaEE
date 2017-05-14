@@ -28,6 +28,7 @@ export interface CrTableRow {
     mahnstop: boolean;
 }
 export interface CrDetail {
+    id: number;
     changeable: boolean;
     mieteNr: string;
     jahr: string;
@@ -37,14 +38,14 @@ export interface CrDetail {
 }    
 
 export interface CrPeriod {
-    id: string;
+    id: number;
     from: Date;
     to: Date;
     crPortfolios: CrPortfolio[];    
 }
 
 export interface CrPortfolio {
-    id: string;  
+    id: number;  
     bezeichnung: string; 
     anzahlPkw: number;
     anzahlLkw: number;
@@ -58,7 +59,7 @@ export interface CrPortfolio {
 }
 
 export interface LsdMessage {
-    id: string;
+    id: number;
     msgType: string;
     msg: string;  
 }

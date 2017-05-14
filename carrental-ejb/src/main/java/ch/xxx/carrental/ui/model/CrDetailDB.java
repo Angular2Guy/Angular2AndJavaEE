@@ -50,6 +50,12 @@ public class CrDetailDB {
 	public void setCrMessages(List<CrMessageDB> crMessages) {
 		this.crMessages = crMessages;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 	
 }

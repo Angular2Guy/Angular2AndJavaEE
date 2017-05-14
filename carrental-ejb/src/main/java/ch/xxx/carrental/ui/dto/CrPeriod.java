@@ -27,8 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="CrPeriod")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CrPeriod {
-	@XmlElement(required=true)
-	private String id;
+	@XmlElement(required=false)
+	private Long id;
 	@XmlElement(required=false)
 	private Date from;
 	@XmlElement(required=false)
@@ -40,17 +40,17 @@ public class CrPeriod {
 		
 	}
 	
-	public CrPeriod(String id, Date from, Date to) {
+	public CrPeriod(Long id, Date from, Date to) {
 		super();
 		this.id = id;
 		this.from = from;
 		this.to = to;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Date getFrom() {

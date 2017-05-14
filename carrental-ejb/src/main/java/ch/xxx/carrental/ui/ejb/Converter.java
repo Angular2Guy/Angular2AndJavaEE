@@ -19,6 +19,7 @@ public class Converter {
 	
 	public CrDetail convert(CrDetailDB db) {
 		CrDetail crDetail = new CrDetail();
+		crDetail.setId(db.getId());
 		crDetail.setChangeable(true);
 		crDetail.setJahr(db.getJahr());
 		crDetail.setMietNr(db.getMietNr().toString());
@@ -64,7 +65,7 @@ public class Converter {
 	
 	private CrMessage convert(CrMessageDB db) {
 		CrMessage msg = new CrMessage();
-		msg.setId(db.getId().toString());
+		msg.setId(db.getId());
 		msg.setMsg(db.getMsg());
 		msg.setMsgType(db.getMsgType());
 		return msg;
@@ -79,7 +80,7 @@ public class Converter {
 		CrPeriod period = new CrPeriod();
 		period.setFrom(db.getPeriodFrom());
 		period.setTo(db.getPeriodTo());
-		period.setId(db.getId().toString());
+		period.setId(db.getId());
 		period.setCrPortfolios(db.getCrPortfolios() == null ? null: convertPortList(db.getCrPortfolios()));
 		return period;
 	}
@@ -95,7 +96,7 @@ public class Converter {
 		portfolio.setAnzahlPkw(db.getAnzahlPkw());
 		portfolio.setAnzahlTotal(db.getAnzahlTotal());
 		portfolio.setBezeichnung(db.getBezeichnung());
-		portfolio.setId(db.getId().toString());
+		portfolio.setId(db.getId());
 		portfolio.setMieteAbgerechnetLkw(db.getMieteAbgerechnetLkw());
 		portfolio.setMieteAbgerechnetPkw(db.getMieteAbgerechnetPkw());
 		portfolio.setMieteAbgerechnetTotal(db.getMieteAbgerechnetTotal());

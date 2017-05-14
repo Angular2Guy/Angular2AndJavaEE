@@ -26,6 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="CrDetail")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CrDetail {
+	@XmlElement(required=false)
+	private Long id;
 	@XmlElement(required=true)
 	private boolean	changeable;
 	@XmlElement(required=true)
@@ -43,8 +45,9 @@ public class CrDetail {
 		
 	}
 	
-	public CrDetail(boolean changeable, String mietNr, String jahr, CrTableRow lsdTableRow) {
+	public CrDetail(Long id, boolean changeable, String mietNr, String jahr, CrTableRow lsdTableRow) {
 		super();
+		this.id = id;
 		this.changeable = changeable;
 		this.mietNr = mietNr;
 		this.jahr = jahr;
@@ -96,6 +99,14 @@ public class CrDetail {
 
 	public void setChangeable(boolean changeable) {
 		this.changeable = changeable;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

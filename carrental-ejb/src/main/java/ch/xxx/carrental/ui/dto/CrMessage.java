@@ -23,8 +23,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="CrMessage")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CrMessage {
-	@XmlElement(required=true)
-	private String id;
+	@XmlElement(required=false)
+	private Long id;
 	@XmlElement(required=false)
 	private String msgType;
 	@XmlElement(required=false)
@@ -34,17 +34,17 @@ public class CrMessage {
 		
 	}
 	
-	public CrMessage(String id, String type, String msg) {
+	public CrMessage(Long id, String type, String msg) {
 		super();
 		this.id = id;
 		this.msgType = type;
 		this.msg = msg;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}	
 	public String getMsg() {

@@ -25,8 +25,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="CrPortfolio")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CrPortfolio {
-	@XmlElement(required=true)
-	private String id;
+	@XmlElement(required=false)
+	private Long id;
 	@XmlElement(required=false)
 	private String bezeichnung;
 	@XmlElement(required=false)
@@ -52,7 +52,7 @@ public class CrPortfolio {
 		
 	}
 
-	public CrPortfolio(String id, String bezeichnung, Integer anzahlPkw, Integer anzahlLkw, Integer anzahlTotal,
+	public CrPortfolio(Long id, String bezeichnung, Integer anzahlPkw, Integer anzahlLkw, Integer anzahlTotal,
 			BigDecimal mieteGeplantPkw, BigDecimal mieteGeplantLkw, BigDecimal mieteGeplantTotal,
 			BigDecimal mieteAbgerechnetPkw, BigDecimal mieteAbgerechnetLkw, BigDecimal mieteAbgerechnetTotal) {
 		super();
@@ -71,11 +71,11 @@ public class CrPortfolio {
 
 
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
