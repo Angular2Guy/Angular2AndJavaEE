@@ -15,6 +15,7 @@ export class CrdateComponent implements OnInit {
   newString: string;
   
   ngOnInit() {
+      if(!this.myobject) return; //for the tests
       if(!this.mytype) {
           this.newDate = this.myobject[this.myvalue];          
       } else {

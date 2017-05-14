@@ -22,6 +22,7 @@ import { CrlistComponent } from './crlist/crlist.component';
 import { CrdetailComponent } from './crdetail/crdetail.component';
 import { CrValuesComponent } from './crvalues/crvalues.component';
 import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
+import { CrdateComponent } from './crdate/crdate.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -38,7 +39,8 @@ describe('AppComponent', () => {
         CrlistComponent,
         CrdetailComponent,
         CrValuesComponent,
-        CrvaluesdComponent
+        CrvaluesdComponent,
+        CrdateComponent
       ], 
       imports: [
         BrowserModule,
