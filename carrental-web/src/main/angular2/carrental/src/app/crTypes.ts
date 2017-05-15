@@ -27,6 +27,7 @@ export interface CrTableRow {
     mutatedBy: string;
     mahnstop: boolean;
 }
+
 export interface CrDetail {
     id: number;
     changeable: boolean;
@@ -34,8 +35,8 @@ export interface CrDetail {
     jahr: string;
     crTableRow: CrTableRow;
     crPeriods: CrPeriod[];
-    crMessages: LsdMessage[];
-}    
+    crMessages: CrMessage[];
+}
 
 export interface CrPeriod {
     id: number;
@@ -58,8 +59,66 @@ export interface CrPortfolio {
     mieteAbgerechnetTotal: number;
 }
 
-export interface LsdMessage {
+export interface CrMessage {
     id: number;
     msgType: string;
     msg: string;  
+}
+
+class CrTableRowImpl implements CrTableRow {
+    constructor(
+            public mietNr: string,
+            public jahr: string,
+            public status: string,
+            public grund: string,
+            public fahrzeugeTotal: number,
+            public mieteGeplantTotal: number,
+            public mieteAbgerechnetTotal: number,
+            public anzahlPkw: number,
+            public anzahlLkw: number,
+            public mutatedAt: Date,
+            public mutatedBy: string,
+            public mahnstop: boolean
+    ) {}
+}
+
+class CrDetailImpl implements CrDetail {
+    constructor(
+            public id: number,
+            public changeable: boolean, 
+            public mieteNr: string, 
+            public jahr: string, 
+            public crTableRow: CrTableRow, 
+            public crPeriods: CrPeriod[], 
+            public crMessages: CrMessage[]) {}
+}
+
+class CrPeriodImpl implements CrPeriod {
+    constructor(
+            public id: number,
+            public from: Date,
+            public to: Date,
+            public crPortfolios: CrPortfolio[]) {}
+}
+
+class CrPortfolioImpl implements CrPortfolio {
+    constructor(
+            public id: number,  
+            public bezeichnung: string, 
+            public anzahlPkw: number,
+            public anzahlLkw: number,
+            public anzahlTotal: number,
+            public mieteGeplantPkw: number,
+            public mieteGeplantLkw: number,
+            public mieteGeplantTotal: number,
+            public mieteAbgerechnetPkw: number,
+            public mieteAbgerechnetLkw: number,
+            public mieteAbgerechnetTotal: number) {}
+}
+
+class CrMessageImpl implements CrMessage {
+    constructor(
+            public id: number,
+            public msgType: string,
+            public msg: string) {}
 }
