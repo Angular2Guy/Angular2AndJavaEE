@@ -16,7 +16,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptionsArgs, Headers } from '@angular/http';
 import { PlatformLocation } from '@angular/common';
-import { CrTableRow, CrDetail } from './crTypes';
+import { CrTableRow, CrDetail, CrPeriod, CrPortfolio } from './crTypes';
+import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl } from './crClasses';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -26,7 +27,7 @@ import { environment } from '../environments/environment';
 
 @Injectable()
 export class CrRestService {
-
+    static readonly NEWID = 'newId';
     private _crTableUrlProd = '/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
     private _crDetailUrlProd = '/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
     private _crTableUrlDev = 'http://localhost:8080/carrental-web/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
@@ -46,6 +47,12 @@ export class CrRestService {
     }
 
     getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
+        if(policeNr === CrRestService.NEWID || jahr === CrRestService.NEWID) {
+            return Observable.create(observer => {
+                observer.next(this.createEmptyTree());
+                observer.complete();
+            });
+        }
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
@@ -53,7 +60,14 @@ export class CrRestService {
         return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackDetailResponse( res ) ).catch( this.handleError );
     }
  
-    createCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+    private createEmptyTree() : CrDetail {
+        let crPortfolio = new CrPortfolioImpl(null,null,null,null,null,null,null,null,null,null,null);
+        let crPeriod = new CrPeriodImpl(null,null,null,[crPortfolio]);        
+        let crDetail = new CrDetailImpl(null,true,null,null,null,[crPeriod],[]);
+        return crDetail;
+    }
+    
+    postCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );

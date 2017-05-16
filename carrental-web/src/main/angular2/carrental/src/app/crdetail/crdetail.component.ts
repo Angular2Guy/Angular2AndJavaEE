@@ -38,7 +38,7 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
       this.crEditmode = false;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {      
       this.routeSub = this.route.params.subscribe(params => {
         this.mnr = params['mnr'];
         this.jahr = params['jahr'];
@@ -58,11 +58,12 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
       if(this.crDetail.id) {
           this.service.putCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.router.createUrlTree(['crdetail/mietenr/',(<CrDetail> lsdD).mieteNr, '/jahr/',(<CrDetail> lsdD).jahr]);}, error => this.errorMsg = error);
       } else {
-          this.service.createCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.router.createUrlTree(['crdetail/mietenr/',(<CrDetail> lsdD).mieteNr, '/jahr/',(<CrDetail> lsdD).jahr]);}, error => this.errorMsg = error);
+          this.service.postCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.router.createUrlTree(['crdetail/mietenr/',(<CrDetail> lsdD).mieteNr, '/jahr/',(<CrDetail> lsdD).jahr]);}, error => this.errorMsg = error);
       }
   }
   
-  create(): void {
-      
+  create(): void {      
+      let urlTree = 'crdetail/mietenr/'+CrRestService.NEWID+ '/jahr/'+CrRestService.NEWID;
+      this.router.navigateByUrl(urlTree);
   }
 }
