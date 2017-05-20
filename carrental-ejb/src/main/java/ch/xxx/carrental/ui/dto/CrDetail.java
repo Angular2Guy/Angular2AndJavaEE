@@ -30,9 +30,9 @@ public class CrDetail {
 	private Long id;
 	@XmlElement(required=true)
 	private boolean	changeable;
-	@XmlElement(required=true)
-	private String mietNr;
-	@XmlElement(required=true)
+	@XmlElement(required=false)
+	private String mieteNr;
+	@XmlElement(required=false)
 	private String jahr;
 	@XmlElement(required=false)
 	private CrTableRow crTableRow;
@@ -49,7 +49,7 @@ public class CrDetail {
 		super();
 		this.id = id;
 		this.changeable = changeable;
-		this.mietNr = mietNr;
+		this.mieteNr = mietNr;
 		this.jahr = jahr;
 		this.crTableRow = lsdTableRow;
 	}
@@ -59,15 +59,7 @@ public class CrDetail {
 	}
 	public void setJahr(String jahr) {
 		this.jahr = jahr;
-	}	
-
-	public String getMietNr() {
-		return mietNr;
-	}
-
-	public void setMietNr(String mietNr) {
-		this.mietNr = mietNr;
-	}
+	}		
 
 	public CrTableRow getCrTableRow() {
 		return crTableRow;
@@ -107,6 +99,14 @@ public class CrDetail {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getMieteNr() {
+		return mieteNr;
+	}
+
+	public void setMieteNr(String mieteNr) {
+		this.mieteNr = mieteNr;
 	}
 	
 }

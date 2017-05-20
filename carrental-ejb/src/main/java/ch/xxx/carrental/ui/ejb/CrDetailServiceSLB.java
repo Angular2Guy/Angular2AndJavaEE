@@ -15,8 +15,11 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -61,10 +64,19 @@ public class CrDetailServiceSLB implements CrDetailService {
 			CrDetailDB crDetailDB = new CrDetailDB();
 			CrPeriodDB crPeriodDB = new CrPeriodDB();
 			crDetailDB.getCrPeriods().add(crPeriodDB);
+			crPeriodDB.setCrDetail(crDetailDB);
 			CrPortfolioDB crPortfolioDB = new CrPortfolioDB();			
 			crPeriodDB.getCrPortfolios().add(crPortfolioDB);
-			conv.convert(crDetail, crDetailDB);
-			em.persist(crDetailDB);
+			crPortfolioDB.setCrPeriod(crPeriodDB);
+			crDetailDB.setMietNr("1");
+			Calendar gc = GregorianCalendar.getInstance();
+			gc.setTime(crDetail.getCrPeriods().get(0).getFrom());
+			int year = gc.get(Calendar.YEAR);
+			crDetailDB.setJahr(Integer.toString(year));
+			crPeriodDB.setPeriodFrom(crDetail.getCrPeriods().get(0).getFrom());
+			crPeriodDB.setPeriodTo(crDetail.getCrPeriods().get(0).getTo());
+			conv.convert(crDetail.getCrPeriods().get(0).getCrPortfolios().get(0), Optional.of(crPortfolioDB));			
+			em.persist(crDetailDB);			
 			return true;
 		}
 		return server.createCrDetail(crDetail);
@@ -76,7 +88,11 @@ public class CrDetailServiceSLB implements CrDetailService {
 		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
-					.setParameter("mietNr", crDetail.getMietNr()).setParameter("jahr", crDetail.getJahr()).getResultList();			
+					.setParameter("mietNr", crDetail.getMieteNr()).setParameter("jahr", crDetail.getJahr()).getResultList();
+			Calendar gc = GregorianCalendar.getInstance();
+			gc.setTime(crDetail.getCrPeriods().get(0).getFrom());
+			int year = gc.get(Calendar.YEAR);
+			resultList.get(0).setJahr(Integer.toString(year));
 			return resultList.isEmpty() ? false : conv.convert(crDetail, (resultList.get(0)));
 		}
 		return server.updateCrDetail(crDetail);

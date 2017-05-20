@@ -33,6 +33,7 @@ export class CrTableRowImpl implements CrTableRow {
 }
 
 export class CrDetailImpl implements CrDetail {
+    
     constructor(
             public id: number,
             public changeable: boolean, 

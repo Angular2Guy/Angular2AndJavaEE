@@ -21,7 +21,7 @@ public class CrPeriodDB {
 	private Long id;
 	private Date periodFrom;
 	private Date periodTo;
-	@OneToMany(mappedBy="crPeriod",fetch=FetchType.EAGER,cascade=CascadeType.REMOVE, orphanRemoval=true)
+	@OneToMany(mappedBy="crPeriod",fetch=FetchType.EAGER,cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<CrPortfolioDB> crPortfolios = new ArrayList<>();
 	@ManyToOne
 	private CrDetailDB crDetail;

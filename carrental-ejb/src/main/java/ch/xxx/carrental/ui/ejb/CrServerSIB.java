@@ -92,7 +92,7 @@ public class CrServerSIB {
 	}
 	
 	public CrDetail readCrDetail(String mietNr, String jahr) {
-		Optional<CrDetail> optional = crDetails.stream().filter(d -> d.getMietNr().equals(mietNr) && d.getJahr().equals(jahr)).findFirst();		
+		Optional<CrDetail> optional = crDetails.stream().filter(d -> d.getMieteNr().equals(mietNr) && d.getJahr().equals(jahr)).findFirst();		
 		return optional.isPresent() ? optional.get() : null;
 	}
 	
@@ -101,7 +101,7 @@ public class CrServerSIB {
 	}
 
 	public boolean updateCrDetail(CrDetail lsdDetail) {
-		Optional<CrDetail> first = crDetails.stream().filter(d -> d.getMietNr().equals(lsdDetail.getMietNr()) && d.getJahr().equals(lsdDetail.getJahr())).findFirst();		
+		Optional<CrDetail> first = crDetails.stream().filter(d -> d.getMieteNr().equals(lsdDetail.getMieteNr()) && d.getJahr().equals(lsdDetail.getJahr())).findFirst();		
 		if(first.isPresent()) {
 			return crDetails.remove(first.get()) && crDetails.add(lsdDetail);  
 		}
@@ -109,7 +109,7 @@ public class CrServerSIB {
 	}
 
 	public boolean deleteCrDetail(String mietNr, String jahr) {
-		Optional<CrDetail> first = crDetails.stream().filter(d -> d.getMietNr().equals(mietNr) && d.getJahr().equals(jahr)).findFirst();
+		Optional<CrDetail> first = crDetails.stream().filter(d -> d.getMieteNr().equals(mietNr) && d.getJahr().equals(jahr)).findFirst();
 		if(first.isPresent()) {
 			return crDetails.remove(first.get());
 		}

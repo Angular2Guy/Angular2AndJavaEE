@@ -22,7 +22,7 @@ public class Converter {
 		crDetail.setId(db.getId());
 		crDetail.setChangeable(true);
 		crDetail.setJahr(db.getJahr());
-		crDetail.setMietNr(db.getMietNr().toString());
+		crDetail.setMieteNr(db.getMietNr().toString());
 		crDetail.setCrMessages(db.getCrMessages() == null ? null : convertMsgList(db.getCrMessages()));
 		crDetail.setCrPeriods(db.getCrPeriods() == null ? null : convertPeriodList(db.getCrPeriods()));
 		return crDetail;
@@ -43,7 +43,7 @@ public class Converter {
 		from.getCrPortfolios().forEach(pf -> convert(pf, to.get().getCrPortfolios().stream().filter(pfDB -> pfDB.getId().equals(pf.getId())).findFirst()));		
 	}
 	
-	private void convert(CrPortfolio from, Optional<CrPortfolioDB> to) {
+	public void convert(CrPortfolio from, Optional<CrPortfolioDB> to) {
 		to.get().setAnzahlLkw(from.getAnzahlLkw());
 		to.get().setAnzahlPkw(from.getAnzahlPkw());
 		to.get().setAnzahlTotal(from.getAnzahlTotal());

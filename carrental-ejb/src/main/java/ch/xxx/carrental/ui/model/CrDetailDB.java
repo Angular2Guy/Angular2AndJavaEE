@@ -21,9 +21,9 @@ public class CrDetailDB {
 	private Long id;
 	private String mietNr;
 	private String jahr;
-	@OneToMany(mappedBy="crDetail",fetch=FetchType.EAGER,cascade=CascadeType.REMOVE, orphanRemoval=true)
+	@OneToMany(mappedBy="crDetail",fetch=FetchType.EAGER,cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<CrPeriodDB> crPeriods = new ArrayList<>();
-	@OneToMany(mappedBy="crDetail",fetch=FetchType.LAZY,cascade=CascadeType.REMOVE, orphanRemoval=true)
+	@OneToMany(mappedBy="crDetail",fetch=FetchType.LAZY,cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<CrMessageDB> crMessages = new ArrayList<>();
 	
 	public String getMietNr() {

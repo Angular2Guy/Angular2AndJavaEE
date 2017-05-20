@@ -50,10 +50,10 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlLkw = value; this.updateTotals(value)}));
         fc = <FormControl>this.form.controls[this.fcNames[2]];
         fc.setValue(this.crvalues.mieteAbgerechnetPkw);
-        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetPkw; this.updateTotals(value)}));        
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetPkw = value; this.updateTotals(value)}));        
         fc = <FormControl>this.form.controls[this.fcNames[3]];
         fc.setValue(this.crvalues.mieteAbgerechnetLkw);  
-        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetLkw; this.updateTotals(value)}));    
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetLkw = value; this.updateTotals(value)}));    
 //        this.validate();
         this.crvalues.mieteGeplantTotal = this.crvalues.mieteGeplantPkw + this.crvalues.mieteGeplantLkw;
         this.updateTotals(null);
