@@ -69,4 +69,11 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
       let urlStr = 'crdetail/mietenr/'+CrRestService.NEWID+ '/jahr/'+CrRestService.NEWID;
       this.router.navigateByUrl(urlStr);
   }
+  
+  delete(): void {
+      this.service.deleteCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {
+          let urltree = 'crlist/mietenr/'+1;
+          this.router.navigateByUrl(urltree);
+      }, error => this.errorMsg = error);
+  }
 }
