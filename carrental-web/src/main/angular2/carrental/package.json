@@ -27,7 +27,8 @@
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4",
     "bootstrap": "^3.2.6",
-    "intl": "^1.2.5"    
+    "intl": "^1.2.5",
+    "html5-simple-date-input-polyfill": "1.0.2"      
   },
   "devDependencies": {
   	"@angular/cli": "1.0.4",
