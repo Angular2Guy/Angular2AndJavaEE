@@ -26,11 +26,12 @@ export class CrdateComponent implements OnInit {
   
   setStr(event: any) : void {
       this.myobject[this.myvalue] = event.target.value;
+      //console.log(event.target.value);
   }
   
   convertToDate(event: any) : void {
      let myDate = this.myobject[this.myvalue];
-     console.log(myDate);
+     console.log(this.myvalue+": "+myDate);
      let dateStr = event.target.value;
      let dtStr = dateStr.split("-");
      let newStr = dtStr[1]+"/"+dtStr[2]+"/"+dtStr[0];
