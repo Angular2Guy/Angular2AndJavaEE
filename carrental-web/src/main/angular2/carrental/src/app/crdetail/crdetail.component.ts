@@ -58,12 +58,15 @@ export class CrdetailComponent  implements OnInit, OnDestroy {
       if(this.crDetail.id) {
           this.service.putCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.router.createUrlTree(['crdetail/mietenr/',(<CrDetail> lsdD).mieteNr, '/jahr/',(<CrDetail> lsdD).jahr]);}, error => this.errorMsg = error);
       } else {
-          this.service.postCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {this.router.createUrlTree(['crdetail/mietenr/',(<CrDetail> lsdD).mieteNr, '/jahr/',(<CrDetail> lsdD).jahr]);}, error => this.errorMsg = error);
+          this.service.postCrDetail(this.mnr, this.jahr, this.crDetail).subscribe(lsdD => {
+              let urltree = 'crlist/mietenr/'+1;
+              this.router.navigateByUrl(urltree);
+          }, error => this.errorMsg = error);          
       }
   }
   
   create(): void {      
-      let urlTree = 'crdetail/mietenr/'+CrRestService.NEWID+ '/jahr/'+CrRestService.NEWID;
-      this.router.navigateByUrl(urlTree);
+      let urlStr = 'crdetail/mietenr/'+CrRestService.NEWID+ '/jahr/'+CrRestService.NEWID;
+      this.router.navigateByUrl(urlStr);
   }
 }
