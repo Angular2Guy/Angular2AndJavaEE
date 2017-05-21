@@ -15,6 +15,7 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -27,6 +28,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.jboss.logging.Logger;
+
 import ch.xxx.carrental.ui.dto.CrDetail;
 import ch.xxx.carrental.ui.model.CrDetailDB;
 import ch.xxx.carrental.ui.model.CrPeriodDB;
@@ -36,7 +39,7 @@ import ch.xxx.carrental.ui.service.CrDetailService;
 @Local(CrDetailService.class)
 @Stateless
 public class CrDetailServiceSLB implements CrDetailService {
-
+	private static final Logger LOG = Logger.getLogger(CrDetailServiceSLB.class);
 	@EJB
 	private CrServerSIB server;
 	@PersistenceContext
@@ -71,7 +74,9 @@ public class CrDetailServiceSLB implements CrDetailService {
 			crDetailDB.setMietNr("1");
 			Calendar gc = GregorianCalendar.getInstance();
 			gc.setTime(crDetail.getCrPeriods().get(0).getFrom());
-			if(gc.get(Calendar.DAY_OF_MONTH) == 31 && gc.get(Calendar.MONTH) == 12) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			LOG.info(sdf.format(crDetail.getCrPeriods().get(0).getFrom()));
+			if(gc.get(Calendar.DAY_OF_MONTH) == 31 && gc.get(Calendar.MONTH) == 11) {
 				gc.add(Calendar.DAY_OF_YEAR, 1);
 			}
 			int year = gc.get(Calendar.YEAR);
