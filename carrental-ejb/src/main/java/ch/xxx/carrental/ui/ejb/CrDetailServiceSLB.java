@@ -71,6 +71,9 @@ public class CrDetailServiceSLB implements CrDetailService {
 			crDetailDB.setMietNr("1");
 			Calendar gc = GregorianCalendar.getInstance();
 			gc.setTime(crDetail.getCrPeriods().get(0).getFrom());
+			if(gc.get(Calendar.DAY_OF_MONTH) == 31 && gc.get(Calendar.MONTH) == 12) {
+				gc.add(Calendar.DAY_OF_YEAR, 1);
+			}
 			int year = gc.get(Calendar.YEAR);
 			crDetailDB.setJahr(Integer.toString(year));
 			crPeriodDB.setPeriodFrom(crDetail.getCrPeriods().get(0).getFrom());

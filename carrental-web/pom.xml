@@ -136,11 +136,11 @@
 					<failOnError>false</failOnError>
 					<filesets>
 						<fileset>
-							<directory>src/main/angular2/carrental</directory>
-							<includes>
-								<include>dist/**/*.*</include>
-								<include>node_modules/**/*.*</include>
-							</includes>
+							<directory>src/main/angular2/carrental/dist</directory>							
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+						<fileset>
+							<directory>src/main/angular2/carrental/node_modules</directory>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 					</filesets>
