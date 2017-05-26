@@ -16,6 +16,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
 import {ISubscription} from 'rxjs/Subscription';
+import { Observable }        from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 import {CrRestService} from '../crrest.service';
 import {CrTableRow} from '../crTypes';
 
@@ -25,9 +27,8 @@ import {CrTableRow} from '../crTypes';
   styleUrls: ['./crlist.component.css'],    
 })
 export class CrlistComponent implements OnInit, OnDestroy {
-  tableRows: CrTableRow[];
+  tableRows: Observable<CrTableRow[]>;
   errorMsg: string;
-  private sub: ISubscription;
   private routeSub: ISubscription;
     
   constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService) {}
@@ -35,12 +36,11 @@ export class CrlistComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
       this.routeSub = this.route.params.subscribe(params => {
         let mnr = params['mnr'];
-        this.sub = this.service.getCrTableRows(mnr).subscribe(tr => this.tableRows = <CrTableRow[]> tr, error => this.errorMsg = error);      
+        this.tableRows = this.service.getCrTableRows(mnr).catch(error => {this.errorMsg = error; return Observable.of<CrTableRow[]>([]);});      
       });
   }
   
   ngOnDestroy() {
-    this.sub.unsubscribe();
     this.routeSub.unsubscribe();
   }
 }
