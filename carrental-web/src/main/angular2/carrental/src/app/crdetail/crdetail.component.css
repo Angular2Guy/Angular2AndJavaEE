@@ -43,3 +43,11 @@
 .column-text {
 	
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	
+	.flex-container-column {	
+		display: block;			
+	}
+		
+}
