@@ -62,12 +62,10 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the JSF API, we use provided scope as the API is included in 
-			JBoss WildFly -->
 		<dependency>
-			<groupId>org.jboss.spec.javax.faces</groupId>
-			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
-			<scope>provided</scope>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
 		</dependency>
 
 		<!-- Import the JPA API, we use provided scope as the API is included in 
@@ -136,7 +134,7 @@
 					<failOnError>false</failOnError>
 					<filesets>
 						<fileset>
-							<directory>src/main/angular2/carrental/dist</directory>							
+							<directory>src/main/angular2/carrental/dist</directory>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 						<fileset>
@@ -270,7 +268,7 @@
 							</execution>
 						</executions>
 					</plugin>
-					
+
 					<plugin>
 						<artifactId>exec-maven-plugin</artifactId>
 						<groupId>org.codehaus.mojo</groupId>
