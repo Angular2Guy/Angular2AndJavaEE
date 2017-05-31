@@ -63,12 +63,11 @@ public class CrTableResource {
 	public Response getPdf(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin, @HeaderParam("Accept-Language") final String acceptLang) {
 		byte[] array = null;
 		try {			
-			array = IOUtils.toByteArray(this.getClass().getResourceAsStream("../../pdf/BigCalendar.pdf"));			
+			array = IOUtils.toByteArray(this.getClass().getResourceAsStream("../../pdf/Testdocument"+mietNr+".pdf"));			
 		} catch (IOException e) {
 			return Response.serverError().entity("Failed to read File.").build();
 		}
-		return Response.ok(array).header("Content-Disposition",
-				"attachment; filename=BigCalendar.pdf").build();
+		return Response.ok(array).build();
 	}
 	
 }
