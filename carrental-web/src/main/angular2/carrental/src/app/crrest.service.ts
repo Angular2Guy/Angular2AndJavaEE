@@ -30,8 +30,10 @@ export class CrRestService {
     static readonly NEWID = 'newId';
     private _crTableUrlProd = '/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
     private _crDetailUrlProd = '/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
+    _crPdfUrlProd = '/rest/model/crTable/mietNr/{mietNr}/pdf';
     private _crTableUrlDev = 'http://localhost:8080/carrental-web/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
     private _crDetailUrlDev = 'http://localhost:8080/carrental-web/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
+    _crPdfUrlDev = 'http://localhost:8080/carrental-web/rest/model/crTable/mietNr/{mietNr}/pdf';
     private _reqOptionsArgs: RequestOptionsArgs = { headers: new Headers() };
 
     constructor( private http: Http, private pl: PlatformLocation ) {
@@ -87,8 +89,17 @@ export class CrRestService {
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         return this.http.delete(url, this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
     }
+   
+    getCrPdf(policeNr: string) : Observable<any> {
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crPdfUrlProd : this._crPdfUrlDev;
+        url = this.cleanUrl(url);
+        url = url.replace( "{mietNr}", policeNr );
+        return this.http.get(url)
+            .map((res) => new Blob([res.blob()], { type: 'application/pdf' }))
+            .catch(error => {console.log(error); return Observable.throw(error);});
+    }
     
-    private cleanUrl(url: string) : string {
+    cleanUrl(url: string) : string {
         console.log( url );
         if ( environment.production ) {
             url = url.replace('//','/');            

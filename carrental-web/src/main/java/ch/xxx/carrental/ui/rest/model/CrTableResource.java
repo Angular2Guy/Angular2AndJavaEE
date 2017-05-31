@@ -1,8 +1,7 @@
 package ch.xxx.carrental.ui.rest.model;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.InputStream;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -14,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.io.IOUtils;
 
@@ -28,7 +28,8 @@ public class CrTableResource {
 
 	@GET
 	@DisableCaching
-	public Response getAll(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin, @HeaderParam("Accept-Language") final String acceptLang) {		
+	public Response getAll(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin,
+			@HeaderParam("Accept-Language") final String acceptLang) {
 		String[] langs = acceptLang.split(",");
 		Locale locale = Locale.forLanguageTag(langs[0]);
 		if (origin != null && origin.contains("http://localhost")) {
@@ -55,19 +56,32 @@ public class CrTableResource {
 			return Response.ok().build();
 		}
 	}
-	
+
 	@GET
 	@Path("/pdf")
 	@Produces("application/pdf")
 	@DisableCaching
-	public Response getPdf(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin, @HeaderParam("Accept-Language") final String acceptLang) {
+	public Response getPdf(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin,
+			@HeaderParam("Accept-Language") final String acceptLang) {
 		byte[] array = null;
-		try {			
-			array = IOUtils.toByteArray(this.getClass().getResourceAsStream("../../pdf/Testdocument"+mietNr+".pdf"));			
+		try {
+			InputStream inputStream = this.getClass().getResourceAsStream("../../pdf/Testdocument" + mietNr + ".pdf");
+			if (inputStream == null) {
+				throw new IOException();
+			}
+			array = IOUtils.toByteArray(inputStream);
 		} catch (IOException e) {
-			return Response.serverError().entity("Failed to read File.").build();
+			return Response.status(Status.NOT_FOUND).entity("Failed to read File.").build();
 		}
-		return Response.ok(array).build();
+		if (origin != null && origin.contains("http://localhost")) {
+			return Response.ok(array).header("Access-Control-Allow-Origin", "*")
+					.header("Access-Control-Allow-Headers",
+							"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
+					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
+					.allow("OPTIONS").build();
+		} else {
+			return Response.ok(array).build();
+		}
 	}
-	
+
 }

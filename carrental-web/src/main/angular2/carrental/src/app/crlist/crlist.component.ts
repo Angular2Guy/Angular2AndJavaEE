@@ -20,6 +20,8 @@ import { Observable }        from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {CrRestService} from '../crrest.service';
 import {CrTableRow} from '../crTypes';
+import { environment } from '../../environments/environment';
+import { PlatformLocation } from '@angular/common';
 
 @Component({  
   selector: 'app-crlist',
@@ -31,7 +33,7 @@ export class CrlistComponent implements OnInit, OnDestroy {
   errorMsg: string;
   private routeSub: ISubscription;
     
-  constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService) {}
+  constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private pl: PlatformLocation ) {}
 
   ngOnInit(): void {
       this.routeSub = this.route.params.subscribe(params => {
@@ -42,5 +44,18 @@ export class CrlistComponent implements OnInit, OnDestroy {
   
   ngOnDestroy() {
     this.routeSub.unsubscribe();
+  }
+  
+  showPdf(num: string) {
+      let url = environment.production ? this.pl.getBaseHrefFromDOM() +this.service._crPdfUrlProd : this.service._crPdfUrlDev;
+      url = this.service.cleanUrl(url);
+      url = url.replace( "{mietNr}", num );
+      console.log(url);
+      window.open(url);
+//      this.service.getCrPdf(num).subscribe((res) => {
+//          let fileUrl = URL.createObjectURL(res);
+//          console.log(fileUrl);
+//          window.open(fileUrl);
+//      });
   }
 }
