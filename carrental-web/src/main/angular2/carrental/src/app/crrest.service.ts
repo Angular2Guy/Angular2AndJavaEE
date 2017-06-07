@@ -90,14 +90,14 @@ export class CrRestService {
         return this.http.delete(url, this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
     }
    
-    getCrPdf(policeNr: string) : Observable<any> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crPdfUrlProd : this._crPdfUrlDev;
-        url = this.cleanUrl(url);
-        url = url.replace( "{mietNr}", policeNr );
-        return this.http.get(url)
-            .map((res) => new Blob([res.blob()], { type: 'application/pdf' }))
-            .catch(error => {console.log(error); return Observable.throw(error);});
-    }
+//    getCrPdf(policeNr: string) : Observable<any> {
+//        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crPdfUrlProd : this._crPdfUrlDev;
+//        url = this.cleanUrl(url);
+//        url = url.replace( "{mietNr}", policeNr );
+//        return this.http.get(url)
+//            .map((res) => new Blob([res.blob()], { type: 'application/pdf' }))
+//            .catch(error => {console.log(error); return Observable.throw(error);});
+//    }
     
     cleanUrl(url: string) : string {
         console.log( url );
