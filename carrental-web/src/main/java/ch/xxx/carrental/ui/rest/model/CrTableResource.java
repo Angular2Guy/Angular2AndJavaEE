@@ -11,7 +11,6 @@ import javax.ws.rs.OPTIONS;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -19,15 +18,20 @@ import org.apache.commons.io.IOUtils;
 
 import ch.xxx.carrental.ui.interceptor.DisableCaching;
 import ch.xxx.carrental.ui.service.CrTableService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
-@Path("/model/crTable/mietNr/{mietNr}")
+@Path("/model/crTable")
 @Produces({ "application/json" })
+@Api(value="/model/crTable")
 public class CrTableResource {
 	@Inject
 	private CrTableService service;
 
 	@GET
+	@Path("/mietNr/{mietNr}")
 	@DisableCaching
+	@ApiOperation(value="gets the rows for the table")
 	public Response getAll(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin,
 			@HeaderParam("Accept-Language") final String acceptLang) {
 		String[] langs = acceptLang.split(",");
@@ -58,9 +62,10 @@ public class CrTableResource {
 	}
 
 	@GET
-	@Path("/pdf")
+	@Path("/mietNr/{mietNr}/pdf")
 	@Produces("application/pdf")
 	@DisableCaching
+	@ApiOperation(value="provides the pdf files for display")
 	public Response getPdf(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin,
 			@HeaderParam("Accept-Language") final String acceptLang) {
 		byte[] array = null;
