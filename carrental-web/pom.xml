@@ -84,8 +84,8 @@
 
 		<dependency>
 			<groupId>io.swagger</groupId>
-			<artifactId>swagger-jersey2-jaxrs</artifactId>
-			<version>1.5.0</version>
+			<artifactId>swagger-jaxrs</artifactId>
+			<version>1.5.10</version>
 		</dependency>
 
 		<!-- JSR-303 (Bean Validation) Implementation -->

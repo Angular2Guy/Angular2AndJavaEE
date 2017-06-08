@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.io.IOUtils;
 
+import ch.xxx.carrental.ui.dto.CrTableRow;
 import ch.xxx.carrental.ui.interceptor.DisableCaching;
 import ch.xxx.carrental.ui.service.CrTableService;
 import io.swagger.annotations.Api;
@@ -31,7 +32,7 @@ public class CrTableResource {
 	@GET
 	@Path("/mietNr/{mietNr}")
 	@DisableCaching
-	@ApiOperation(value="gets the rows for the table")
+	@ApiOperation(value="gets the rows for the table", response=CrTableRow.class, responseContainer="List")
 	public Response getAll(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin,
 			@HeaderParam("Accept-Language") final String acceptLang) {
 		String[] langs = acceptLang.split(",");

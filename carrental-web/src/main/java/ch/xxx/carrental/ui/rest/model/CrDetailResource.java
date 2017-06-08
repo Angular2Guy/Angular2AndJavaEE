@@ -32,7 +32,7 @@ public class CrDetailResource {
 	@GET
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="get the details for the mietNr and jahr")
+	@ApiOperation(value="get the details for the mietNr and jahr", response=CrDetail.class)
 	public Response getAll(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin,@HeaderParam("Accept-Language") final String acceptLang) {
 		String[] langs = acceptLang.split(",");
 		Locale locale = Locale.forLanguageTag(langs[0]);
@@ -60,7 +60,7 @@ public class CrDetailResource {
 	@PUT
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="update the details for the mietNr and jahr")
+	@ApiOperation(value="update the details for the mietNr and jahr", response=Boolean.class)
 	public Response updateDetails(CrDetail crDetail, @HeaderParam("Origin") final String origin) {
 		if (origin != null && origin.contains("http://localhost")) {
 			return createLocalResponse(service.updateCrDetail(crDetail));
@@ -80,7 +80,7 @@ public class CrDetailResource {
 	@POST
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="create the details for the mietNr and jahr")
+	@ApiOperation(value="create the details for the mietNr and jahr", response=Boolean.class)
 	public Response createDetails(CrDetail crDetail,@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin) {
 		if (origin != null && origin.contains("http://localhost")) {
 			return createLocalResponse(service.createCrDetail(crDetail));
@@ -92,7 +92,7 @@ public class CrDetailResource {
 	@DELETE
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="delete the details for the mietNr and jahr")
+	@ApiOperation(value="delete the details for the mietNr and jahr", response=Boolean.class)
 	public Response deleteDetails(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin) {
 		if (origin != null && origin.contains("http://localhost")) {
 			return createLocalResponse(service.deleteCrDetail(mietNr, jahr));
