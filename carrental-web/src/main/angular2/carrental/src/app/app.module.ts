@@ -26,6 +26,7 @@ import { CrRestService } from './crrest.service';
 import { AppRoutingModule }  from './app-routing.module';
 import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 import { CrdateComponent } from './crdate/crdate.component';
+import { NumberSeparatorPipe } from './shared/number-separator.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CrdateComponent } from './crdate/crdate.component';
     CrdetailComponent,
     CrValuesComponent,
     CrvaluesdComponent,
-    CrdateComponent,    
+    CrdateComponent,
+    NumberSeparatorPipe,    
   ],
   imports: [
     BrowserModule,

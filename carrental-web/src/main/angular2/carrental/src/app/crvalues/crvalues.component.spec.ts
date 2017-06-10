@@ -23,7 +23,7 @@ import { CrValuesComponent } from './crvalues.component';
 import { CrPortfolio } from '../crTypes';
 
 describe('Component: CrValues', () => {
-  /*
+  
   it('validate should return false', () => {
     let component = new CrValuesComponent(new FormBuilder());
     let param = new CrPortfolioImplTest(null, null, null, null);
@@ -47,7 +47,7 @@ describe('Component: CrValues', () => {
     component.ngOnInit();
     expect(!component.form.valid).toBeTruthy();
   });
-  */
+  
   
 //  it('make tests fail', () => {
 //      expect(false).toBeTruthy();
