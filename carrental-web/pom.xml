@@ -114,6 +114,7 @@
 				<configuration>
 					<!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<warSourceExcludes>swagger/**</warSourceExcludes>
 					<webResources>
 						<resource>
 							<directory>${basedir}/target/angular2/carrental/dist</directory>
@@ -127,10 +128,7 @@
 							<includes>
 								<include>locale/*.xlf</include>
 							</includes>
-						</resource>
-						<resource>
-							<directory>src/main/webapp</directory>
-						</resource>
+						</resource>						
 					</webResources>
 				</configuration>
 			</plugin>
