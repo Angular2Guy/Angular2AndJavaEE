@@ -54,7 +54,6 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         fc = <FormControl>this.form.controls[this.fcNames[3]];
         fc.setValue(this.crvalues.mieteAbgerechnetLkw);  
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetLkw = value; this.updateTotals(value)}));    
-//        this.validate();
         this.crvalues.mieteGeplantTotal = this.crvalues.mieteGeplantPkw + this.crvalues.mieteGeplantLkw;
         this.updateTotals(null);
     }
@@ -65,9 +64,11 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         }
     }
     
-    updateTotals(value: any): void {        
-        this.crvalues.anzahlTotal = parseInt(this.form.controls[this.fcNames[0]].value)  + parseInt(this.form.controls[this.fcNames[1]].value);
-        this.crvalues.mieteAbgerechnetTotal = parseInt(this.form.controls[this.fcNames[2]].value) + parseInt(this.form.controls[this.fcNames[3]].value);
+    updateTotals(value: any): void {         
+        this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[this.fcNames[0]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[0]].value))  
+            + (isNaN(parseInt(this.form.controls[this.fcNames[1]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[1]].value));
+        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(this.form.controls[this.fcNames[2]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[2]].value)) 
+            + (isNaN(parseInt(this.form.controls[this.fcNames[3]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[3]].value));
         //console.log("updateTotals("+value+") called.");
     }
 
@@ -81,9 +82,9 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     }
 
     static validNumber(value: AbstractControl): boolean {
-        if(!value) return false;
+        if(!value || !value.value) return false;
+        let ret = isNaN(value.value);
         let myValue = parseInt(value.value, 20);
-        let ret = isNaN(myValue);
         if (!ret && myValue >= 0) {
             ret = true;
         } else {
