@@ -15,6 +15,7 @@
  */
 import { Component, OnInit, Input } from '@angular/core';
 import { CrPortfolio } from '../crTypes';
+import { NumberSeparatorPipe } from '../shared/number-separator.pipe';
 
 
 @Component({

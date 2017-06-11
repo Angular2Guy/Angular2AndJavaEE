@@ -29,6 +29,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, Response, ResponseOptions,XHRBackend } from '@angular/http';
 import {APP_BASE_HREF} from '@angular/common';
 import {MockBackend, MockConnection} from "@angular/http/testing";
+import { NumberSeparatorPipe } from './shared/number-separator.pipe';
 
 
 describe('AppComponent', () => {
@@ -40,7 +41,8 @@ describe('AppComponent', () => {
         CrdetailComponent,
         CrValuesComponent,
         CrvaluesdComponent,
-        CrdateComponent
+        CrdateComponent,
+        NumberSeparatorPipe
       ], 
       imports: [
         BrowserModule,

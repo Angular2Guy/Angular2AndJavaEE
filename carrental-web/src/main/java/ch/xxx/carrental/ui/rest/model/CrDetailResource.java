@@ -44,6 +44,7 @@ public class CrDetailResource {
 	}
 	
 	@OPTIONS
+	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
 	public Response getOptions(@HeaderParam("Origin") final String origin) {
 		if (origin != null && origin.contains("http://localhost")) {

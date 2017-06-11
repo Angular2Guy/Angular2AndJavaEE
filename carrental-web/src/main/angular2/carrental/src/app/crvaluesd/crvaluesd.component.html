@@ -11,21 +11,21 @@
 			<td i18n>Frauen</td>
 			
 			<td><div class="divboxmodel">{{crvalues.anzahlPkw}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetPkw}}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw | numberSeparator: 3 }}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetPkw | numberSeparator: 3 }}</div></td>
 		</tr>
 		<tr>
 			<td i18n>Maenner</td>
 			
 			<td><div class="divboxmodel">{{crvalues.anzahlLkw}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetLkw}}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw | numberSeparator: 3 }}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetLkw | numberSeparator: 3 }}</div></td>
 		</tr>
 		<tr>
 			<td i18n>Total</td>
 			
 			<td><div class="divboxmodel">{{crvalues.anzahlTotal}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal}}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal | numberSeparator: 3 }}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal | numberSeparator: 3 }}</div></td>
 		</tr>
 	</table>

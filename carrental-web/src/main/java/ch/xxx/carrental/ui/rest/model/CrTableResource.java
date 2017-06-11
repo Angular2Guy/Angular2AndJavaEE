@@ -49,6 +49,7 @@ public class CrTableResource {
 	}
 
 	@OPTIONS
+	@Path("/mietNr/{mietNr}")
 	@DisableCaching
 	public Response getOptions(@HeaderParam("Origin") final String origin) {
 		if (origin != null && origin.contains("http://localhost")) {
