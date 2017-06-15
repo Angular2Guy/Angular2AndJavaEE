@@ -21,6 +21,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NumberSeparatorPipe implements PipeTransform {
 
   transform(value: string, args?: string): string {      
+      value = String(value).replace(/'/g,"").replace(/,/g,""); 
+      //console.log("value: "+value);
       if(!isNaN(parseInt(value)) && !isNaN(parseInt(args))) {          
           let digits = parseInt(args);
           let arr = [];                                 

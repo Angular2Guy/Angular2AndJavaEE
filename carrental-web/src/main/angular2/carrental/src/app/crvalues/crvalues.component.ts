@@ -50,10 +50,18 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlLkw = value; this.updateTotals(value)}));
         fc = <FormControl>this.form.controls[this.fcNames[2]];
         fc.setValue(this.crvalues.mieteAbgerechnetPkw);
-        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetPkw = value; this.updateTotals(value)}));        
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
+                let myValue = this.removeSeparators(value); 
+                this.crvalues.mieteAbgerechnetPkw = value; 
+                this.updateTotals(value);
+                
+                }));        
         fc = <FormControl>this.form.controls[this.fcNames[3]];
         fc.setValue(this.crvalues.mieteAbgerechnetLkw);  
-        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.mieteAbgerechnetLkw = value; this.updateTotals(value)}));    
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
+                let myValue = this.removeSeparators(value); 
+                this.crvalues.mieteAbgerechnetLkw = value; 
+                this.updateTotals(value)}));    
         this.crvalues.mieteGeplantTotal = this.crvalues.mieteGeplantPkw + this.crvalues.mieteGeplantLkw;
         this.updateTotals(null);
     }
@@ -67,8 +75,8 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     updateTotals(value: any): void {         
         this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[this.fcNames[0]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[0]].value))  
             + (isNaN(parseInt(this.form.controls[this.fcNames[1]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[1]].value));
-        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(this.form.controls[this.fcNames[2]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[2]].value)) 
-            + (isNaN(parseInt(this.form.controls[this.fcNames[3]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[3]].value));
+        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) ? 0 : parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) 
+            + (isNaN(parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10))) ? 0 : parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10)));
         //console.log("updateTotals("+value+") called.");
     }
 
@@ -81,6 +89,13 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         return valid;
     }
 
+    removeSeparators(value: String):number {
+//        console.log("value1 :"+value);
+        value = value.replace(/'/g, "").replace(/,/g, "");        
+        if(!value || isNaN(parseInt(value.toString()))) return 0;
+        return parseInt(value.toString());
+    }
+    
     static validNumber(value: AbstractControl): boolean {
         if(!value || !value.value) return false;
         let ret = isNaN(value.value);

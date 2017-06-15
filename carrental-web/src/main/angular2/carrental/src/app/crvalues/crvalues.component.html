@@ -12,22 +12,22 @@
 			<td i18n>Pkw</td>
 			
 			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="anzahlPkw"/></div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
-			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="mieteAbgerechnetPkw"/></div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw | numberSeparator: 3}}</div></td>
+			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input myNumberseparator type="text" class="form-control" formControlName="mieteAbgerechnetPkw"/></div></td>
 		</tr>
 		<tr>
 			<td i18n>Lkw</td>
 			
 			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="anzahlLkw"/></div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw}}</div></td>
-			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input type="text" class="form-control" formControlName="mieteAbgerechnetLkw"/></div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantLkw | numberSeparator: 3}}</div></td>
+			<td><div [ngClass]="{'form-group': true, 'has-error': !form.valid}"><input myNumberseparator type="text" class="form-control" formControlName="mieteAbgerechnetLkw"/></div></td>
 		</tr>
 		<tr>
 			<td i18n>Total</td>
 			
 			<td><div class="divboxmodel">{{crvalues.anzahlTotal}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal}}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal | numberSeparator: 3}}</div></td>
+			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal | numberSeparator: 3}}</div></td>
 		</tr>
 	</table>
 </form>

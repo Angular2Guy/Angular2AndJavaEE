@@ -27,6 +27,7 @@ import { AppRoutingModule }  from './app-routing.module';
 import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 import { CrdateComponent } from './crdate/crdate.component';
 import { NumberSeparatorPipe } from './shared/number-separator.pipe';
+import { NumberseparatorDirective } from './shared/numberseparator.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NumberSeparatorPipe } from './shared/number-separator.pipe';
     CrValuesComponent,
     CrvaluesdComponent,
     CrdateComponent,
-    NumberSeparatorPipe,    
+    NumberSeparatorPipe,
+    NumberseparatorDirective,
   ],
   imports: [
     BrowserModule,
