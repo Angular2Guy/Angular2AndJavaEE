@@ -1,14 +1,16 @@
 import { TestprojectPage } from './app.po';
 
-describe('testproject App', function() {
+describe('testproject App', () => {
   let page: TestprojectPage;
 
   beforeEach(() => {
     page = new TestprojectPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display welcome message', done => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    page.getParagraphText()
+      .then(msg => expect(msg).toEqual('carrental works!'))
+      .then(done, done.fail);
   });
 });
