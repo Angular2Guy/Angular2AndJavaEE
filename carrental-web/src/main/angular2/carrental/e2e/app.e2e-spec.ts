@@ -20,10 +20,11 @@ describe('testproject App', () => {
           .then(msg => expect(msg).toEqual('crlist works!'))
           .then(done, done.fail);
   });
+  // a solution for testing async tables with protractor is missing
 //  it('should display 2 lines in the table', done => {
-//      
+//      browser.sleep(2000);
 //      page.getListTableLength()
-//         .then(length => expect(length).toEqual(2))
+//         .then(table => expect(table.length).toEqual(2))
 //         .then(done, done.fail);
 //  });
 });
