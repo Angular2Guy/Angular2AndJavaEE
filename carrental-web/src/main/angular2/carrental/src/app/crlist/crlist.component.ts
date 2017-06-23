@@ -32,18 +32,22 @@ export class CrlistComponent implements OnInit, OnDestroy {
   tableRows: Observable<CrTableRow[]>;
   errorMsg: string;
   private routeSub: ISubscription;
+  //years: string[] = [];
+  //private tableRowsSub: ISubscription;
     
   constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private pl: PlatformLocation ) {}
 
   ngOnInit(): void {
       this.routeSub = this.route.params.subscribe(params => {
         let mnr = params['mnr'];
-        this.tableRows = this.service.getCrTableRows(mnr).catch(error => {this.errorMsg = error; return Observable.of<CrTableRow[]>([]);});      
+        this.tableRows = this.service.getCrTableRows(mnr).catch(error => {this.errorMsg = error; return Observable.of<CrTableRow[]>([]);});        
+        //this.tableRowsSub = this.tableRows.subscribe(rows => {rows.forEach(row => {this.years.push(row.jahr);console.log(row.jahr);}); return rows});
       });
   }
   
   ngOnDestroy() {
     this.routeSub.unsubscribe();
+    //this.tableRowsSub.unsubscribe();
   }
   
   showPdf(num: string) {
