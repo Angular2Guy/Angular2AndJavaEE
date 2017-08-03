@@ -119,16 +119,10 @@
 						<resource>
 							<directory>${basedir}/target/angular2/carrental/dist</directory>
 							<includes>
-								<include>assets/**/*.*</include>
-								<include>*.*</include>
+								<include>en/*.*</include>
+								<include>de/*.*</include>
 							</includes>
-						</resource>
-						<resource>
-							<directory>${basedir}/target/angular2/carrental/src</directory>
-							<includes>
-								<include>locale/*.xlf</include>
-							</includes>
-						</resource>						
+						</resource>												
 					</webResources>
 				</configuration>
 			</plugin>
@@ -254,7 +248,7 @@
 						<version>1.4.0</version>
 						<executions>
 							<execution>
-								<id>angular-cli build</id>
+								<id>angular-cli build de</id>
 								<goals>
 									<goal>exec</goal>
 								</goals>
@@ -264,9 +258,38 @@
 									<arguments>
 										<argument>build</argument>
 										<argument>--prod</argument>
+										<argument>--aot</argument>
 										<argument>--bh</argument>
-										<argument>/carrental-web/</argument>
-									</arguments>
+										<argument>/carrental-web/de/</argument>
+										<argument>--output-path</argument>
+										<argument>dist/de</argument>
+										<argument>--locale</argument>
+										<argument>de</argument>
+										<argument>--i18nFile=./src/locale/messages.xlf</argument>
+									</arguments>									
+									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>angular-cli build en</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<phase>generate-resources</phase>
+								<configuration>
+									<executable>ng</executable>
+									<arguments>
+										<argument>build</argument>
+										<argument>--prod</argument>
+										<argument>--aot</argument>
+										<argument>--bh</argument>
+										<argument>/carrental-web/en/</argument>
+										<argument>--output-path</argument>
+										<argument>dist/en</argument>
+										<argument>--locale</argument>
+										<argument>en</argument>										
+										<argument>--i18nFile=./src/locale/messages.en.xlf</argument>
+									</arguments>									
 									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
 								</configuration>
 							</execution>
@@ -317,7 +340,7 @@
 						<version>1.4.0</version>
 						<executions>
 							<execution>
-								<id>angular-cli build</id>
+								<id>angular-cli build de</id>
 								<goals>
 									<goal>exec</goal>
 								</goals>
@@ -327,8 +350,37 @@
 									<arguments>
 										<argument>build</argument>
 										<argument>--prod</argument>
+										<argument>--aot</argument>
 										<argument>--bh</argument>
-										<argument>/carrental-web/</argument>
+										<argument>/carrental-web/de/</argument>
+										<argument>--output-path</argument>
+										<argument>dist/de</argument>
+										<argument>--locale</argument>
+										<argument>de</argument>
+										<argument>--i18nFile=./src/locale/messages.xlf</argument>
+									</arguments>
+									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
+								</configuration>
+							</execution>
+							<execution>
+								<id>angular-cli build en</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<phase>generate-resources</phase>
+								<configuration>
+									<executable>node_modules/@angular/cli/bin/ng</executable>
+									<arguments>
+										<argument>build</argument>
+										<argument>--prod</argument>
+										<argument>--aot</argument>
+										<argument>--bh</argument>
+										<argument>/carrental-web/en/</argument>
+										<argument>--output-path</argument>
+										<argument>dist/en</argument>
+										<argument>--locale</argument>
+										<argument>en</argument>
+										<argument>--i18nFile=./src/locale/messages.en.xlf</argument>
 									</arguments>
 									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
 								</configuration>

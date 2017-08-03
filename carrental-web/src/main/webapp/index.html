@@ -17,7 +17,13 @@
 <!-- Plain HTML page that kicks us into the app -->
 
 <html>
-<head>
-<meta http-equiv="Refresh" content="0; URL=index.jsf">
-</head>
+	<body>
+		<script type="text/javascript">
+			var url = navigator.language || navigator.userLanguage;
+			window.location.href = window.location.href + url.split('-')[0];
+		</script>
+		The languages german and english are supported:<br/>
+		<a href="./de/">German</a>
+		<a href="./en/">English</a>
+	</body>
 </html>

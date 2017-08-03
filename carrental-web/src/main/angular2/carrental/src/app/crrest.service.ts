@@ -102,7 +102,9 @@ export class CrRestService {
     cleanUrl(url: string) : string {
         console.log( url );
         if ( environment.production ) {
-            url = url.replace('//','/');            
+            url = url.replace('//','/'); 
+            url = url.replace('/en','');
+            url = url.replace('/de','');
             console.log( url );            
         }  
         return url;
