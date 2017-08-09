@@ -27,8 +27,8 @@ import io.swagger.annotations.ApiOperation;
 @Api(value="/model/crTable")
 public class CrTableResource {
 	@Inject
-	private CrTableService service;
-
+	private CrTableService service;		
+	
 	@GET
 	@Path("/mietNr/{mietNr}")
 	@DisableCaching
@@ -72,7 +72,7 @@ public class CrTableResource {
 			@HeaderParam("Accept-Language") final String acceptLang) {
 		byte[] array = null;
 		try {
-			InputStream inputStream = this.getClass().getResourceAsStream("../../pdf/Testdocument" + mietNr + ".pdf");
+			InputStream inputStream = this.service.readCrPdf(mietNr);
 			if (inputStream == null) {
 				throw new IOException();
 			}

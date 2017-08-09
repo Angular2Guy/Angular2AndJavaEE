@@ -15,6 +15,7 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -54,4 +55,10 @@ public class CrTableServiceSLB implements CrTableService {
 		return server.readCrRowsByMiete(mietNr);
 	}
 
+	@AutoLogging
+	@Override
+	public InputStream readCrPdf(String mietNr) {
+		InputStream inputStream = this.getClass().getResourceAsStream("/pdf/Testdocument" + mietNr + ".pdf");
+		return inputStream;
+	}
 }

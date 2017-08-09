@@ -6,5 +6,6 @@
         <property name="java-output-path" value="/carrental-web/target/classes"/>
         <property name="context-root" value="carrental-web"/>
         <property name="component.exclusion.patterns" value="swagger/**"/>
+        <property name="component.inclusion.patterns"/>
     </wb-module>
 </project-modules>

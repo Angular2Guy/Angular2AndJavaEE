@@ -15,6 +15,7 @@
  */
 package ch.xxx.carrental.ui.service;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Locale;
 
@@ -22,4 +23,6 @@ import ch.xxx.carrental.ui.dto.CrTableRow;
 
 public interface CrTableService {
 	List<CrTableRow> readCrRowsByMiete(String mietNr, Locale locale);
+
+	InputStream readCrPdf(String mietNr);
 }
