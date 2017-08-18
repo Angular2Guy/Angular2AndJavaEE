@@ -25,21 +25,21 @@ Development requirements
 
 Java 8 Jdk or newer. 
 
-Eclipse Neon or newer.
+Eclipse Oxygen JEE or newer.
 
 Wildfly 10 or newer. (Any JavaEE 6 Appserver will do)
 
-JBoss Plugin JBoss AS, WildFly & EAP Server Tools	3.2.0 or newer.
+JBoss Plugin JBoss AS, WildFly & EAP Server Tools	4.5.0 or newer.
 
-Plugin Typescript.Java 1.2.0 or newer.
+Plugin Typescript.Java 1.4.0 or newer.
 
 Maven 3.3.3 or newer. 
 
-Nodejs 6.9.x  
+Nodejs 6.9.x or newer 
 
-Npm 3.10.x 
+Npm 3.10.x or newer
 
-Angular Cli 1.0.0 or newer. 
+Angular Cli 1.3.0 or newer. 
 
 Build Server requirements
 -------------------------
@@ -57,11 +57,11 @@ Jdk 8, Wildfly 10(or an other Java EE6 server), Nodejs, Eclipse, Maven must be i
 
 Install Angular Cli "npm install -g angular-cli@latest"
 
-Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/neon/stable/updates/"
+Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/oxygen/stable/updates/"
 
 Add the Server Runtime Environment for Wildfly and connect it to the wildfly installation.
 
-Install Eclipse Plugin Typescript.Java "http://oss.opensagres.fr/typescript.ide/1.2.0-SNAPSHOT/"
+Install Eclipse Plugin Typescript.Java "http://oss.opensagres.fr/typescript.ide/1.4.0-SNAPSHOT/"
 
 Optionally install Webstorm for the UI.
 
