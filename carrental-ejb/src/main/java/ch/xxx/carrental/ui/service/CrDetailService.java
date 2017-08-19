@@ -15,10 +15,10 @@
  */
 package ch.xxx.carrental.ui.service;
 
-import java.io.InputStream;
 import java.util.Locale;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
+
 
 public interface CrDetailService {
 	CrDetail readCrDetail(String mieteNr, String jahr, Locale locale);

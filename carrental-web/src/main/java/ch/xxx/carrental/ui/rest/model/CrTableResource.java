@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
@@ -22,6 +23,7 @@ import ch.xxx.carrental.ui.service.CrTableService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@RequestScoped
 @Path("/model/crTable")
 @Produces({ "application/json" })
 @Api(value="/model/crTable")

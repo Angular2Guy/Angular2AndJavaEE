@@ -88,6 +88,19 @@
 			<version>1.5.10</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.tuckey</groupId>
+			<artifactId>urlrewritefilter</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+
+		<!-- Test scope dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- JSR-303 (Bean Validation) Implementation -->
 		<!-- Provides portable constraints such as @Email -->
 		<!-- Hibernate Validator is shipped in JBoss WildFly -->
@@ -114,7 +127,7 @@
 				<configuration>
 					<!-- Java EE 7 doesn't require web.xml, Maven needs to catch up! -->
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<warSourceExcludes>swagger/**</warSourceExcludes>					
+					<warSourceExcludes>swagger/**</warSourceExcludes>
 					<webResources>
 						<resource>
 							<directory>${basedir}/target/angular2/carrental/dist</directory>
@@ -122,7 +135,7 @@
 								<include>en/*.*</include>
 								<include>de/*.*</include>
 							</includes>
-						</resource>												
+						</resource>
 					</webResources>
 				</configuration>
 			</plugin>
@@ -266,7 +279,7 @@
 										<argument>--locale</argument>
 										<argument>de</argument>
 										<argument>--i18nFile=./src/locale/messages.xlf</argument>
-									</arguments>									
+									</arguments>
 									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
 								</configuration>
 							</execution>
@@ -287,9 +300,9 @@
 										<argument>--output-path</argument>
 										<argument>dist/en</argument>
 										<argument>--locale</argument>
-										<argument>en</argument>										
+										<argument>en</argument>
 										<argument>--i18nFile=./src/locale/messages.en.xlf</argument>
-									</arguments>									
+									</arguments>
 									<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
 								</configuration>
 							</execution>

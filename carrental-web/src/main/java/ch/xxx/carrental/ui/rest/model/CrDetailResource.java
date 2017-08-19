@@ -2,6 +2,7 @@ package ch.xxx.carrental.ui.rest.model;
 
 import java.util.Locale;
 
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -21,6 +22,7 @@ import ch.xxx.carrental.ui.service.CrDetailService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@RequestScoped
 @Path("/model/crDetail")
 @Produces({"application/json"})
 @Consumes({"application/json"})
