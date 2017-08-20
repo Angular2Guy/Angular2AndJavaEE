@@ -25,8 +25,6 @@ import java.util.Optional;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -38,7 +36,6 @@ import ch.xxx.carrental.ui.model.CrPeriodDB;
 import ch.xxx.carrental.ui.model.CrPortfolioDB;
 import ch.xxx.carrental.ui.service.CrDetailService;
 
-@Dependent
 @Local(CrDetailService.class)
 @Stateless
 public class CrDetailServiceSLB implements CrDetailService {

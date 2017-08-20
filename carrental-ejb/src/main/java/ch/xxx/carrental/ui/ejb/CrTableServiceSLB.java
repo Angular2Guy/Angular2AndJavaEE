@@ -23,7 +23,6 @@ import java.util.Locale;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -31,7 +30,6 @@ import ch.xxx.carrental.ui.dto.CrTableRow;
 import ch.xxx.carrental.ui.model.CrDetailDB;
 import ch.xxx.carrental.ui.service.CrTableService;
 
-@Dependent
 @Local(CrTableService.class)
 @Stateless
 public class CrTableServiceSLB implements CrTableService {
