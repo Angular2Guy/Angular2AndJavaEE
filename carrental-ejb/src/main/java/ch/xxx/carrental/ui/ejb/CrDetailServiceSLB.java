@@ -28,7 +28,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.jboss.logging.Logger;
+import org.apache.log4j.Logger;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
 import ch.xxx.carrental.ui.model.CrDetailDB;
