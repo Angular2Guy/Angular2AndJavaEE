@@ -5,7 +5,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <property name="java-output-path" value="/carrental-web/target/classes"/>
         <property name="context-root" value="carrental-web"/>
-        <property name="component.exclusion.patterns" value="swagger/**"/>
+        <property name="component.exclusion.patterns"/>
         <property name="component.inclusion.patterns"/>
     </wb-module>
 </project-modules>
