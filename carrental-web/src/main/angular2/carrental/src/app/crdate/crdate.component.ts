@@ -18,7 +18,7 @@ import { Component, Input, OnInit} from '@angular/core';
 @Component({
   selector: 'app-crdate',
   templateUrl: './crdate.component.html',
-  styleUrls: ['./crdate.component.css']
+  styleUrls: ['./crdate.component.scss']
 })
 export class CrdateComponent implements OnInit {
 

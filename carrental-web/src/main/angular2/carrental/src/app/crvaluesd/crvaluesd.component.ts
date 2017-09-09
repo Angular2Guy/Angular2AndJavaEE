@@ -21,7 +21,7 @@ import { NumberSeparatorPipe } from '../shared/number-separator.pipe';
 @Component({
   selector: 'app-crvaluesd',
   templateUrl: './crvaluesd.component.html',
-  styleUrls: ['./crvaluesd.component.css']
+  styleUrls: ['./crvaluesd.component.scss']
 })
 export class CrvaluesdComponent implements OnInit {
   @Input() crvalues: CrPortfolio;

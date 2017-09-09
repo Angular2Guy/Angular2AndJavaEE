@@ -22,7 +22,7 @@ import { Subscription }   from 'rxjs/Subscription';
 @Component({    
     selector: 'app-crvalues',
     templateUrl: './crvalues.component.html',
-    styleUrls: ['./crvalues.component.css']         
+    styleUrls: ['./crvalues.component.scss']         
 })
 export class CrValuesComponent implements OnInit, OnDestroy {
     form: FormGroup;

@@ -26,7 +26,7 @@ import { PlatformLocation } from '@angular/common';
 @Component({  
   selector: 'app-crlist',
   templateUrl: './crlist.component.html',
-  styleUrls: ['./crlist.component.css'],    
+  styleUrls: ['./crlist.component.scss'],    
 })
 export class CrlistComponent implements OnInit, OnDestroy {
   tableRows: Observable<CrTableRow[]>;
