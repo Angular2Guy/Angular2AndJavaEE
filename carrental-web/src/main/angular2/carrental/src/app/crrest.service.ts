@@ -14,7 +14,7 @@
    limitations under the License.
  */
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlatformLocation } from '@angular/common';
 import { CrTableRow, CrDetail, CrPeriod, CrPortfolio } from './crTypes';
 import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl } from './crClasses';
@@ -33,8 +33,9 @@ export class CrRestService {
     private _crTableUrlDev = 'http://localhost:8080/carrental-web/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
     private _crDetailUrlDev = 'http://localhost:8080/carrental-web/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
     _crPdfUrlDev = 'http://localhost:8080/carrental-web/rest/model/crTable/mietNr/{mietNr}/pdf';
+    private _reqOptionsArgs =  { headers: new HttpHeaders().set( 'Content-Type', 'application/json' ) };
 
-    constructor( private http: HttpClient, private pl: PlatformLocation ) {
+    constructor( private http: HttpClient, private pl: PlatformLocation ) {        
     }
 
     getCrTableRows( policeNr: string ) : Observable<CrTableRow[]> {
@@ -42,7 +43,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr );
         console.log(url);
-        return this.http.get( url).catch( this.handleError );
+        return this.http.get( url, this._reqOptionsArgs).catch( this.handleError );
     }
 
     getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
@@ -56,7 +57,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         console.log(url);
-        return this.http.get( url ).catch( this.handleError );
+        return this.http.get( url, this._reqOptionsArgs).catch( this.handleError );
     }
  
     private createEmptyTree() : CrDetail {
@@ -70,23 +71,25 @@ export class CrRestService {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        return this.http.post(url, JSON.stringify(crDetail)).catch(this.handleError);
+        let json = JSON.stringify(crDetail).replace("'", "").replace("'", "");
+        return this.http.post(url, json, this._reqOptionsArgs).catch(this.handleError);
     }
     
     putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        return this.http.put(url, JSON.stringify(crDetail)).catch(this.handleError);
+        let json = JSON.stringify(crDetail).replace("'", "").replace("'", "");        
+        return this.http.put(url, json, this._reqOptionsArgs).catch(this.handleError);
     }
     
     deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
-        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        return this.http.delete(url).catch(this.handleError);
+        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );        
+        return this.http.delete(url, this._reqOptionsArgs).catch(this.handleError);
     }
-    
+   
     cleanUrl(url: string) : string {
         console.log( url );
         if ( environment.production ) {
