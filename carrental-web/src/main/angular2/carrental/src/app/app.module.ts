@@ -17,7 +17,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CrlistComponent } from './crlist/crlist.component';
 import { CrdetailComponent } from './crdetail/crdetail.component';
@@ -44,7 +44,8 @@ import { NumberseparatorDirective } from './shared/numberseparator.directive';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,    
+    HttpClientModule,   
+	HttpModule, 
     AppRoutingModule
   ],
   providers: [CrRestService],
