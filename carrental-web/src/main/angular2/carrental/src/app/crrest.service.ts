@@ -19,9 +19,8 @@ import { PlatformLocation } from '@angular/common';
 import { CrTableRow, CrDetail, CrPeriod, CrPortfolio } from './crTypes';
 import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl } from './crClasses';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { map, debounceTime } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/observable/throw';
 import { environment } from '../environments/environment';
 
@@ -45,7 +44,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr );
         console.log(url);
-        return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackTableResponse( res ) ).catch( this.handleError );
+        return this.http.get( url, this._reqOptionsArgs ).catch( this.handleError );
     }
 
     getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
@@ -59,7 +58,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         console.log(url);
-        return this.http.get( url, this._reqOptionsArgs ).map( res => this.unpackDetailResponse( res ) ).catch( this.handleError );
+        return this.http.get( url, this._reqOptionsArgs ).catch( this.handleError );
     }
  
     private createEmptyTree() : CrDetail {
@@ -73,31 +72,22 @@ export class CrRestService {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        return this.http.post(url, JSON.stringify(crDetail), this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
+        return this.http.post(url, JSON.stringify(crDetail), this._reqOptionsArgs).catch(this.handleError);
     }
     
     putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        return this.http.put(url, JSON.stringify(crDetail), this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
+        return this.http.put(url, JSON.stringify(crDetail), this._reqOptionsArgs).catch(this.handleError);
     }
     
     deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        return this.http.delete(url, this._reqOptionsArgs).map(res => res.json).catch(this.handleError);
+        return this.http.delete(url, this._reqOptionsArgs).catch(this.handleError);
     }
-   
-//    getCrPdf(policeNr: string) : Observable<any> {
-//        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crPdfUrlProd : this._crPdfUrlDev;
-//        url = this.cleanUrl(url);
-//        url = url.replace( "{mietNr}", policeNr );
-//        return this.http.get(url)
-//            .map((res) => new Blob([res.blob()], { type: 'application/pdf' }))
-//            .catch(error => {console.log(error); return Observable.throw(error);});
-//    }
     
     cleanUrl(url: string) : string {
         console.log( url );
@@ -109,16 +99,7 @@ export class CrRestService {
         }  
         return url;
     }
-    
-    private unpackTableResponse( res: Response ): CrTableRow[] {
-        //console.log(res);     
-        return <CrTableRow[]>res.json();
-    }
-
-    private unpackDetailResponse( res: Response ): CrDetail {
-        //console.log(res);     
-        return <CrDetail>res.json();
-    }
+   
 
     private handleError( error: Response ) {
         // in a real world app, we may send the error to some remote logging infrastructure

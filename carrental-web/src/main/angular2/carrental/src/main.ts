@@ -15,7 +15,6 @@
  */
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import * as translateFn from './i18n-providers';
 import { enableProdMode } from '@angular/core';
 import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
@@ -24,10 +23,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-//bootstrap for Angular i18n with Jit Compiler
-translateFn.getTranslationProviders().then(providers => {
-    const options = { providers };
-    platformBrowserDynamic().bootstrapModule(AppModule, options);
-  });
+platformBrowserDynamic().bootstrapModule(AppModule).catch(err => console.log(err));
 
-//platformBrowserDynamic().bootstrapModule(AppModule);
