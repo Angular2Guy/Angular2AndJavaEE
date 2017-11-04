@@ -71,7 +71,7 @@ export class CrRestService {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        let json = JSON.stringify(crDetail).replace("'", "").replace("'", "");
+        let json = this.cleanString(JSON.stringify(crDetail));
         return this.http.post(url, json, this._reqOptionsArgs).catch(this.handleError);
     }
     
@@ -79,7 +79,7 @@ export class CrRestService {
         let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        let json = JSON.stringify(crDetail).replace("'", "").replace("'", "");        
+        let json = this.cleanString(JSON.stringify(crDetail));        
         return this.http.put(url, json, this._reqOptionsArgs).catch(this.handleError);
     }
     
@@ -90,6 +90,13 @@ export class CrRestService {
         return this.http.delete(url, this._reqOptionsArgs).catch(this.handleError);
     }
    
+    private cleanString(str: string): string {
+        while(str.indexOf("'") > 0) {
+            str = str.replace("'","");
+        }
+        return str;
+    } 
+    
     cleanUrl(url: string) : string {
         console.log( url );
         if ( environment.production ) {
