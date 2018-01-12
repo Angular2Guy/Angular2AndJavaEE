@@ -23,6 +23,7 @@ import { CrdetailComponent } from './crdetail/crdetail.component';
 import { CrValuesComponent } from './crvalues/crvalues.component';
 import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 import { CrdateComponent } from './crdate/crdate.component';
+import { CrrootComponent } from './crroot/crroot.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +38,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
+        CrrootComponent,
         CrlistComponent,
         CrdetailComponent,
         CrValuesComponent,
