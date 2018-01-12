@@ -28,6 +28,7 @@ import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 import { CrdateComponent } from './crdate/crdate.component';
 import { NumberSeparatorPipe } from './shared/number-separator.pipe';
 import { NumberseparatorDirective } from './shared/numberseparator.directive';
+import { CrrootComponent } from './crroot/crroot.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NumberseparatorDirective } from './shared/numberseparator.directive';
     CrdateComponent,
     NumberSeparatorPipe,
     NumberseparatorDirective,
+    CrrootComponent,
   ],
   imports: [
     BrowserModule,

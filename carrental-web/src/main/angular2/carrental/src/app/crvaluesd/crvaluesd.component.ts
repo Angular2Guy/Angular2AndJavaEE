@@ -16,6 +16,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CrPortfolio } from '../crTypes';
 import { NumberSeparatorPipe } from '../shared/number-separator.pipe';
+import { Utils } from '../shared/utils';
 
 
 @Component({
@@ -29,8 +30,8 @@ export class CrvaluesdComponent implements OnInit {
 
   ngOnInit() {
       this.crvalues.anzahlTotal = this.crvalues.anzahlLkw + this.crvalues.anzahlPkw;
-      this.crvalues.mieteAbgerechnetTotal = this.crvalues.mieteAbgerechnetPkw + this.crvalues.mieteAbgerechnetLkw;
-      this.crvalues.mieteGeplantTotal = this.crvalues.mieteGeplantPkw + this.crvalues.mieteGeplantLkw;
+      this.crvalues.mieteAbgerechnetTotal = Utils.removeSeparators(this.crvalues.mieteAbgerechnetPkw.toString()) + Utils.removeSeparators(this.crvalues.mieteAbgerechnetLkw.toString());
+      this.crvalues.mieteGeplantTotal = Utils.removeSeparators(this.crvalues.mieteGeplantPkw.toString()) + Utils.removeSeparators(this.crvalues.mieteGeplantLkw.toString());
   }
 
 }

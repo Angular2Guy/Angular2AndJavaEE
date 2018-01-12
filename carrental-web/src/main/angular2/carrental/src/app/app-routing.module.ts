@@ -18,11 +18,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { CrlistComponent } from './crlist/crlist.component';
 import { CrdetailComponent } from './crdetail/crdetail.component';
 import { AppComponent } from './app.component';
+import { CrrootComponent } from './crroot/crroot.component';
 
 const routes: Routes = [
   {path: 'crdetail/mietenr/:mnr/jahr/:jahr', component: CrdetailComponent},
   {path: 'crlist/mietenr/:mnr', component: CrlistComponent}, 
-  {path: '**', component: AppComponent}
+  {path: '**', component: CrrootComponent}
 ];
 
 @NgModule({

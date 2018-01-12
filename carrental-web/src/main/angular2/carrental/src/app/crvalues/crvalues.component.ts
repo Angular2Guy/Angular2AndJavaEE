@@ -18,6 +18,7 @@ import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from
 import { CrPortfolio } from '../crTypes';
 import { CrValuesValidators } from '../shared/crvalues.validators';
 import { Subscription }   from 'rxjs/Subscription';
+import { Utils } from '../shared/utils';
 
 @Component({    
     selector: 'app-crvalues',
@@ -28,7 +29,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     form: FormGroup;
     fcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
     @Input() crvalues: CrPortfolio;
-    updateTotalsSub: Subscription[] = [];
+    updateTotalsSub: Subscription[] = [];    
 
     constructor(fb: FormBuilder) {
         this.form = fb.group({
@@ -51,7 +52,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         fc = <FormControl>this.form.controls[this.fcNames[2]];
         fc.setValue(this.crvalues.mieteAbgerechnetPkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
-                let myValue = this.removeSeparators(value); 
+                let myValue = Utils.removeSeparators(value); 
                 this.crvalues.mieteAbgerechnetPkw = value; 
                 this.updateTotals(value);
                 
@@ -59,7 +60,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         fc = <FormControl>this.form.controls[this.fcNames[3]];
         fc.setValue(this.crvalues.mieteAbgerechnetLkw);  
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
-                let myValue = this.removeSeparators(value); 
+                let myValue = Utils.removeSeparators(value); 
                 this.crvalues.mieteAbgerechnetLkw = value; 
                 this.updateTotals(value)}));    
         this.crvalues.mieteGeplantTotal = this.crvalues.mieteGeplantPkw + this.crvalues.mieteGeplantLkw;
@@ -75,8 +76,8 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     updateTotals(value: any): void {         
         this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[this.fcNames[0]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[0]].value))  
             + (isNaN(parseInt(this.form.controls[this.fcNames[1]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[1]].value));
-        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) ? 0 : parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) 
-            + (isNaN(parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10))) ? 0 : parseInt(this.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10)));
+        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) 
+            + (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10)));
         //console.log("updateTotals("+value+") called.");
     }
 
@@ -87,13 +88,6 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         let invalidFcs =  myFcNames.filter(fcn => !CrValuesComponent.validNumber(group.controls[fcn].value));
         let valid = invalidFcs.length === 0;
         return valid;
-    }
-
-    removeSeparators(value: String):number {
-//        console.log("value1 :"+value);
-        value = value.replace(/'/g, "").replace(/,/g, "");        
-        if(!value || isNaN(parseInt(value.toString()))) return 0;
-        return parseInt(value.toString());
     }
     
     static validNumber(value: AbstractControl): boolean {

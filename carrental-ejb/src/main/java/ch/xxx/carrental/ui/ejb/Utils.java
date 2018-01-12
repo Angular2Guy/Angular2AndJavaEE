@@ -28,7 +28,7 @@ public class Utils {
 		try {
 			InitialContext ic = new InitialContext();	
 			namingFactoryKey = (String) ic.getEnvironment().get(EjbNaming.JBOSS.getKey());
-			if(!EjbNaming.JBOSS.getValue().equals(namingFactoryKey)) {
+			if(!EjbNaming.JBOSS.getValue().contains(namingFactoryKey)) {
 				Object o = ic.lookup(EjbNaming.WEBSPHERE.getKey()); 
 				namingFactoryKey = o != null ? o.getClass().getName() : "Not JBoss or Websphere";
 			}
@@ -36,7 +36,7 @@ public class Utils {
 			LOG.warn("No NamingFactory found -> using singleton bean data service.");
 			return false;
 		}
-		boolean result = EjbNaming.JBOSS.getValue().equals(namingFactoryKey) || EjbNaming.WEBSPHERE.getValue().equals(namingFactoryKey);
+		boolean result = EjbNaming.JBOSS.getValue().contains(namingFactoryKey) || EjbNaming.WEBSPHERE.getValue().equals(namingFactoryKey);
 		LOG.info("Value: '"+namingFactoryKey+"'"+" Return: "+result);
 		return result;
 	}
