@@ -35,7 +35,7 @@ export class CrdateComponent implements OnInit {
           this.newDate = this.myobject[this.myvalue];          
       } else {
           this.newString = this.myobject[this.myvalue];
-          console.log(this.newString);
+//          console.log(this.newString);
       }
   }
   

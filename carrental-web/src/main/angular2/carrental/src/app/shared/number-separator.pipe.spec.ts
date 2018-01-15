@@ -53,4 +53,9 @@ describe('NumberSeparatorPipe', () => {
       let result = pipe.transform("1'000'000", '3');
       expect(result).toBe("1'000'000");
     });
+  it('create an instance', () => {
+      const pipe = new NumberSeparatorPipe(); 
+      let result = pipe.transform(null, '3');
+      expect(result).toBe("0");
+    });
 });
