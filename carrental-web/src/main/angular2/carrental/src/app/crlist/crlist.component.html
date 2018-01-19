@@ -1,8 +1,10 @@
 <div class="container-fluid">
+	<app-crupload [visible]="modalvisible"></app-crupload>
 	<div class="row">
 		<p id="myListId">crlist works!</p>
 		<button type="button" class="btn btn-primary" (click)="showPdf('1')">Pdf1</button>
 		<button type="button" class="btn btn-primary" (click)="showPdf('2')">Pdf2</button>
+		<button type="button" class="btn btn-primary" (click)="showModal()">FileUpload</button>
 	</div>
 	<div class="row">
 		<table class="table table-striped borderless">				

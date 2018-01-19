@@ -24,6 +24,7 @@ import { CrValuesComponent } from './crvalues/crvalues.component';
 import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 import { CrdateComponent } from './crdate/crdate.component';
 import { CrrootComponent } from './crroot/crroot.component';
+import { CruploadComponent } from './crupload/crupload.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -44,7 +45,8 @@ describe('AppComponent', () => {
         CrValuesComponent,
         CrvaluesdComponent,
         CrdateComponent,
-        NumberSeparatorPipe
+        NumberSeparatorPipe, 
+        CruploadComponent
       ], 
       imports: [
         BrowserModule,

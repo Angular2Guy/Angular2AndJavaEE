@@ -32,6 +32,7 @@ export class CrlistComponent implements OnInit, OnDestroy {
   tableRows: Observable<CrTableRow[]>;
   errorMsg: string;
   private routeSub: ISubscription;
+  modalvisible = false;
   //years: string[] = [];
   //private tableRowsSub: ISubscription;
     
@@ -61,5 +62,9 @@ export class CrlistComponent implements OnInit, OnDestroy {
 //          console.log(fileUrl);
 //          window.open(fileUrl);
 //      });
+  }
+  
+  showModal() {
+      this.modalvisible = !this.modalvisible;
   }
 }
