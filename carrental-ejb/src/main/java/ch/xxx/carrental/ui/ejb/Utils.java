@@ -28,7 +28,7 @@ public class Utils {
 		try {
 			InitialContext ic = new InitialContext();	
 			namingFactoryKey = (String) ic.getEnvironment().get(EjbNaming.JBOSS.getKey());
-			if(!EjbNaming.JBOSS.getValue().contains(namingFactoryKey)) {
+			if(namingFactoryKey == null || !EjbNaming.JBOSS.getValue().contains(namingFactoryKey)) {
 				Object o = ic.lookup(EjbNaming.WEBSPHERE.getKey()); 
 				namingFactoryKey = o != null ? o.getClass().getName() : "Not JBoss or Websphere";
 			}
