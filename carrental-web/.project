@@ -41,7 +41,7 @@
 	<filteredResources>
 		<filter>
 			<id>0</id>
-			<name>src/main/angular2/carrental</name>
+			<name>src/main/angular/carrental</name>
 			<type>10</type>
 			<matcher>
 				<id>org.eclipse.ui.ide.multiFilter</id>

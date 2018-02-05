@@ -129,7 +129,7 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<webResources>
 						<resource>
-							<directory>${basedir}/target/angular2/carrental/dist</directory>
+							<directory>${basedir}/target/angular/carrental/dist</directory>
 							<includes>
 								<include>en/*.*</include>
 								<include>de/*.*</include>
@@ -144,11 +144,11 @@
 					<failOnError>false</failOnError>
 					<filesets>
 						<fileset>
-							<directory>src/main/angular2/carrental/dist</directory>
+							<directory>src/main/angular/carrental/dist</directory>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 						<fileset>
-							<directory>src/main/angular2/carrental/node_modules</directory>
+							<directory>src/main/angular/carrental/node_modules</directory>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 					</filesets>
@@ -158,16 +158,16 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>copy-angular2-dir</id>
+						<id>copy-angular-dir</id>
 						<phase>validate</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/angular2</outputDirectory>
+							<outputDirectory>${basedir}/target/angular</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/angular2</directory>
+									<directory>src/main/angular</directory>
 									<includes>
 										<include>carrental/**/*.*</include>
 									</includes>
@@ -193,7 +193,7 @@
 							<arguments>
 								<argument>install</argument>
 							</arguments>
-							<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
+							<workingDirectory>${basedir}/target/angular/carrental</workingDirectory>
 							<target>
 								<echo message="Npm install" />
 							</target>
@@ -218,7 +218,7 @@
 								<argument>run</argument>
 								<argument>build</argument>
 							</arguments>
-							<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
+							<workingDirectory>${basedir}/target/angular/carrental</workingDirectory>
 						</configuration>
 					</execution>
 				</executions>
@@ -240,7 +240,7 @@
 								<argument>run</argument>
 								<argument>test</argument>
 							</arguments>
-							<workingDirectory>${basedir}/target/angular2/carrental</workingDirectory>
+							<workingDirectory>${basedir}/target/angular/carrental</workingDirectory>
 						</configuration>
 					</execution>
 				</executions>
