@@ -24,83 +24,47 @@ import io.swagger.annotations.ApiOperation;
 
 @RequestScoped
 @Path("/model/crDetail")
-@Produces({"application/json"})
-@Consumes({"application/json"})
-@Api(value="/model/crDetail")
+@Produces({ "application/json" })
+@Consumes({ "application/json" })
+@Api(value = "/model/crDetail")
 public class CrDetailResource {
 	@Inject
-	private CrDetailService service;	
-	
+	private CrDetailService service;
+
 	@GET
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="get the details for the mietNr and jahr", response=CrDetail.class)
-	public Response getAll(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin,@HeaderParam("Accept-Language") final String acceptLang) {
+	@ApiOperation(value = "get the details for the mietNr and jahr", response = CrDetail.class)
+	public Response getAll(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr,
+			@HeaderParam("Origin") final String origin, @HeaderParam("Accept-Language") final String acceptLang) {
 		String[] langs = acceptLang.split(",");
 		Locale locale = Locale.forLanguageTag(langs[0]);
-		if (origin != null && origin.contains("http://localhost")) {
-			return createLocalResponse(service.readCrDetail(mietNr, jahr, locale));					
-		} else {
-			return Response.ok(service.readCrDetail(mietNr, jahr, locale)).build();
-		}
+		return Response.ok(service.readCrDetail(mietNr, jahr, locale)).build();
 	}
-	
-	@OPTIONS
-	@Path("/mietNr/{mietNr}/jahr/{jahr}")
-	@DisableCaching
-	public Response getOptions(@HeaderParam("Origin") final String origin) {
-		if (origin != null && origin.contains("http://localhost")) {
-			return Response.ok().header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
-					.header("Access-Control-Allow-Headers",
-							"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
-					.allow("OPTIONS").build();
-		} else {
-			return Response.ok().build();
-		}
-	}		
-	
+
 	@PUT
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="update the details for the mietNr and jahr", response=Boolean.class)
+	@ApiOperation(value = "update the details for the mietNr and jahr", response = Boolean.class)
 	public Response updateDetails(CrDetail crDetail, @HeaderParam("Origin") final String origin) {
-		if (origin != null && origin.contains("http://localhost")) {
-			return createLocalResponse(service.updateCrDetail(crDetail));
-		} else {
-			return Response.ok(service.updateCrDetail(crDetail)).build();
-		}
+		return Response.ok(service.updateCrDetail(crDetail)).build();
 	}
 
-	private Response createLocalResponse(Object serviceCall) {
-		return Response.ok(serviceCall).header("Access-Control-Allow-Origin", "*")
-				.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
-				.header("Access-Control-Allow-Headers",
-						"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
-				.allow("OPTIONS").build();
-	}
-	
 	@POST
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="create the details for the mietNr and jahr", response=Boolean.class)
-	public Response createDetails(CrDetail crDetail,@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin) {
-		if (origin != null && origin.contains("http://localhost")) {
-			return createLocalResponse(service.createCrDetail(crDetail));
-		} else {
-			return Response.ok(service.createCrDetail(crDetail)).build();
-		}
+	@ApiOperation(value = "create the details for the mietNr and jahr", response = Boolean.class)
+	public Response createDetails(CrDetail crDetail, @PathParam("mietNr") final String mietNr,
+			@PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin) {
+		return Response.ok(service.createCrDetail(crDetail)).build();
 	}
-	
+
 	@DELETE
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
-	@ApiOperation(value="delete the details for the mietNr and jahr", response=Boolean.class)
-	public Response deleteDetails(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin) {
-		if (origin != null && origin.contains("http://localhost")) {
-			return createLocalResponse(service.deleteCrDetail(mietNr, jahr));
-		} else {
-			return Response.ok(service.deleteCrDetail(mietNr, jahr)).build();
-		}
+	@ApiOperation(value = "delete the details for the mietNr and jahr", response = Boolean.class)
+	public Response deleteDetails(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr,
+			@HeaderParam("Origin") final String origin) {
+		return Response.ok(service.deleteCrDetail(mietNr, jahr)).build();
 	}
 }

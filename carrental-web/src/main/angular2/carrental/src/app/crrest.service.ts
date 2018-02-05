@@ -29,17 +29,15 @@ export class CrRestService {
     static readonly NEWID = 'newId';
     private _crTableUrlProd = '/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
     private _crDetailUrlProd = '/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
-    _crPdfUrlProd = '/rest/model/crTable/mietNr/{mietNr}/pdf';
-    private _crTableUrlDev = 'http://localhost:8080/carrental-web/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
-    private _crDetailUrlDev = 'http://localhost:8080/carrental-web/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
-    _crPdfUrlDev = 'http://localhost:8080/carrental-web/rest/model/crTable/mietNr/{mietNr}/pdf';
+    public _crPdfUrlProd = '/rest/model/crTable/mietNr/{mietNr}/pdf';
+    public _baseHRef = '/carrental-web';
     private _reqOptionsArgs =  { headers: new HttpHeaders().set( 'Content-Type', 'application/json' ) };
 
     constructor( private http: HttpClient, private pl: PlatformLocation ) {        
     }
 
     getCrTableRows( policeNr: string ) : Observable<CrTableRow[]> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crTableUrlProd : this._crTableUrlDev;       
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crTableUrlProd : this._baseHRef + this._crTableUrlProd;       
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr );
         console.log(url);
@@ -53,7 +51,7 @@ export class CrRestService {
                 observer.complete();
             });
         }
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         console.log(url);
@@ -68,7 +66,7 @@ export class CrRestService {
     }
     
     postCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));
@@ -76,7 +74,7 @@ export class CrRestService {
     }
     
     putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));        
@@ -84,7 +82,7 @@ export class CrRestService {
     }
     
     deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._crDetailUrlDev;
+        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );        
         return this.http.delete(url, this._reqOptionsArgs).catch(this.handleError);

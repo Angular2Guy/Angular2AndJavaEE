@@ -26,50 +26,27 @@ import io.swagger.annotations.ApiOperation;
 @RequestScoped
 @Path("/model/crTable")
 @Produces({ "application/json" })
-@Api(value="/model/crTable")
+@Api(value = "/model/crTable")
 public class CrTableResource {
 	@Inject
-	private CrTableService service;		
-	
+	private CrTableService service;
+
 	@GET
 	@Path("/mietNr/{mietNr}")
 	@DisableCaching
-	@ApiOperation(value="gets the rows for the table", response=CrTableRow.class, responseContainer="List")
+	@ApiOperation(value = "gets the rows for the table", response = CrTableRow.class, responseContainer = "List")
 	public Response getAll(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin,
 			@HeaderParam("Accept-Language") final String acceptLang) {
 		String[] langs = acceptLang.split(",");
 		Locale locale = Locale.forLanguageTag(langs[0]);
-		if (origin != null && origin.contains("http://localhost")) {
-			return Response.ok(service.readCrRowsByMiete(mietNr, locale)).header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers",
-							"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
-					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS").allow("OPTIONS").build();
-		} else {
-			return Response.ok(service.readCrRowsByMiete(mietNr, locale)).build();
-		}
-
-	}
-
-	@OPTIONS
-	@Path("/mietNr/{mietNr}")
-	@DisableCaching
-	public Response getOptions(@HeaderParam("Origin") final String origin) {
-		if (origin != null && origin.contains("http://localhost")) {
-			return Response.ok().header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
-					.header("Access-Control-Allow-Headers",
-							"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
-					.allow("OPTIONS").build();
-		} else {
-			return Response.ok().build();
-		}
+		return Response.ok(service.readCrRowsByMiete(mietNr, locale)).build();
 	}
 
 	@GET
 	@Path("/mietNr/{mietNr}/pdf")
 	@Produces("application/pdf")
 	@DisableCaching
-	@ApiOperation(value="provides the pdf files for display")
+	@ApiOperation(value = "provides the pdf files for display")
 	public Response getPdf(@PathParam("mietNr") final String mietNr, @HeaderParam("Origin") final String origin,
 			@HeaderParam("Accept-Language") final String acceptLang) {
 		byte[] array = null;
@@ -82,15 +59,7 @@ public class CrTableResource {
 		} catch (IOException e) {
 			return Response.status(Status.NOT_FOUND).entity("Failed to read File.").build();
 		}
-		if (origin != null && origin.contains("http://localhost")) {
-			return Response.ok(array).header("Access-Control-Allow-Origin", "*")
-					.header("Access-Control-Allow-Headers",
-							"X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept")
-					.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, OPTIONS")
-					.allow("OPTIONS").build();
-		} else {
-			return Response.ok(array).build();
-		}
+		return Response.ok(array).build();
 	}
 
 }

@@ -52,16 +52,11 @@ export class CrlistComponent implements OnInit, OnDestroy {
   }
   
   showPdf(num: string) {
-      let url = environment.production ? this.pl.getBaseHrefFromDOM() +this.service._crPdfUrlProd : this.service._crPdfUrlDev;
+      let url = environment.production ? this.pl.getBaseHrefFromDOM() +this.service._crPdfUrlProd : this.service._baseHRef + this.service._crPdfUrlProd;
       url = this.service.cleanUrl(url);
       url = url.replace( "{mietNr}", num );
       console.log(url);
       window.open(url);
-//      this.service.getCrPdf(num).subscribe((res) => {
-//          let fileUrl = URL.createObjectURL(res);
-//          console.log(fileUrl);
-//          window.open(fileUrl);
-//      });
   }
   
   showModal() {
