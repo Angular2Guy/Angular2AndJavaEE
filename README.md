@@ -73,7 +73,7 @@ Open a shell and cd into the directory carrental-web/src/main/angular2/carrental
 
 Execute npm install for dependency resolution
 
-Execute ng serve to start the UI
+Execute npm start to start the UI
 
 Start Wildfly in Eclipse
 
