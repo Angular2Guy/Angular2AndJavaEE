@@ -14,7 +14,7 @@
    limitations under the License.
  */
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, Router, ParamMap } from '@angular/router';
 import {ISubscription} from 'rxjs/Subscription';
 import { Observable }        from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -28,27 +28,17 @@ import { PlatformLocation } from '@angular/common';
   templateUrl: './crlist.component.html',
   styleUrls: ['./crlist.component.scss'],    
 })
-export class CrlistComponent implements OnInit, OnDestroy {
+export class CrlistComponent implements OnInit {
   tableRows: Observable<CrTableRow[]>;
-  errorMsg: string;
-  private routeSub: ISubscription;
+  errorMsg: string;  
   modalvisible = false;
-  //years: string[] = [];
-  //private tableRowsSub: ISubscription;
     
   constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private pl: PlatformLocation ) {}
 
   ngOnInit(): void {
-      this.routeSub = this.route.params.subscribe(params => {
-        let mnr = params['mnr'];
-        this.tableRows = this.service.getCrTableRows(mnr).catch(error => {this.errorMsg = error; return Observable.of<CrTableRow[]>([]);});        
-        //this.tableRowsSub = this.tableRows.subscribe(rows => {rows.forEach(row => {this.years.push(row.jahr);console.log(row.jahr);}); return rows});
-      });
-  }
-  
-  ngOnDestroy() {
-    this.routeSub.unsubscribe();
-    //this.tableRowsSub.unsubscribe();
+      let observ = this.route.paramMap.switchMap((params: ParamMap)=>         
+        this.service.getCrTableRows(params.get('mnr')));
+      this.tableRows = observ.catch(error => {this.errorMsg = error; return Observable.of<CrTableRow[]>([]);});
   }
   
   showPdf(num: string) {

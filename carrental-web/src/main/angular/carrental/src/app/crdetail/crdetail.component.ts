@@ -14,42 +14,39 @@
    limitations under the License.
  */
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {ISubscription} from 'rxjs/Subscription';
 import {CrRestService} from '../crrest.service';
 import {CrDetail, CrPeriod} from '../crTypes';
 import {CrValuesComponent} from '../crvalues/crvalues.component';
+import 'rxjs/add/operator/switchMap';
 
 @Component({  
   selector: 'app-crdetail',
   templateUrl: './crdetail.component.html',
   styleUrls: ['./crdetail.component.scss'],
 })
-export class CrdetailComponent  implements OnInit, OnDestroy {
+export class CrdetailComponent  implements OnInit {
   errorMsg: string;
   crDetail: CrDetail;
   crPeriods: CrPeriod[];
   crEditmode: boolean;
   private mnr: string;
   private jahr: string;
-  private routeSub: ISubscription;  
     
   constructor(private route: ActivatedRoute, private router: Router, private service: CrRestService) {
       this.crEditmode = false;
   }
 
-  ngOnInit(): void {      
-      this.routeSub = this.route.params.subscribe(params => {
-        this.mnr = params['mnr'];
-        this.jahr = params['jahr'];
-        this.service.getCrDetail(this.mnr, this.jahr).subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);
-      });      
+  ngOnInit(): void {  
+      let observ = this.route.paramMap.switchMap((params: ParamMap)=> {
+          this.mnr = params.get('mnr');
+          this.jahr = params.get('jahr');
+          return this.service.getCrDetail(this.mnr, this.jahr);
+      });
+      observ.subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);
   }
 
-  ngOnDestroy(): void {
-    this.routeSub.unsubscribe();
-  }
-  
   toggleEditmode(): void {
       this.crEditmode = !this.crEditmode;
   }
