@@ -36,7 +36,7 @@ export class CruploadComponent implements OnInit, OnChanges {
               let textstr = reader.result;
               let textstrs = textstr.split("base64,");
               this.filetext = atob(textstrs[1]);
-              console.log(textstr);
+              //console.log(textstr);
           };
       reader.readAsDataURL(this.currentFile);
   }
@@ -49,6 +49,7 @@ export class CruploadComponent implements OnInit, OnChanges {
   ngOnChanges(changes: {[propKey: string]: SimpleChange}): void {
       for (let propName in changes) {
           let changedProp = changes[propName];
+          console.log(propName+' '+changedProp.currentValue);
           let modal = document.getElementById('crModal');
           modal.style.display = "block";
       }

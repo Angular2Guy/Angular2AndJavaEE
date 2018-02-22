@@ -1,3 +1,18 @@
+/**
+ *    Copyright 2016 Sven Loesekann
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
 package ch.xxx.carrental.ui.rest.model;
 
 import java.util.Locale;
@@ -8,7 +23,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
-import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -36,7 +50,7 @@ public class CrDetailResource {
 	@DisableCaching
 	@ApiOperation(value = "get the details for the mietNr and jahr", response = CrDetail.class)
 	public Response getAll(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr,
-			@HeaderParam("Origin") final String origin, @HeaderParam("Accept-Language") final String acceptLang) {
+			@HeaderParam("Accept-Language") final String acceptLang) {
 		String[] langs = acceptLang.split(",");
 		Locale locale = Locale.forLanguageTag(langs[0]);
 		return Response.ok(service.readCrDetail(mietNr, jahr, locale)).build();
@@ -46,7 +60,7 @@ public class CrDetailResource {
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
 	@ApiOperation(value = "update the details for the mietNr and jahr", response = Boolean.class)
-	public Response updateDetails(CrDetail crDetail, @HeaderParam("Origin") final String origin) {
+	public Response updateDetails(CrDetail crDetail) {
 		return Response.ok(service.updateCrDetail(crDetail)).build();
 	}
 
@@ -55,7 +69,7 @@ public class CrDetailResource {
 	@DisableCaching
 	@ApiOperation(value = "create the details for the mietNr and jahr", response = Boolean.class)
 	public Response createDetails(CrDetail crDetail, @PathParam("mietNr") final String mietNr,
-			@PathParam("jahr") final String jahr, @HeaderParam("Origin") final String origin) {
+			@PathParam("jahr") final String jahr) {
 		return Response.ok(service.createCrDetail(crDetail)).build();
 	}
 
@@ -63,8 +77,7 @@ public class CrDetailResource {
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
 	@ApiOperation(value = "delete the details for the mietNr and jahr", response = Boolean.class)
-	public Response deleteDetails(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr,
-			@HeaderParam("Origin") final String origin) {
+	public Response deleteDetails(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr) {
 		return Response.ok(service.deleteCrDetail(mietNr, jahr)).build();
 	}
 }
