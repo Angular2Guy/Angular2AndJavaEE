@@ -45,6 +45,13 @@ public class CrDetailResource {
 	@Inject
 	private CrDetailService service;
 
+	public CrDetailResource() {		
+	}
+	
+	public CrDetailResource(CrDetailService service) {
+		this.service = service;
+	}
+	
 	@GET
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching

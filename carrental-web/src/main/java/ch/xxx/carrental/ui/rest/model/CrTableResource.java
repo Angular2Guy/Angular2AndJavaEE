@@ -46,6 +46,13 @@ public class CrTableResource {
 	@Inject
 	private CrTableService service;
 
+	public CrTableResource() {		
+	}
+	
+	public CrTableResource(CrTableService service) {
+		this.service = service;
+	}
+	
 	@GET
 	@Path("/mietNr/{mietNr}")
 	@DisableCaching

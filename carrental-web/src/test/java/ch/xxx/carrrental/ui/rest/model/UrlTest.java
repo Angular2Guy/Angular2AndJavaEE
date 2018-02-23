@@ -1,3 +1,4 @@
+package ch.xxx.carrrental.ui.rest.model;
 import org.junit.Assert;
 import org.junit.Test;
 
