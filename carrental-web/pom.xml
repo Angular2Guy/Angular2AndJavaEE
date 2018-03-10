@@ -153,6 +153,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.0.0</version>
 				<configuration>
 					<failOnError>false</failOnError>
 					<filesets>
@@ -169,6 +170,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.0.2</version>
 				<executions>
 					<execution>
 						<id>copy-angular-dir</id>
@@ -189,7 +191,7 @@
 						</configuration>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>			
 			<plugin>
 				<artifactId>exec-maven-plugin</artifactId>
 				<groupId>org.codehaus.mojo</groupId>
@@ -212,13 +214,6 @@
 							</target>
 						</configuration>
 					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>exec-maven-plugin</artifactId>
-				<groupId>org.codehaus.mojo</groupId>
-				<version>1.4.0</version>
-				<executions>
 					<execution>
 						<id>angular-cli build</id>
 						<goals>
@@ -234,13 +229,6 @@
 							<workingDirectory>${basedir}/target/angular/carrental</workingDirectory>
 						</configuration>
 					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>exec-maven-plugin</artifactId>
-				<groupId>org.codehaus.mojo</groupId>
-				<version>1.4.0</version>
-				<executions>
 					<execution>
 						<id>angular-cli test</id>
 						<goals>
