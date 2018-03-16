@@ -42,7 +42,7 @@ export class CrlistComponent implements OnInit {
   }
   
   showPdf(num: string) {
-      let url = environment.production ? this.pl.getBaseHrefFromDOM() +this.service._crPdfUrlProd : this.service._baseHRef + this.service._crPdfUrlProd;
+      let url = this.service._baseHRef + this.service._crPdfUrlProd;
       url = this.service.cleanUrl(url);
       url = url.replace( "{mietNr}", num );
       console.log(url);

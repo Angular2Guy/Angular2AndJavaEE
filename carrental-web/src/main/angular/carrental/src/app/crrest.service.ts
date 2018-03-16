@@ -37,7 +37,7 @@ export class CrRestService {
     }
 
     getCrTableRows( policeNr: string ) : Observable<CrTableRow[]> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crTableUrlProd : this._baseHRef + this._crTableUrlProd;       
+        let url = this._baseHRef + this._crTableUrlProd;       
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr );
         console.log(url);
@@ -51,7 +51,7 @@ export class CrRestService {
                 observer.complete();
             });
         }
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
+        let url = this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         console.log(url);
@@ -66,7 +66,7 @@ export class CrRestService {
     }
     
     postCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
+        let url = this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));
@@ -74,7 +74,7 @@ export class CrRestService {
     }
     
     putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
+        let url = this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));        
@@ -82,7 +82,7 @@ export class CrRestService {
     }
     
     deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = environment.production ? this.pl.getBaseHrefFromDOM() + this._crDetailUrlProd : this._baseHRef + this._crDetailUrlProd;
+        let url = this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );        
         return this.http.delete(url, this._reqOptionsArgs).catch(this.handleError);
