@@ -65,20 +65,20 @@ export class CrrootComponent implements OnInit {
   }
    
   collisionTestWithWalls(ball) {
-      if (ball.x < ball.rayon) {
-          ball.x = ball.rayon;
+      if (ball.x < ball.radius) {
+          ball.x = ball.radius;
           ball.vx *= -1;
       } 
-      if (ball.x > this.width - (ball.rayon)) {
-          ball.x = this.width - (ball.rayon);
+      if (ball.x > this.width - (ball.radius)) {
+          ball.x = this.width - (ball.radius);
           ball.vx *= -1;
       }     
-      if (ball.y < ball.rayon) {
-          ball.y = ball.rayon;
+      if (ball.y < ball.radius) {
+          ball.y = ball.radius;
           ball.vy *= -1;
       }     
-      if (ball.y > this.height - (ball.rayon)) {
-          ball.y = this.height - (ball.rayon);
+      if (ball.y > this.height - (ball.radius)) {
+          ball.y = this.height - (ball.radius);
           ball.vy *= -1;
       }
   }
@@ -92,17 +92,17 @@ export class CrrootComponent implements OnInit {
               let dy = balls[j].y - balls[i].y;
             
               let dist = Math.sqrt(dx * dx + dy * dy);
-              if (dist < (balls[j].rayon + balls[i].rayon)) {
+              if (dist < (balls[j].radius + balls[i].radius)) {
                   // balls have contact so push back...
                   let normalX = dx / dist;
                   let normalY = dy / dist;
                   let middleX = (balls[i].x + balls[j].x) / 2;
                   let middleY = (balls[i].y + balls[j].y) / 2;
                 
-                  balls[i].x = middleX - normalX * balls[i].rayon;
-                  balls[i].y = middleY - normalY * balls[i].rayon;
-                  balls[j].x = middleX + normalX * balls[j].rayon;
-                  balls[j].y = middleY + normalY * balls[j].rayon;
+                  balls[i].x = middleX - normalX * balls[i].radius;
+                  balls[i].y = middleY - normalY * balls[i].radius;
+                  balls[j].x = middleX + normalX * balls[j].radius;
+                  balls[j].y = middleY + normalY * balls[j].radius;
                 
                   let dVector = (balls[i].vx - balls[j].vx) * normalX;
                   dVector += (balls[i].vy - balls[j].vy) * normalY;
@@ -120,15 +120,15 @@ export class CrrootComponent implements OnInit {
 }
 
 class Ball {        
-    rayon = 0;
+    radius = 0;
         
     constructor (public x: number, public y: number, public vx: number, public vy: number, diameter: number, private ctx: CanvasRenderingContext2D) {
-        this.rayon = diameter/2;
+        this.radius = diameter/2;
     }
     
     draw() {
       this.ctx.beginPath();
-      this.ctx.arc(this.x, this.y, this.rayon, 0, 2*Math.PI);
+      this.ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
       this.ctx.fill();
     };
     
