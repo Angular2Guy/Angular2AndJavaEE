@@ -39,12 +39,23 @@ export class CrrootComponent implements OnInit,OnDestroy {
       let myctx = this.ctx;
       for(let i=0; i < numberOfBalls; i++) {
         // Create a ball with random position and speed
-        let ball =  new Ball(mywidth*Math.random(), myheight*Math.random(), (10*Math.random())-5, (10*Math.random())-5, 40, myctx); 
+        let color = this.rgbToHex(Math.round(255*Math.random()), Math.round(255*Math.random()),Math.round(255*Math.random()));
+        console.log(color);
+        let ball =  new Ball(mywidth*Math.random(), myheight*Math.random(), (10*Math.random())-5, (10*Math.random())-5, 40, myctx, color); 
         // Add it to the array
         this.ballArray.push(ball);
       }              
     }  
-      
+     
+  componentToHex(c: number): String {
+      var hex = c.toString(16);
+      return hex.length == 1 ? "0" + hex : hex;
+  }
+
+  rgbToHex(r: number, g: number, b: number) {
+      return "#" + this.componentToHex(r) + this.componentToHex(g) + this.componentToHex(b);
+  }
+  
   mainLoop() {
       if(that === null) return;
       // vasClear the can
@@ -127,12 +138,13 @@ export class CrrootComponent implements OnInit,OnDestroy {
 class Ball {        
     radius = 0;
         
-    constructor (public x: number, public y: number, public vx: number, public vy: number, diameter: number, private ctx: CanvasRenderingContext2D) {
+    constructor (public x: number, public y: number, public vx: number, public vy: number, diameter: number, private ctx: CanvasRenderingContext2D, private color: string) {
         this.radius = diameter/2;
     }
     
     draw() {
       this.ctx.beginPath();
+      this.ctx.fillStyle = this.color;
       this.ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI);
       this.ctx.fill();
     };
