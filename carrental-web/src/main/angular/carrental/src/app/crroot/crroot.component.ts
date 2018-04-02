@@ -1,13 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 
-let that: CrrootComponent;
+let that: CrrootComponent = null;
 
 @Component({
   selector: 'app-crroot',
   templateUrl: './crroot.component.html',
   styleUrls: ['./crroot.component.scss']
 })
-export class CrrootComponent implements OnInit {
+export class CrrootComponent implements OnInit,OnDestroy {
   
   title = 'Please choose a link.';
   @ViewChild('myCanvas') canvas: ElementRef;
@@ -29,6 +29,10 @@ export class CrrootComponent implements OnInit {
       window.requestAnimationFrame(this.mainLoop);
   }
 
+  ngOnDestroy(): void {
+      that = null;
+  }
+    
   createBalls(numberOfBalls) {
       let mywidth = this.width;
       let myheight = this.height;
@@ -42,6 +46,7 @@ export class CrrootComponent implements OnInit {
     }  
       
   mainLoop() {
+      if(that === null) return;
       // vasClear the can
       that.ctx.clearRect(0, 0, that.width, that.height);
       // For each ball in the array
