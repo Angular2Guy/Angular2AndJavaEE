@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 
-let that: CrrootComponent = null;
 
 @Component({
   selector: 'app-crroot',
   templateUrl: './crroot.component.html',
   styleUrls: ['./crroot.component.scss']
 })
-export class CrrootComponent implements OnInit,OnDestroy {
+export class CrrootComponent implements OnInit {
   
   title = 'Please choose a link.';
   @ViewChild('myCanvas') canvas: ElementRef;
@@ -19,20 +18,15 @@ export class CrrootComponent implements OnInit,OnDestroy {
   constructor() { }
 
   ngOnInit() {      
-      that = this;
       this.ctx = this.canvas.nativeElement.getContext('2d');
       this.width = this.canvas.nativeElement.width;
       this.height = this.canvas.nativeElement.height;
       
       this.createBalls(10);      
 
-      window.requestAnimationFrame(this.mainLoop);
+      window.requestAnimationFrame(() => this.mainLoop());
   }
 
-  ngOnDestroy(): void {
-      that = null;
-  }
-    
   createBalls(numberOfBalls) {
       let mywidth = this.width;
       let myheight = this.height;
@@ -40,7 +34,7 @@ export class CrrootComponent implements OnInit,OnDestroy {
       for(let i=0; i < numberOfBalls; i++) {
         // Create a ball with random position and speed
         let color = this.rgbToHex(Math.round(255*Math.random()), Math.round(255*Math.random()),Math.round(255*Math.random()));
-        console.log(color);
+//        console.log(color);
         let ball =  new Ball(mywidth*Math.random(), myheight*Math.random(), (10*Math.random())-5, (10*Math.random())-5, 40, myctx, color); 
         // Add it to the array
         this.ballArray.push(ball);
@@ -57,27 +51,26 @@ export class CrrootComponent implements OnInit,OnDestroy {
   }
   
   mainLoop() {
-      if(that === null) return;
       // vasClear the can
-      that.ctx.clearRect(0, 0, that.width, that.height);
+      this.ctx.clearRect(0, 0, this.width, this.height);
       // For each ball in the array
-      for(let i=0; i < that.ballArray.length; i++) {      
-        let balls = that.ballArray[i];
+      for(let i=0; i < this.ballArray.length; i++) {      
+        let balls = this.ballArray[i];
         
         // 1) Move the ball
         balls.move();   
     
         // 2) collision test with walls
-        that.collisionTestWithWalls(balls);
+        this.collisionTestWithWalls(balls);
     
         // 3) draw the ball
         balls.draw();
     }
     
-    that.collisionTestBetweenBalls();
+    this.collisionTestBetweenBalls();
     
     // Ask for new animation frame
-    window.requestAnimationFrame(that.mainLoop);
+    window.requestAnimationFrame(() => this.mainLoop());
   }
    
   collisionTestWithWalls(ball) {
