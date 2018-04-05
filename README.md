@@ -14,20 +14,20 @@ Target Project: Java EE 6
 What is it?
 -----------
 
-The project shows the integration of Angular with Angular Cli as UI. The Rest Services are provided by JavaEE 6. In this Example with WildFly. The Build is done with Maven. 
+The project shows the integration of Angular with Angular Cli as UI. The Rest services are provided by JavaEE 6, in this example is with WildFly. The build is done in Maven. 
 
-The Development Setup is Eclipse with Typescript Plugin or Webstorm. JBoss is integrated with the JBoss Plugin to provide redeployments. Angular Cli provides the UI an redeploys the UI on change and makes the optimized production build.
+The development setup is Eclipse with Typescript Plugin or Webstorm. JBoss is integrated with the JBoss Plugin to provide re-deployments. Angular Cli provides the UI, redeploys the UI on change and optimizes production build.
 
-The Ear that is build can be tested in a Docker Image that Maven can build.
+The Ear that is build can be tested in a Docker Image that Maven builds.
 
-Development requirements
+Development Requirements
 -------------------
 
-Java 8 Jdk or newer. 
+Java 8 JDK or newer. 
 
 Eclipse Oxygen JEE or newer.
 
-Wildfly 10 or newer. (Any JavaEE 6 Appserver will do)
+WildFly 10 or newer. (Any JavaEE 6 Appserver will do)
 
 JBoss Plugin JBoss AS, WildFly & EAP Server Tools	4.5.0 or newer.
 
@@ -41,9 +41,9 @@ Npm 3.10.x or newer
 
 Angular Cli 1.3.0 or newer. 
 
-Build Server requirements
+Build Server Requirements
 -------------------------
-Java 8 Jdk or newer. 
+Java 8 JDK or newer. 
 
 Maven 3.3.3 or newer. 
 
@@ -53,13 +53,13 @@ Npm 3.10.x
 
 Setup
 -----
-Jdk 8, Wildfly 10(or an other Java EE6 server), Nodejs, Eclipse, Maven must be installed.
+JDK 8, Wildfly 10(or an other Java EE6 server), Nodejs, Eclipse, Maven must be installed.
 
-Install Angular Cli "npm install -g angular-cli@latest"
+Install Angular Cli "npm install -g angular-cli@latest".
 
 Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/oxygen/stable/updates/"
 
-Add the Server Runtime Environment for Wildfly and connect it to the wildfly installation.
+Add the server runtime environment for Wildfly and connect it to the WildFly installation.
 
 Install Eclipse Plugin Typescript.Java "http://oss.opensagres.fr/typescript.ide/1.4.0-SNAPSHOT/"
 
@@ -71,28 +71,28 @@ Check out the carrental project.
 
 Open a shell and cd into the directory carrental-web/src/main/angular2/carrental
 
-Execute npm install for dependency resolution
+Execute npm install for dependency resolution.
 
-Execute npm start to start the UI
+Execute npm start to start the UI.
 
-Start Wildfly in Eclipse
+Start Wildfly in Eclipse.
 
 Build Setup
 -----------
-It is a multi module project. 
+The project is a multi-module project. 
 The ear project configures the Ear.
 The ejb project builds the ejbs to provide the data for the rest service.
 The war project builds the war. Jax-Rs provides the rest services to serve the data of the ejbs. Npm install provides the dependency resolution for Angular Cli. Angular Cli builds a tree shaken, uglified bundle. Angular Cli runs the tests with Karma on PhantomJS and breaks the build if they fail.
-The ear is build.
+The ear is built.
 
-Project Goal
+Project Goals
 ------------
 To provide a maven project that can be build on continous build server and provide an optimized ui bundle. 
 To provide a development setup that provides fast feedback on the java ee server and on the UI. 
 The fast feedback on the rest service is provided by the wildfly integration in eclipse.
 The fast feedback on the ui is provided by the angular cli integration. Angular Cli is used to provide the ui with fast feedback on change. Angular Cli can generate components, pipes and more. It builds Typescript into Javascript. It provides test wrappers and can execute them. 
 
-With such a setup Angular can be used in an Java EE environment.
+With such a setup Angular can be used on Java EE environment.
 
 Testing the Ear
 ---------------
