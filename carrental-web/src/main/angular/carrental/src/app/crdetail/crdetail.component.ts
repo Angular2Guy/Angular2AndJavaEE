@@ -15,11 +15,10 @@
  */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
-import {ISubscription} from 'rxjs/Subscription';
+import { Observable } from 'rxjs';
 import {CrRestService} from '../crrest.service';
 import {CrDetail, CrPeriod} from '../crTypes';
 import {CrValuesComponent} from '../crvalues/crvalues.component';
-import 'rxjs/add/operator/switchMap';
 
 @Component({  
   selector: 'app-crdetail',
@@ -38,13 +37,11 @@ export class CrdetailComponent  implements OnInit {
       this.crEditmode = false;
   }
 
-  ngOnInit(): void {  
-      let observ = this.route.paramMap.switchMap((params: ParamMap)=> {
-          this.mnr = params.get('mnr');
-          this.jahr = params.get('jahr');
-          return this.service.getCrDetail(this.mnr, this.jahr);
-      });
-      observ.subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);
+  ngOnInit(): void {
+      this.mnr = this.route.snapshot.paramMap.get('mnr');
+      this.jahr = this.route.snapshot.paramMap.get('jahr');
+      this.service.getCrDetail(this.mnr, this.jahr)
+          .subscribe(lsdD => {this.crDetail = <CrDetail> lsdD; this.crPeriods = (<CrDetail> lsdD).crPeriods;}, error => this.errorMsg = error);
   }
 
   toggleEditmode(): void {

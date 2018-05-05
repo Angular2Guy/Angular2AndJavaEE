@@ -18,10 +18,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlatformLocation } from '@angular/common';
 import { CrTableRow, CrDetail, CrPeriod, CrPortfolio } from './crTypes';
 import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl } from './crClasses';
-import { Observable } from 'rxjs/Observable';
-import { map, debounceTime } from 'rxjs/operators';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import { Observable, throwError } from 'rxjs';
+import { map, debounceTime, catchError} from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 @Injectable()
@@ -41,7 +39,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr );
         console.log(url);
-        return this.http.get( url, this._reqOptionsArgs).catch( this.handleError );
+        return this.http.get<CrTableRow[]>( url, this._reqOptionsArgs).pipe(catchError( this.handleError ));
     }
 
     getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
@@ -55,7 +53,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         console.log(url);
-        return this.http.get( url, this._reqOptionsArgs).catch( this.handleError );
+        return this.http.get<CrDetail>( url, this._reqOptionsArgs).pipe(catchError( this.handleError ));
     }
  
     private createEmptyTree() : CrDetail {
@@ -70,7 +68,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));
-        return this.http.post(url, json, this._reqOptionsArgs).catch(this.handleError);
+        return this.http.post<CrDetail>(url, json, this._reqOptionsArgs).pipe(catchError(this.handleError));
     }
     
     putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
@@ -78,14 +76,14 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));        
-        return this.http.put(url, json, this._reqOptionsArgs).catch(this.handleError);
+        return this.http.put<CrDetail>(url, json, this._reqOptionsArgs).pipe(catchError(this.handleError));
     }
     
     deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );        
-        return this.http.delete(url, this._reqOptionsArgs).catch(this.handleError);
+        return this.http.delete<CrDetail>(url, this._reqOptionsArgs).pipe(catchError(this.handleError));
     }
    
     private cleanString(str: string): string {

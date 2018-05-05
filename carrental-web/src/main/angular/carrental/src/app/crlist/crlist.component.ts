@@ -15,13 +15,10 @@
  */
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router, ParamMap } from '@angular/router';
-import {ISubscription} from 'rxjs/Subscription';
-import { Observable }        from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable,of } from 'rxjs';
+import {switchMap, catchError} from 'rxjs/operators';
 import {CrRestService} from '../crrest.service';
 import {CrTableRow} from '../crTypes';
-import { environment } from '../../environments/environment';
-import { PlatformLocation } from '@angular/common';
 
 @Component({  
   selector: 'app-crlist',
@@ -33,12 +30,11 @@ export class CrlistComponent implements OnInit {
   errorMsg: string;  
   modalvisible = false;
     
-  constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private pl: PlatformLocation ) {}
+  constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService ) {}
 
   ngOnInit(): void {
-      let observ = this.route.paramMap.switchMap((params: ParamMap)=>         
-        this.service.getCrTableRows(params.get('mnr')));
-      this.tableRows = observ.catch(error => {this.errorMsg = error; return Observable.of<CrTableRow[]>([]);});
+      let mnr = this.route.snapshot.paramMap.get('mnr');
+      this.tableRows = this.service.getCrTableRows(mnr);
   }
   
   showPdf(num: string) {

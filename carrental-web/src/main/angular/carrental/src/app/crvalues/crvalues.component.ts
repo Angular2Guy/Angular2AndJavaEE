@@ -17,7 +17,7 @@ import { Component, OnInit, Input , OnDestroy} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { CrPortfolio } from '../crTypes';
 import { CrValuesValidators } from '../shared/crvalues.validators';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription }   from 'rxjs';
 import { Utils } from '../shared/utils';
 
 @Component({    
@@ -29,7 +29,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     form: FormGroup;
     fcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
     @Input() crvalues: CrPortfolio;
-    updateTotalsSub: Subscription[] = [];    
+    updateTotalsSub: any[] = [];    
 
     constructor(fb: FormBuilder) {
         this.form = fb.group({
