@@ -24,9 +24,13 @@ module.exports = function (config) {
     angularCli: {      
       environment: 'dev'
     },
-    reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'coverage-istanbul']
-              : ['progress', 'kjhtml'],
+//  reporters: ['progress', 'kjhtml', 'junit'],
+    reporters: ['progress', 'kjhtml'],
+    junitReporter: {
+    	outputDir: 'reports', // results will be saved as $outputDir/$browserName.xml
+        outputFile: 'junit.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+        useBrowserName: false // add browser name to report and classes names
+          },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

@@ -7,11 +7,11 @@
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod --aot --base-href /carrental-web/de/ --output-path dist/de --i18n-locale de --i18nFile=./src/locale/messages.xlf && ng build --prod --aot --base-href /carrental-web/en/ --output-path dist/en --i18n-locale en --i18nFile=./src/locale/messages.en.xlf",
-    "test": "ng test --browsers PhantomJS --reporters junit --single-run",
+    "test": "ng test --browsers PhantomJS --watch=false",
+    "test-junit": "ng test --browsers PhantomJS --reporters junit --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "i18n": "ng-xi18n -p src/tsconfig.json",
-    "test-mvn": "ng test --browser PhantomJS --reporters junit --single-run"
+    "i18n": "ng-xi18n -p src/tsconfig.json"    
   },
   "private": true,
   "dependencies": {
