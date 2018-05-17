@@ -128,9 +128,9 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>com.spotify</groupId>
-					<artifactId>dockerfile-maven-plugin</artifactId>
-					<version>1.4.0</version>					
+					<groupId>io.fabric8</groupId>
+					<artifactId>docker-maven-plugin</artifactId>
+					<version>0.24.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
