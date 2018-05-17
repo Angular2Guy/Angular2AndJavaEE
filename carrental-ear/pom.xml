@@ -141,7 +141,7 @@
 						 -->
 					</executions>
 					<configuration>
-						<dockerConfigFile>${project.basedir}/Dockerfile</dockerConfigFile>
+						<contextDirectory>${project.basedir}</contextDirectory>						
 						<repository>angular2guy/carrental</repository>
 						<tag>${project.version}</tag>
 						<buildArgs>
@@ -178,6 +178,7 @@
 						 -->
 					</executions>
 					<configuration>
+						<contextDirectory>${project.basedir}</contextDirectory>
 						<dockerConfigFile>${project.basedir}/Dockerfile-ws</dockerConfigFile>
 						<repository>angular2guy/carrentalWS</repository>
 						<tag>${project.version}</tag>
