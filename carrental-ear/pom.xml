@@ -127,37 +127,26 @@
 			<build>
 				<plugins>
 					<plugin>
-					<groupId>io.fabric8</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>					
+					<executions>
+						<!-- 
+						<execution>
+							<id>default</id>
+							<goals>
+								<goal>build</goal>
+								<goal>push</goal>
+							</goals>
+						</execution>
+						 -->
+					</executions>
 					<configuration>
-						<images>
-							<image>
-								<alias>carrental</alias>
-								<name>carrental:${project.version}</name>
-								<build>									
-									<dockerFile>${project.basedir}/Dockerfile</dockerFile>
-									<ports>
-										<port>8080</port>
-									</ports>
-								</build>
-
-								<run>
-									<ports>
-										<port>8080:8080</port>
-									</ports>
-									<log>
-										<enabled>true</enabled>
-										<prefix>Wildfly</prefix>
-									</log>
-									<wait>
-										<http>
-											<url>http://localhost:8080/carrental-web/</url>
-										</http>
-										<time>30000</time>
-									</wait>
-								</run>
-							</image>
-						</images>
+						<dockerConfigFile>${project.basedir}/Dockerfile</dockerConfigFile>
+						<repository>angular2guy/carrental</repository>
+						<tag>${project.version}</tag>
+						<buildArgs>
+							<JAR_FILE>${project.build.finalName}.ear</JAR_FILE>
+						</buildArgs>
 					</configuration>
 				</plugin>	
 				</plugins>
@@ -175,39 +164,28 @@
 			<build>
 				<plugins>
 					<plugin>
-					<groupId>io.fabric8</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>					
+					<executions>
+						<!-- 
+						<execution>
+							<id>default</id>
+							<goals>
+								<goal>build</goal>
+								<goal>push</goal>
+							</goals>
+						</execution>
+						 -->
+					</executions>
 					<configuration>
-						<images>
-							<image>
-								<alias>carrentalws</alias>
-								<name>carrentalws:${project.version}</name>
-								<build>																										
-									<dockerFile>${project.basedir}/Dockerfile-ws</dockerFile>									
-									<ports>
-										<port>9080</port>
-									</ports>
-								</build>
-
-								<run>
-									<ports>
-										<port>9080:9080</port>
-									</ports>
-									<log>
-										<enabled>true</enabled>
-										<prefix>WS</prefix>
-									</log>
-									<wait>
-										<http>
-											<url>http://localhost:9080/carrental-web/</url>
-										</http>
-										<time>60000</time>
-									</wait>
-								</run>
-							</image>
-						</images>
+						<dockerConfigFile>${project.basedir}/Dockerfile-ws</dockerConfigFile>
+						<repository>angular2guy/carrentalWS</repository>
+						<tag>${project.version}</tag>
+						<buildArgs>
+							<JAR_FILE>${project.build.finalName}.ear</JAR_FILE>
+						</buildArgs>
 					</configuration>
-				</plugin>	
+				</plugin>						
 				</plugins>
 			</build>
 		</profile>
