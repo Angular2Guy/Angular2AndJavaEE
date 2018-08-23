@@ -1,7 +1,6 @@
 package ch.xxx.carrrental.ui.rest.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
