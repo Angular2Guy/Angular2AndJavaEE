@@ -11,7 +11,7 @@
     "test-junit": "ng test --browsers PhantomJS --reporters junit --single-run",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "i18n": "ng-xi18n -p src/tsconfig.json"    
+    "i18n": "ng-xi18n -p src/tsconfig.json"
   },
   "private": true,
   "dependencies": {

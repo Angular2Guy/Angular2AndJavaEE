@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { Component, OnInit, Input , OnDestroy} from '@angular/core';
+import { Component, OnInit, Input , OnDestroy, EventEmitter, Output} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { CrPortfolio } from '../crTypes';
 import { CrValuesValidators } from '../shared/crvalues.validators';
@@ -29,7 +29,8 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     form: FormGroup;
     fcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
     @Input() crvalues: CrPortfolio;
-    updateTotalsSub: any[] = [];    
+    updateTotalsSub: any[] = [];  
+    @Output() valuesValid = new EventEmitter<boolean>();
 
     constructor(fb: FormBuilder) {
         this.form = fb.group({
@@ -85,15 +86,17 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         let myFcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
 //        myFcNames.forEach(key => console.log(group.controls[key].value));
 //        console.log('-----------------------');
-        let invalidFcs =  myFcNames.filter(fcn => !CrValuesComponent.validNumber(group.controls[fcn].value));
+        let invalidFcs =  myFcNames.filter(fcn => ! this.validNumber(group.controls[fcn]));
         let valid = invalidFcs.length === 0;
+        this.valuesValid.emit(valid);
         return valid;
     }
     
-    static validNumber(value: AbstractControl): boolean {
+    private validNumber(value: AbstractControl): boolean {
         if(!value || !value.value) return false;
-        let ret = isNaN(value.value);
-        let myValue = parseInt(value.value, 20);
+        const valueStr = value.value.toString(10).split('').filter(c => c != "'").join('');
+        let ret = isNaN(valueStr);
+        const myValue = parseInt(valueStr, 20);
         if (!ret && myValue >= 0) {
             ret = true;
         } else {
