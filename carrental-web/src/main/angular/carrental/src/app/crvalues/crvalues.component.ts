@@ -78,6 +78,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
         this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) 
             + (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10)));
         //console.log("updateTotals("+value+") called.");
+        this.valuesValid.emit(this.form.valid);
     }
   
 }
