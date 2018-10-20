@@ -17,7 +17,8 @@ import { FormControl } from '@angular/forms';
 
 export class CrValuesValidators {
     static positiveIntValidator(control: FormControl) {
-        let myValue = parseInt(control.value, 20);
+        const valueStr = control.value ? control.value.toString(10).split('').filter(c => c != "'").join('') : '';
+        let myValue = parseInt(valueStr, 20);
         let ret = isNaN(myValue);
         if(!(!ret && myValue >= 0)) {
             return {notPositiveIntValue : true};

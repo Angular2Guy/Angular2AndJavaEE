@@ -38,8 +38,6 @@ export class CrValuesComponent implements OnInit, OnDestroy {
             mieteAbgerechnetPkw: ['', CrValuesValidators.positiveIntValidator],
             anzahlLkw: ['', CrValuesValidators.positiveIntValidator],
             mieteAbgerechnetLkw: ['', CrValuesValidators.positiveIntValidator]
-        },{
-            validator: this.validate.bind(this)
         });
     }
 
@@ -81,27 +79,5 @@ export class CrValuesComponent implements OnInit, OnDestroy {
             + (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10)));
         //console.log("updateTotals("+value+") called.");
     }
-
-    validate(group: FormGroup): boolean {
-        let myFcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
-//        myFcNames.forEach(key => console.log(group.controls[key].value));
-//        console.log('-----------------------');
-        let invalidFcs =  myFcNames.filter(fcn => ! this.validNumber(group.controls[fcn]));
-        let valid = invalidFcs.length === 0;
-        this.valuesValid.emit(valid);
-        return valid;
-    }
-    
-    private validNumber(value: AbstractControl): boolean {
-        if(!value || !value.value) return false;
-        const valueStr = value.value.toString(10).split('').filter(c => c != "'").join('');
-        let ret = isNaN(valueStr);
-        const myValue = parseInt(valueStr, 20);
-        if (!ret && myValue >= 0) {
-            ret = true;
-        } else {
-            ret = false;
-        }
-        return ret;
-    }
+  
 }

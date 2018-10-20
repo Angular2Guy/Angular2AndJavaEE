@@ -39,7 +39,7 @@ describe('Component: CrValues', () => {
     component.ngOnInit();
     expect(component.form.valid).toBeTruthy();
   });
-    
+  
   it('validate should return false', () => {
     let component = new CrValuesComponent(new FormBuilder());
     let param = new CrPortfolioImplTest(-1, -1, -1, -1);
