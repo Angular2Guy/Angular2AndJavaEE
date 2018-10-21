@@ -71,7 +71,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
             sub.unsubscribe();
         }
     }
-    
+  
     updateTotals(value: any): void {         
         this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[this.fcNames[0]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[0]].value))  
             + (isNaN(parseInt(this.form.controls[this.fcNames[1]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[1]].value));

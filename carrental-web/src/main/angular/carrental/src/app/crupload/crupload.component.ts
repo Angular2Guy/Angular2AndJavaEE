@@ -33,14 +33,14 @@ export class CruploadComponent implements OnInit, OnChanges {
 
       let reader = new FileReader();
       reader.onload = () => {
-              let textstr = reader.result;
+              let textstr:string = <string> reader.result;
               let textstrs = textstr.split("base64,");
               this.filetext = atob(textstrs[1]);
               //console.log(textstr);
           };
       reader.readAsDataURL(this.currentFile);
   }
-  
+ 
   ngOnInit() {
       let modal = document.getElementById('crModal'); 
       modal.style.display = this.visible ? "block" : "none";      
