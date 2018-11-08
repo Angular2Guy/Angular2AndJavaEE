@@ -26,7 +26,7 @@ import { CrValuesComponent } from '../crvalues/crvalues.component';
     styleUrls: ['./crdetail.component.scss'],
 } )
 export class CrdetailComponent implements OnInit {
-    errorMsg: string;
+    
     crDetail: CrDetail;
     crPeriods: CrPeriod[];
     crEditmode: boolean;
@@ -46,7 +46,7 @@ export class CrdetailComponent implements OnInit {
         this.mnr = this.route.snapshot.paramMap.get( 'mnr' );
         this.jahr = this.route.snapshot.paramMap.get( 'jahr' );
         this.service.getCrDetail( this.mnr, this.jahr )
-            .subscribe( lsdD => { this.crDetail = <CrDetail>lsdD; this.crPeriods = ( <CrDetail>lsdD ).crPeriods; }, error => this.errorMsg = error );
+            .subscribe( lsdD => { this.crDetail = <CrDetail>lsdD; this.crPeriods = ( <CrDetail>lsdD ).crPeriods; });
     }
     
     valuesValid( valid: boolean ) {
@@ -63,12 +63,12 @@ export class CrdetailComponent implements OnInit {
                 this.service.putCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => { 
                     let urltree = this.router.createUrlTree( ['crlist/mietenr/', this.mnr] );
                     this.router.navigateByUrl( urltree );
-                    }, error => this.errorMsg = error );
+                    });
             } else {
                 this.service.postCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
                     let urltree = 'crlist/mietenr/' + 1;
                     this.router.navigateByUrl( urltree );
-                }, error => this.errorMsg = error );
+                });
             }
         }
     }
@@ -83,7 +83,7 @@ export class CrdetailComponent implements OnInit {
             this.service.deleteCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
                 let urltree = 'crlist/mietenr/' + 1;
                 this.router.navigateByUrl( urltree );
-            }, error => this.errorMsg = error );
+            });
         }
     }
 }

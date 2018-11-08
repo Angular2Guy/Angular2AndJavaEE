@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { CrTableRow, CrDetail, CrPeriod, CrPortfolio, CrMessage } from './crTypes';
+import { CrTableRow, CrDetail, CrPeriod, CrPortfolio, CrMessage, CrLogMsg } from './crTypes';
 
 export class CrTableRowImpl implements CrTableRow {
     constructor(
@@ -72,4 +72,10 @@ export class CrMessageImpl implements CrMessage {
             public id: number,
             public msgType: string,
             public msg: string) {}
+}
+
+export class CrLogMsgImpl implements CrLogMsg {
+    constructor(
+            public logLevel: string,
+            public logMsg: string) {}
 }

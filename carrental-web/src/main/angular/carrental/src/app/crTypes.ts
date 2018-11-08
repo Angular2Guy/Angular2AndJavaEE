@@ -64,3 +64,8 @@ export interface CrMessage {
     msgType: string;
     msg: string;  
 }
+
+export interface CrLogMsg {
+    logLevel: string;
+    logMsg: string;
+}

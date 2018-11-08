@@ -14,7 +14,7 @@
    limitations under the License.
  */
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,ErrorHandler } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -30,6 +30,7 @@ import { NumberSeparatorPipe } from './shared/number-separator.pipe';
 import { NumberseparatorDirective } from './shared/numberseparator.directive';
 import { CrrootComponent } from './crroot/crroot.component';
 import { CruploadComponent } from './crupload/crupload.component';
+import { MyErrorHandler } from "./shared/MyErrorHandler";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,9 @@ import { CruploadComponent } from './crupload/crupload.component';
 	HttpModule, 
     AppRoutingModule
   ],
-  providers: [CrRestService],
+  providers: [CrRestService,        
+              MyErrorHandler,
+              {provide: ErrorHandler, useClass: MyErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

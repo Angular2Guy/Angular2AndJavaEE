@@ -16,10 +16,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlatformLocation } from '@angular/common';
-import { CrTableRow, CrDetail, CrPeriod, CrPortfolio } from './crTypes';
-import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl } from './crClasses';
+import { CrTableRow, CrDetail, CrPeriod, CrPortfolio, CrLogMsg } from './crTypes';
+import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl, CrLogMsgImpl } from './crClasses';
 import { Observable, throwError } from 'rxjs';
-import { map, debounceTime, catchError} from 'rxjs/operators';
+import { map, debounceTime, catchError, tap} from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 @Injectable()
@@ -29,6 +29,7 @@ export class CrRestService {
     private _crDetailUrlProd = '/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
     public _crPdfUrlProd = '/rest/model/crTable/mietNr/{mietNr}/pdf';
     public _baseHRef = '/carrental-web';
+    private _crLogUrlProd = '/rest/model/crLog';
     private _reqOptionsArgs =  { headers: new HttpHeaders().set( 'Content-Type', 'application/json' ) };
 
     constructor( private http: HttpClient, private pl: PlatformLocation ) {        
@@ -39,7 +40,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr );
         console.log(url);
-        return this.http.get<CrTableRow[]>( url, this._reqOptionsArgs).pipe(catchError( this.handleError ));
+        return this.http.get<CrTableRow[]>( url, this._reqOptionsArgs);
     }
 
     getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
@@ -53,7 +54,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         console.log(url);
-        return this.http.get<CrDetail>( url, this._reqOptionsArgs).pipe(catchError( this.handleError ));
+        return this.http.get<CrDetail>( url, this._reqOptionsArgs);
     }
  
     private createEmptyTree() : CrDetail {
@@ -68,7 +69,7 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));
-        return this.http.post<CrDetail>(url, json, this._reqOptionsArgs).pipe(catchError(this.handleError));
+        return this.http.post<CrDetail>(url, json, this._reqOptionsArgs);
     }
     
     putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
@@ -76,16 +77,22 @@ export class CrRestService {
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
         let json = this.cleanString(JSON.stringify(crDetail));        
-        return this.http.put<CrDetail>(url, json, this._reqOptionsArgs).pipe(catchError(this.handleError));
+        return this.http.put<CrDetail>(url, json, this._reqOptionsArgs);
     }
     
     deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
         let url = this._baseHRef + this._crDetailUrlProd;
         url = this.cleanUrl(url);
         url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );        
-        return this.http.delete<CrDetail>(url, this._reqOptionsArgs).pipe(catchError(this.handleError));
+        return this.http.delete<CrDetail>(url, this._reqOptionsArgs);
     }
    
+    putCrLogMsg(crLogMsg: CrLogMsg): Observable<CrLogMsg> {
+        let url = this._baseHRef + this._crLogUrlProd;
+        url = this.cleanUrl(url);
+        return this.http.put<CrLogMsg>(url, crLogMsg, this._reqOptionsArgs);
+    }
+    
     private cleanString(str: string): string {
         while(str.indexOf("'") > 0) {
             str = str.replace("'","");
@@ -104,11 +111,5 @@ export class CrRestService {
         return url;
     }
    
-
-    private handleError( error: Response ) {
-        // in a real world app, we may send the error to some remote logging infrastructure
-        // instead of just logging it to the console
-        console.error( JSON.stringify( error ) );
-        return Observable.throw( error );
-    }
+    
 }
