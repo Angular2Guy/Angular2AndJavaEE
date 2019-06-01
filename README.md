@@ -35,11 +35,11 @@ Plugin Typescript.Java 1.4.0 or newer.
 
 Maven 3.3.3 or newer. 
 
-Nodejs 8.11.x or newer 
+Nodejs 10.9.x or newer 
 
-Npm 5.6.x or newer
+Npm 6.2.x or newer
 
-Angular Cli 1.7.0 or newer. 
+Angular Cli 8 or newer. 
 
 Build Server Requirements
 -------------------------
@@ -47,9 +47,9 @@ Java 8 JDK or newer.
 
 Maven 3.3.3 or newer. 
 
-Nodejs 8.11.x  
+Nodejs 10.9.x  
 
-Npm 5.6.x 
+Npm 6.2.x 
 
 Setup
 -----
