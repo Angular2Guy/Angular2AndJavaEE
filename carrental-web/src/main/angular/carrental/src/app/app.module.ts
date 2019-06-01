@@ -17,7 +17,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,ErrorHandler } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { CrlistComponent } from './crlist/crlist.component';
 import { CrdetailComponent } from './crdetail/crdetail.component';
@@ -50,8 +49,7 @@ import { MyErrorHandler } from "./shared/my-error-handler";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,   
-	HttpModule, 
+    HttpClientModule,	
     AppRoutingModule
   ],
   providers: [CrRestService,        

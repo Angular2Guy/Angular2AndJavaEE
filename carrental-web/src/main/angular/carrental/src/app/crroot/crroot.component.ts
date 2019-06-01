@@ -9,7 +9,7 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/co
 export class CrrootComponent implements OnInit {
   
   title = 'Please choose a link.';
-  @ViewChild('myCanvas') canvas: ElementRef;
+  @ViewChild('myCanvas', { static: true }) canvas: ElementRef;
   ctx: CanvasRenderingContext2D;
   width: number; 
   height: number;

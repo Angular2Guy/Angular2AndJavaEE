@@ -28,9 +28,9 @@ import { CruploadComponent } from './crupload/crupload.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpModule, Http, Response, ResponseOptions,XHRBackend } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
-import {MockBackend, MockConnection} from "@angular/http/testing";
+import {HttpTestingController} from "@angular/common/http/testing";
 import { NumberSeparatorPipe } from './shared/number-separator.pipe';
 
 
@@ -52,7 +52,7 @@ describe('AppComponent', () => {
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,        
+        HttpClientModule,        
         AppRoutingModule
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }]
@@ -60,38 +60,20 @@ describe('AppComponent', () => {
     TestBed.compileComponents();
   });
 
-  const mockBackendResponse = (connection: MockConnection, response: string) => {
-      connection.mockRespond(new Response(new ResponseOptions({body: response})));
-  };  
-  
   it('should create the app', async(() => {
-    const fixture = TestBed.configureTestingModule({
-        imports: [HttpModule],
-        providers: [
-            {provide: XHRBackend, useClass: MockBackend}       ]
-    }).createComponent(AppComponent);
+    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 
   it(`should have as title 'app works!'`, async(() => {
-    const fixture =  TestBed.configureTestingModule({
-        imports: [HttpModule],
-        providers: [
-            {provide: XHRBackend, useClass: MockBackend}
-        ]
-    }).createComponent(AppComponent);    
+    const fixture =  TestBed.createComponent(AppComponent);    
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('carrental works!');
   }));
 
   it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.configureTestingModule({
-        imports: [HttpModule],
-        providers: [
-            {provide: XHRBackend, useClass: MockBackend}
-        ]
-    }).createComponent(AppComponent);
+    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('carrental works!');
