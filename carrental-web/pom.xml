@@ -239,7 +239,8 @@
 							<executable>npm</executable>
 							<arguments>
 								<argument>run</argument>
-								<argument>test</argument>
+								<!-- <argument>test</argument> -->
+								<argument>test-chromium</argument>
 							</arguments>
 							<workingDirectory>${basedir}/target/angular/carrental</workingDirectory>
 						</configuration>
