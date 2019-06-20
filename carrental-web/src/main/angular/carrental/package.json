@@ -9,7 +9,7 @@
     "build": "ng build --prod --aot --base-href /carrental-web/de/ --output-path dist/de --i18n-locale de --i18nFile=./src/locale/messages.xlf && ng build --prod --aot --base-href /carrental-web/en/ --output-path dist/en --i18n-locale en --i18nFile=./src/locale/messages.en.xlf",
     "test": "ng test --browsers ChromeHeadless --watch=false",
     "test-chromium": "ng test --browsers ChromiumHeadless --watch=false",
-	"test-local": "ng test --browsers Chromium --watch=true",
+    "test-local": "ng test --browsers Chromium --watch=true",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "i18n": "ng-xi18n -p src/tsconfig.json"

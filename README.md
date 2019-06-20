@@ -61,7 +61,7 @@ Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/oxygen/stable
 
 Add the server runtime environment for Wildfly and connect it to the WildFly installation.
 
-Install Eclipse Plugin Typescript.Java "http://oss.opensagres.fr/typescript.ide/1.4.0-SNAPSHOT/"
+Install Eclipse Plugin Eclipse Wild Web Developer of the Eclipse Marketplace.
 
 Optionally install Webstorm for the UI.
 
