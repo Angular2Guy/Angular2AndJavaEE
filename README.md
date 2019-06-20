@@ -31,7 +31,7 @@ WildFly 10 or newer. (Any JavaEE 6 Appserver will do)
 
 JBoss Plugin JBoss AS, WildFly & EAP Server Tools	4.5.0 or newer.
 
-Plugin Typescript.Java 1.4.0 or newer.
+Install Eclipse Plugin Eclipse Wild Web Developer of the Eclipse Marketplace.
 
 Maven 3.3.3 or newer. 
 
