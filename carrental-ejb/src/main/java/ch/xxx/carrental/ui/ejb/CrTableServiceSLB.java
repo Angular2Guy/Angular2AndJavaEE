@@ -27,6 +27,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ch.xxx.carrental.ui.dto.CrTableRow;
+import ch.xxx.carrental.ui.exception.LocalValidationException;
 import ch.xxx.carrental.ui.model.CrDetailDB;
 import ch.xxx.carrental.ui.service.CrTableService;
 
@@ -42,7 +43,8 @@ public class CrTableServiceSLB implements CrTableService {
 
 	@AutoLogging
 	@Override
-	public List<CrTableRow> readCrRowsByMiete(String mietNr, Locale locale) {
+	public List<CrTableRow> readCrRowsByMiete(String mietNr, Locale locale) {		
+		this.checkForMietNr(mietNr);
 		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr", CrDetailDB.class)
@@ -58,7 +60,14 @@ public class CrTableServiceSLB implements CrTableService {
 	@AutoLogging
 	@Override
 	public InputStream readCrPdf(String mietNr) {
+		this.checkForMietNr(mietNr);
 		InputStream inputStream = this.getClass().getResourceAsStream("/pdf/Testdocument" + mietNr + ".pdf");
 		return inputStream;
+	}
+	
+	private void checkForMietNr(String mietNr) {
+		if(mietNr == null) {
+			throw new LocalValidationException("mietNr is null");
+		}
 	}
 }

@@ -31,6 +31,8 @@ import javax.persistence.PersistenceContext;
 import org.apache.log4j.Logger;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
+import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
+import ch.xxx.carrental.ui.exception.LocalValidationException;
 import ch.xxx.carrental.ui.model.CrDetailDB;
 import ch.xxx.carrental.ui.model.CrPeriodDB;
 import ch.xxx.carrental.ui.model.CrPortfolioDB;
@@ -50,12 +52,15 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@AutoLogging
 	@Override
 	public CrDetail readCrDetail(String mietNr, String jahr, Locale locale) {
+		this.checkForMietNrAndJahr(mietNr, jahr);
 		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
 					.setParameter("mietNr", mietNr).setParameter("jahr", jahr).getResultList();
-			CrDetail lsdDetail = resultList.isEmpty() ? null : conv.convert((resultList.get(0)));
-			return lsdDetail;
+			if(resultList.isEmpty()) {
+				throw new LocalEntityNotFoundException("CrDetail not found.");
+			}
+			return conv.convert((resultList.get(0)));
 		}
 		return server.readCrDetail(mietNr, jahr);
 	}
@@ -63,6 +68,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@AutoLogging
 	@Override
 	public boolean createCrDetail(CrDetail crDetail) {
+		this.checkForCrDetail(crDetail);
 		if (Utils.checkForWildflyorWS()) {
 			CrDetailDB crDetailDB = new CrDetailDB();
 			CrPeriodDB crPeriodDB = new CrPeriodDB();
@@ -93,6 +99,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@AutoLogging
 	@Override
 	public boolean updateCrDetail(CrDetail crDetail) {
+		this.checkForCrDetail(crDetail);
 		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
@@ -109,6 +116,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@AutoLogging
 	@Override
 	public boolean deleteCrDetail(String mietNr, String jahr) {
+		this.checkForMietNrAndJahr(mietNr, jahr);
 		if (Utils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
@@ -122,4 +130,15 @@ public class CrDetailServiceSLB implements CrDetailService {
 		return server.deleteCrDetail(mietNr, jahr);
 	}
 
+	private void checkForCrDetail(CrDetail dto) {
+		if(dto == null) {
+			throw new LocalValidationException("CrDetail is null");
+		}
+	}
+	
+	private void checkForMietNrAndJahr(String mietNr, String jahr) {
+		if(mietNr == null || jahr == null) {
+			throw new LocalValidationException("MietNr or Jahr is null");
+		}
+	}
 }

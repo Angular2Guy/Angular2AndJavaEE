@@ -25,31 +25,38 @@ import javax.interceptor.InvocationContext;
 import org.apache.log4j.Logger;
 
 import ch.xxx.carrental.ui.dto.BusinessException;
+import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
+import ch.xxx.carrental.ui.exception.LocalValidationException;
 
 @AutoLogging
-@Interceptor		
+@Interceptor
 public class LoggingInterceptor {
 	private static final Logger LOG = Logger.getLogger(LoggingInterceptor.class);
-	
+
 	@AroundInvoke
 	public Object interceptLogging(InvocationContext ctx) throws Exception {
 		StringBuilder params = new StringBuilder();
-		for(Object param: ctx.getParameters()) {
+		for (Object param : ctx.getParameters()) {
 			params.append(param.toString()).append(",");
 		}
-		String signature = ctx.getClass() + "." + ctx.getMethod() + "(" + params.substring(0, params.length() -1) + ")";
+		String signature = ctx.getClass() + "." + ctx.getMethod() + "(" + params.substring(0, params.length() - 1)
+				+ ")";
 		Date now1 = new Date(System.currentTimeMillis());
 		SimpleDateFormat sdf = new SimpleDateFormat("hh.mm.ss dd.MM.yyyy");
-		LOG.info(sdf.format(now1) +" - " + signature);
-		Object o = null; 
-		try{
+		LOG.info(sdf.format(now1) + " - " + signature);
+		Object o = null;
+		try {
 			o = ctx.getMethod().invoke(ctx.getTarget(), ctx.getParameters());
-		} catch(Exception e) {
+		} catch (Exception e) {
+			if (e instanceof LocalValidationException || e instanceof LocalEntityNotFoundException) {
+				LOG.warn(signature, e);
+				throw e;
+			}
 			LOG.error(signature, e);
 			throw new BusinessException(signature, e);
 		} finally {
 			Date now2 = new Date(System.currentTimeMillis());
-			LOG.info(sdf.format(now2) +" - " + signature);
+			LOG.info(sdf.format(now2) + " - " + signature);
 		}
 		return o;
 	}
