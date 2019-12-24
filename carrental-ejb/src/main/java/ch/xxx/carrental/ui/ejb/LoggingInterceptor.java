@@ -15,6 +15,7 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,9 +49,12 @@ public class LoggingInterceptor {
 		try {
 			o = ctx.getMethod().invoke(ctx.getTarget(), ctx.getParameters());
 		} catch (Exception e) {
-			if (e instanceof LocalValidationException || e instanceof LocalEntityNotFoundException) {
-				LOG.warn(signature, e);
-				throw e;
+			if (e instanceof InvocationTargetException && (
+					((InvocationTargetException) e).getTargetException() instanceof LocalValidationException 
+					|| ((InvocationTargetException) e).getTargetException() instanceof LocalEntityNotFoundException)) {
+				RuntimeException re = (RuntimeException) ((InvocationTargetException) e).getTargetException();
+				LOG.warn(signature, re);
+				throw re;
 			}
 			LOG.error(signature, e);
 			throw new BusinessException(signature, e);

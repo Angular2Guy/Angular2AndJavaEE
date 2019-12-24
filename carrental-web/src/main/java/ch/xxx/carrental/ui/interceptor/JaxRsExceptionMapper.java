@@ -15,18 +15,27 @@
  */
 package ch.xxx.carrental.ui.interceptor;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
+import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
 import ch.xxx.carrental.ui.exception.LocalValidationException;
 
 @Provider
-public class JaxRsNotAcceptableMapper implements ExceptionMapper<LocalValidationException> {
+public class JaxRsExceptionMapper implements ExceptionMapper<InvocationTargetException> {
 
 	@Override
-	public Response toResponse(LocalValidationException exception) {
-		return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+	public Response toResponse(InvocationTargetException exception) {
+		if(exception.getTargetException().getCause() instanceof LocalEntityNotFoundException) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+		if(exception.getTargetException().getCause() instanceof LocalValidationException) {
+			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+		}
+		return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 	}
 
 }

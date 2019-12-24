@@ -27,6 +27,7 @@ import ch.xxx.carrental.ui.dto.CrMessage;
 import ch.xxx.carrental.ui.dto.CrPeriod;
 import ch.xxx.carrental.ui.dto.CrPortfolio;
 import ch.xxx.carrental.ui.dto.CrTableRow;
+import ch.xxx.carrental.ui.interceptor.JaxRsExceptionMapper;
 import ch.xxx.carrental.ui.rest.model.CrDetailResource;
 import ch.xxx.carrental.ui.rest.model.CrLogResource;
 import ch.xxx.carrental.ui.rest.model.CrTableResource;
@@ -59,6 +60,7 @@ public class CrApplication extends Application {
 		classes.add(CrLogResource.class);
 		classes.add(io.swagger.jaxrs.listing.ApiListingResource.class);
         classes.add(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+        classes.add(JaxRsExceptionMapper.class);
 		return classes;
 	}
 		

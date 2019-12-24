@@ -23,8 +23,6 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
-import ch.xxx.carrental.ui.dto.BusinessException;
-
 @DisableCaching 
 @Interceptor
 public class DisableCachingInterceptor {
@@ -32,15 +30,7 @@ public class DisableCachingInterceptor {
 	
 	@AroundInvoke
 	public Object interceptNoCache(InvocationContext ctx) throws Exception {		
-		Object o = null;	
-		try{
-			o = ctx.getMethod().invoke(ctx.getTarget(), ctx.getParameters());
-		}catch(Exception e) {
-			if(!(e instanceof BusinessException)) {
-				LOG.error("Exception: ", e);				
-			}
-			return Response.serverError().cacheControl(createCacheControl()).build();				
-		}
+		Object o = ctx.getMethod().invoke(ctx.getTarget(), ctx.getParameters());
 		if(o instanceof Response) {						
 			return Response.fromResponse((Response) o).cacheControl(createCacheControl()).build();
 		}

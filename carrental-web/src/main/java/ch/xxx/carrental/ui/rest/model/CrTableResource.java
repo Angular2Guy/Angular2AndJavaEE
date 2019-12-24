@@ -23,16 +23,16 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
-import javax.ws.rs.OPTIONS;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.io.IOUtils;
 
 import ch.xxx.carrental.ui.dto.CrTableRow;
+import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
+import ch.xxx.carrental.ui.exception.LocalValidationException;
 import ch.xxx.carrental.ui.interceptor.DisableCaching;
 import ch.xxx.carrental.ui.service.CrTableService;
 import io.swagger.annotations.Api;
@@ -46,19 +46,20 @@ public class CrTableResource {
 	@Inject
 	private CrTableService service;
 
-	public CrTableResource() {		
+	public CrTableResource() {
 	}
-	
+
 	public CrTableResource(CrTableService service) {
 		this.service = service;
 	}
-	
+
 	@GET
 	@Path("/mietNr/{mietNr}")
 	@DisableCaching
 	@ApiOperation(value = "gets the rows for the table", response = CrTableRow.class, responseContainer = "List")
-	public Response getAll(@PathParam("mietNr") final String mietNr, 
-			@HeaderParam("Accept-Language") final String acceptLang) {
+	public Response getAll(@PathParam("mietNr") final String mietNr,
+			@HeaderParam("Accept-Language") final String acceptLang)
+			throws LocalEntityNotFoundException, LocalValidationException {
 		String[] langs = acceptLang.split(",");
 		Locale locale = Locale.forLanguageTag(langs[0]);
 		return Response.ok(service.readCrRowsByMiete(mietNr, locale)).build();
@@ -69,17 +70,15 @@ public class CrTableResource {
 	@Produces("application/pdf")
 	@DisableCaching
 	@ApiOperation(value = "provides the pdf files for display")
-	public Response getPdf(@PathParam("mietNr") final String mietNr, 
-			@HeaderParam("Accept-Language") final String acceptLang) {
+	public Response getPdf(@PathParam("mietNr") final String mietNr,
+			@HeaderParam("Accept-Language") final String acceptLang)
+			throws LocalEntityNotFoundException, LocalValidationException {
 		byte[] array = null;
+		InputStream inputStream = this.service.readCrPdf(mietNr);
 		try {
-			InputStream inputStream = this.service.readCrPdf(mietNr);
-			if (inputStream == null) {
-				throw new IOException();
-			}
 			array = IOUtils.toByteArray(inputStream);
 		} catch (IOException e) {
-			return Response.status(Status.NOT_FOUND).entity("Failed to read File.").build();
+			throw new LocalEntityNotFoundException("Document not found.");
 		}
 		return Response.ok(array).build();
 	}

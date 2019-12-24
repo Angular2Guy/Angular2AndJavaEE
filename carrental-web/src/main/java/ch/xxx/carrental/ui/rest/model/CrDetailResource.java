@@ -31,6 +31,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
+import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
+import ch.xxx.carrental.ui.exception.LocalValidationException;
 import ch.xxx.carrental.ui.interceptor.DisableCaching;
 import ch.xxx.carrental.ui.service.CrDetailService;
 import io.swagger.annotations.Api;
@@ -57,7 +59,7 @@ public class CrDetailResource {
 	@DisableCaching
 	@ApiOperation(value = "get the details for the mietNr and jahr", response = CrDetail.class)
 	public Response getAll(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr,
-			@HeaderParam("Accept-Language") final String acceptLang) {
+			@HeaderParam("Accept-Language") final String acceptLang) throws LocalEntityNotFoundException,LocalValidationException {
 		String[] langs = acceptLang.split(",");
 		Locale locale = Locale.forLanguageTag(langs[0]);
 		return Response.ok(service.readCrDetail(mietNr, jahr, locale)).build();
@@ -76,7 +78,7 @@ public class CrDetailResource {
 	@DisableCaching
 	@ApiOperation(value = "create the details for the mietNr and jahr", response = Boolean.class)
 	public Response createDetails(CrDetail crDetail, @PathParam("mietNr") final String mietNr,
-			@PathParam("jahr") final String jahr) {
+			@PathParam("jahr") final String jahr) throws LocalEntityNotFoundException,LocalValidationException { 
 		return Response.ok(service.createCrDetail(crDetail)).build();
 	}
 
@@ -84,7 +86,7 @@ public class CrDetailResource {
 	@Path("/mietNr/{mietNr}/jahr/{jahr}")
 	@DisableCaching
 	@ApiOperation(value = "delete the details for the mietNr and jahr", response = Boolean.class)
-	public Response deleteDetails(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr) {
+	public Response deleteDetails(@PathParam("mietNr") final String mietNr, @PathParam("jahr") final String jahr) throws LocalEntityNotFoundException,LocalValidationException {
 		return Response.ok(service.deleteCrDetail(mietNr, jahr)).build();
 	}
 }

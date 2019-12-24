@@ -27,6 +27,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ch.xxx.carrental.ui.dto.CrTableRow;
+import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
 import ch.xxx.carrental.ui.exception.LocalValidationException;
 import ch.xxx.carrental.ui.model.CrDetailDB;
 import ch.xxx.carrental.ui.service.CrTableService;
@@ -62,6 +63,9 @@ public class CrTableServiceSLB implements CrTableService {
 	public InputStream readCrPdf(String mietNr) {
 		this.checkForMietNr(mietNr);
 		InputStream inputStream = this.getClass().getResourceAsStream("/pdf/Testdocument" + mietNr + ".pdf");
+		if(inputStream == null) {
+			throw new LocalEntityNotFoundException("Document not found.");
+		}
 		return inputStream;
 	}
 	
