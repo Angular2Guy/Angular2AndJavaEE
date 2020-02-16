@@ -35,11 +35,11 @@ Install Eclipse Plugin Eclipse Wild Web Developer of the Eclipse Marketplace.
 
 Maven 3.3.3 or newer. 
 
-Nodejs 10.9.x or newer 
+Nodejs 12.16.x or newer 
 
-Npm 6.2.x or newer
+Npm 6.13.4 or newer
 
-Angular Cli 8 or newer. 
+Angular Cli 9 or newer. 
 
 Build Server Requirements
 -------------------------
@@ -47,9 +47,9 @@ Java 8 JDK or newer.
 
 Maven 3.3.3 or newer. 
 
-Nodejs 10.9.x  
+Nodejs 12.16.x 
 
-Npm 6.2.x 
+Npm 12.16.x 
 
 Setup
 -----
@@ -82,7 +82,7 @@ Build Setup
 The project is a multi-module project. 
 The ear project configures the Ear.
 The ejb project builds the ejbs to provide the data for the rest service.
-The war project builds the war. Jax-Rs provides the rest services to serve the data of the ejbs. Npm install provides the dependency resolution for Angular Cli. Angular Cli builds a tree shaken, uglified bundle. Angular Cli runs the tests with Karma on PhantomJS and breaks the build if they fail.
+The war project builds the war. Jax-Rs provides the rest services to serve the data of the ejbs. Npm install provides the dependency resolution for Angular Cli. Angular Cli builds a tree shaken, uglified bundle. Angular Cli runs the tests with Karma on Chrome and breaks the build if they fail.
 The ear is built.
 
 Project Goals
