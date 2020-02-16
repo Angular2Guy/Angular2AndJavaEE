@@ -144,8 +144,8 @@
 						<resource>
 							<directory>${basedir}/target/angular/carrental/dist/testproject</directory>
 							<includes>
-								<include>en/**.*</include>
-								<include>de/**.*</include>
+								<include>en/**/*.*</include>
+								<include>de/**/*.*</include>
 							</includes>
 						</resource>
 					</webResources>
@@ -240,7 +240,7 @@
 							<arguments>
 								<argument>run</argument>
 								<argument>test</argument>
-								<!--<argument>test-chromium</argument>-->
+								<!-- <argument>test-chromium</argument> -->
 							</arguments>
 							<workingDirectory>${basedir}/target/angular/carrental</workingDirectory>
 						</configuration>
