@@ -6,8 +6,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "npm-run-all --parallel build:de build:en",
-    "build:de": "ng build --prod=true --aot=true --buildOptimizer=true --optimization=true --base-href /carrental-web/de/ --output-path dist/de --i18n-locale de --i18nFile=./src/locale/messages.xlf",
+    "build": "ng build --prod --localize",
+    "build:old": "npm-run-all --parallel build:de build:en",
+    "build:de": "ng build --prod=true --aot=true --buildOptimizer=true --optimization=true --base-href /carrental-web/de/ --output-path dist/de --localize",
     "build:en": "ng build --prod=true --aot=true --buildOptimizer=true --optimization=true --base-href /carrental-web/en/ --output-path dist/en --i18n-locale en --i18nFile=./src/locale/messages.en.xlf",
     "test": "ng test --browsers ChromeHeadless --watch=false",
     "test-chromium": "ng test --browsers ChromiumHeadless --watch=false",
