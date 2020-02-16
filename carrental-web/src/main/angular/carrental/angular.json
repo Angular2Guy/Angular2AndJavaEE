@@ -10,13 +10,14 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/testproject",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -27,12 +28,18 @@
               "src/assets"
             ],
             "styles": [
-              "./src/styles.scss"              
+              "./src/styles.scss"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -122,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "testproject"
+  "defaultProject": "testproject",
+  "cli": {
+    "analytics": false
+  }
 }
