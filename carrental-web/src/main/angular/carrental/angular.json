@@ -78,10 +78,7 @@
           "configurations": {
             "production": {
               "browserTarget": "testproject:build:production"
-            },
-            "de": {
-              "browserTarget": "testproject:build:de"
-            },
+            },            
             "en": {
               "browserTarget": "testproject:build:en"
             }

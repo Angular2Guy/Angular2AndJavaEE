@@ -142,10 +142,10 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<webResources>
 						<resource>
-							<directory>${basedir}/target/angular/carrental/dist</directory>
+							<directory>${basedir}/target/angular/carrental/dist/testproject</directory>
 							<includes>
-								<include>en/*.*</include>
-								<include>de/*.*</include>
+								<include>en/**.*</include>
+								<include>de/**.*</include>
 							</includes>
 						</resource>
 					</webResources>
