@@ -14,7 +14,7 @@ export class NumberseparatorDirective {
         let myNumber = this.el.nativeElement.value;
 //        console.log("myNumber: "+myNumber);
         let pipe = new NumberSeparatorPipe();
-        myNumber = pipe.transform(myNumber, '3');
+        myNumber = pipe.transform(myNumber, 3);
         this.control.control.setValue(myNumber);
       }
 

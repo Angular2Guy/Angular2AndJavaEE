@@ -20,14 +20,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NumberSeparatorPipe implements PipeTransform {
 
-  transform(value: string, args?: string): string {      
+  transform(value: string | number, args?: number): string {      
       if(!(value)) {
           return '0';
       }
       value = String(value).replace(/'/g,"").replace(/,/g,""); 
       //console.log("value: "+value);
-      if(!isNaN(parseInt(value)) && !isNaN(parseInt(args))) {          
-          let digits = parseInt(args);
+      if(!isNaN(parseInt(value)) && !isNaN(args)) {          
+          let digits = args;
           let arr = [];                                 
           let myValue = String(value);
           while(myValue.length > digits) {

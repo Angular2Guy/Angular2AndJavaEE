@@ -11,8 +11,7 @@
     "test-chromium": "ng test --browsers ChromiumHeadless --watch=false",
     "test-local": "ng test --browsers Chromium --watch=true",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "i18n": "ng-xi18n -p src/tsconfig.json"
+    "e2e": "ng e2e"    
   },
   "private": true,
   "dependencies": {
