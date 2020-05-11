@@ -144,8 +144,7 @@
 						<resource>
 							<directory>${basedir}/target/angular/carrental/dist/testproject</directory>
 							<includes>
-								<include>en/**/*.*</include>
-								<include>de/**/*.*</include>
+								<include>**/*.*</include>
 							</includes>
 						</resource>
 					</webResources>
