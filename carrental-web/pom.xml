@@ -157,11 +157,11 @@
 					<failOnError>false</failOnError>
 					<filesets>
 						<fileset>
-							<directory>src/main/angular/carrental/dist</directory>
+							<directory>src/angular/carrental/dist</directory>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 						<fileset>
-							<directory>src/main/angular/carrental/node_modules</directory>
+							<directory>src/angular/carrental/node_modules</directory>
 							<followSymlinks>false</followSymlinks>
 						</fileset>
 					</filesets>
@@ -181,7 +181,7 @@
 							<outputDirectory>${basedir}/target/angular</outputDirectory>
 							<resources>
 								<resource>
-									<directory>src/main/angular</directory>
+									<directory>src/angular</directory>
 									<includes>
 										<include>carrental/**/*.*</include>
 									</includes>
