@@ -15,7 +15,7 @@
  */
 import { Component, OnInit, Input , OnDestroy, EventEmitter, Output} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { CrPortfolio } from '../crTypes';
+import { CrPortfolio } from '../dtos/crTypes';
 import { CrValuesValidators } from '../shared/crvalues.validators';
 import { Subscription }   from 'rxjs';
 import { Utils } from '../shared/utils';

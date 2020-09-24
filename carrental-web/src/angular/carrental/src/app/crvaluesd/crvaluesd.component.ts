@@ -14,7 +14,7 @@
    limitations under the License.
  */
 import { Component, OnInit, Input } from '@angular/core';
-import { CrPortfolio } from '../crTypes';
+import { CrPortfolio } from '../dtos/crTypes';
 import { NumberSeparatorPipe } from '../shared/number-separator.pipe';
 import { Utils } from '../shared/utils';
 

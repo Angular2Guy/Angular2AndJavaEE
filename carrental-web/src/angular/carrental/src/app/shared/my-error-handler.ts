@@ -14,8 +14,8 @@
    limitations under the License.
  */
 import { ErrorHandler, Injectable } from "@angular/core";
-import { CrRestService } from "../crrest.service";
-import { CrLogMsgImpl } from "../crClasses";
+import { CrRestService } from "../services/crrest.service";
+import { CrLogMsgImpl } from "../dtos/crClasses";
 
 @Injectable()
 export class MyErrorHandler implements ErrorHandler {

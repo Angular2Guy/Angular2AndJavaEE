@@ -16,8 +16,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CrRestService } from '../crrest.service';
-import { CrDetail, CrPeriod } from '../crTypes';
+import { CrRestService } from '../services/crrest.service';
+import { CrDetail, CrPeriod } from '../dtos/crTypes';
 import { CrValuesComponent } from '../crvalues/crvalues.component';
 
 @Component( {

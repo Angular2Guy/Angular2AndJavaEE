@@ -16,11 +16,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PlatformLocation } from '@angular/common';
-import { CrTableRow, CrDetail, CrPeriod, CrPortfolio, CrLogMsg } from './crTypes';
-import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl, CrLogMsgImpl } from './crClasses';
+import { CrTableRow, CrDetail, CrPeriod, CrPortfolio, CrLogMsg } from '../dtos/crTypes';
+import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl, CrLogMsgImpl } from '../dtos/crClasses';
 import { Observable, throwError } from 'rxjs';
 import { map, debounceTime, catchError, tap} from 'rxjs/operators';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CrRestService {

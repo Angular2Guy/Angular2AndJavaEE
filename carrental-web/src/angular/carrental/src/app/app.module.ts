@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 import { CrlistComponent } from './crlist/crlist.component';
 import { CrdetailComponent } from './crdetail/crdetail.component';
 import { CrValuesComponent } from './crvalues/crvalues.component';
-import { CrRestService } from './crrest.service';
+import { CrRestService } from './services/crrest.service';
 import { AppRoutingModule }  from './app-routing.module';
 import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
 import { CrdateComponent } from './crdate/crdate.component';

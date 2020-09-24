@@ -17,8 +17,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable,of } from 'rxjs';
 import {switchMap, catchError} from 'rxjs/operators';
-import {CrRestService} from '../crrest.service';
-import {CrTableRow} from '../crTypes';
+import {CrRestService} from '../services/crrest.service';
+import {CrTableRow} from '../dtos/crTypes';
 
 @Component({  
   selector: 'app-crlist',
