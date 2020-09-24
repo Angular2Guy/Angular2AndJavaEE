@@ -15,46 +15,32 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PlatformLocation } from '@angular/common';
 import { CrTableRow, CrDetail, CrPeriod, CrPortfolio, CrLogMsg } from '../dtos/crTypes';
 import { CrTableRowImpl, CrDetailImpl, CrPeriodImpl, CrPortfolioImpl, CrLogMsgImpl } from '../dtos/crClasses';
 import { Observable, throwError } from 'rxjs';
-import { map, debounceTime, catchError, tap} from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CrRestService {
     static readonly NEWID = 'newId';
-    private _crTableUrlProd = '/rest/model/crTable/mietNr/{mietNr}';  // URL to web api
-    private _crDetailUrlProd = '/rest/model/crDetail/mietNr/{mietNr}/jahr/{jahr}';
-    public _crPdfUrlProd = '/rest/model/crTable/mietNr/{mietNr}/pdf';
-    public _baseHRef = '/carrental-web';
-    private _crLogUrlProd = '/rest/model/crLog';
-    private _reqOptionsArgs =  { headers: new HttpHeaders().set( 'Content-Type', 'application/json' ) };
 
-    constructor( private http: HttpClient, private pl: PlatformLocation ) {        
+    constructor( private http: HttpClient ) {        
     }
 
-    getCrTableRows( policeNr: string ) : Observable<CrTableRow[]> {
-        let url = this._baseHRef + this._crTableUrlProd;       
-        url = this.cleanUrl(url);
-        url = url.replace( "{mietNr}", policeNr );
-        console.log(url);
-        return this.http.get<CrTableRow[]>( url, this._reqOptionsArgs);
+    getCrTableRows( mietNr: string ) : Observable<CrTableRow[]> {
+        return this.http.get<CrTableRow[]>(`/rest/model/crTable/mietNr/${mietNr}`);
     }
 
-    getCrDetail( policeNr: string, jahr: string ) : Observable<CrDetail>{
-        if(policeNr === CrRestService.NEWID || jahr === CrRestService.NEWID) {
+    getCrDetail( mietNr: string, jahr: string ) : Observable<CrDetail>{
+        if(mietNr === CrRestService.NEWID || jahr === CrRestService.NEWID) {
             return Observable.create(observer => {
                 observer.next(this.createEmptyTree());
                 observer.complete();
             });
         }
-        let url = this._baseHRef + this._crDetailUrlProd;
-        url = this.cleanUrl(url);
-        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        console.log(url);
-        return this.http.get<CrDetail>( url, this._reqOptionsArgs);
+        return this.http.get<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`);
     }
  
     private createEmptyTree() : CrDetail {
@@ -64,52 +50,19 @@ export class CrRestService {
         return crDetail;
     }
     
-    postCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = this._baseHRef + this._crDetailUrlProd;
-        url = this.cleanUrl(url);
-        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        let json = this.cleanString(JSON.stringify(crDetail));
-        return this.http.post<CrDetail>(url, json, this._reqOptionsArgs);
+    postCrDetail(mietNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+        return this.http.post<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`, crDetail);
     }
     
-    putCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = this._baseHRef + this._crDetailUrlProd;
-        url = this.cleanUrl(url);
-        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );
-        let json = this.cleanString(JSON.stringify(crDetail));        
-        return this.http.put<CrDetail>(url, json, this._reqOptionsArgs);
+    putCrDetail(mietNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+        return this.http.put<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`, crDetail);
     }
     
-    deleteCrDetail(policeNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
-        let url = this._baseHRef + this._crDetailUrlProd;
-        url = this.cleanUrl(url);
-        url = url.replace( "{mietNr}", policeNr ).replace( "{jahr}", jahr );        
-        return this.http.delete<CrDetail>(url, this._reqOptionsArgs);
+    deleteCrDetail(mietNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+        return this.http.delete<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`);
     }
    
     putCrLogMsg(crLogMsg: CrLogMsg): Observable<CrLogMsg> {
-        let url = this._baseHRef + this._crLogUrlProd;
-        url = this.cleanUrl(url);
-        return this.http.put<CrLogMsg>(url, crLogMsg, this._reqOptionsArgs);
+        return this.http.put<CrLogMsg>('/rest/model/crLog', crLogMsg);
     }
-    
-    private cleanString(str: string): string {
-        while(str.indexOf("'") > 0) {
-            str = str.replace("'","");
-        }
-        return str;
-    } 
-    
-    cleanUrl(url: string) : string {
-        console.log( url );
-        if ( environment.production ) {
-            url = url.replace('//','/'); 
-            url = url.replace('/en','');
-            url = url.replace('/de','');
-            console.log( url );            
-        }  
-        return url;
-    }
-   
-    
 }

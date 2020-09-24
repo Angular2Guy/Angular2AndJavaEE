@@ -16,7 +16,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,ErrorHandler } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CrlistComponent } from './crlist/crlist.component';
 import { CrdetailComponent } from './crdetail/crdetail.component';
@@ -29,8 +29,9 @@ import { NumberSeparatorPipe } from './shared/number-separator.pipe';
 import { NumberseparatorDirective } from './shared/numberseparator.directive';
 import { CrrootComponent } from './crroot/crroot.component';
 import { CruploadComponent } from './crupload/crupload.component';
-import { MyErrorHandler } from "./shared/my-error-handler";
-
+//import { MyErrorHandler } from './shared/my-error-handler';
+import { BaseHrefInterceptor } from './services/base-href-interceptor';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -52,9 +53,10 @@ import { MyErrorHandler } from "./shared/my-error-handler";
     HttpClientModule,	
     AppRoutingModule
   ],
-  providers: [CrRestService,        
-              MyErrorHandler,
-              {provide: ErrorHandler, useClass: MyErrorHandler}],
+  providers: [      
+              //{provide: ErrorHandler, useClass: MyErrorHandler},
+			  { provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true },
+			],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

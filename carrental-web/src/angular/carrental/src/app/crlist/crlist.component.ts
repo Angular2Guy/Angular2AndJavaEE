@@ -16,7 +16,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable,of } from 'rxjs';
-import {switchMap, catchError} from 'rxjs/operators';
 import {CrRestService} from '../services/crrest.service';
 import {CrTableRow} from '../dtos/crTypes';
 
@@ -37,12 +36,8 @@ export class CrlistComponent implements OnInit {
       this.tableRows = this.service.getCrTableRows(mnr);
   }
   
-  showPdf(num: string) {
-      let url = this.service._baseHRef + this.service._crPdfUrlProd;
-      url = this.service.cleanUrl(url);
-      url = url.replace( "{mietNr}", num );
-      console.log(url);
-      window.open(url);
+  showPdf(mietNr: string) {
+      window.open(`/rest/model/crTable/mietNr/${mietNr}/pdf`);
   }
   
   showModal() {

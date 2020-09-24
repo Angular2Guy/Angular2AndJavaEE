@@ -28,7 +28,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "tsconfig.app.json",            
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -38,7 +38,7 @@
             ],
             "scripts": []
           },
-          "configurations": {
+          "configurations": {          	
           	"de": {
         	  "localize": ["de"]
       		},
@@ -63,6 +63,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "baseHref" : "/carrental-web",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -86,7 +87,7 @@
             },            
             "en": {
               "browserTarget": "testproject:build:en"
-            }
+            }            
           }
         },
         "extract-i18n": {
