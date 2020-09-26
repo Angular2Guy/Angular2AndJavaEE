@@ -1,5 +1,5 @@
 {
-  "/": {
+  "/rest": {
     "target": "http://localhost:8080/carrental-web",
     "secure": false
   }

@@ -22,8 +22,9 @@ import { CrrootComponent } from './crroot/crroot.component';
 
 const routes: Routes = [
   {path: 'crdetail/mietenr/:mnr/jahr/:jahr', component: CrdetailComponent},
-  {path: 'crlist/mietenr/:mnr', component: CrlistComponent}, 
-  {path: '**', component: CrrootComponent}
+  {path: 'crlist/mietenr/:mnr', component: CrlistComponent},
+  {path: 'crroot', component: CrrootComponent},
+  {path: '', redirectTo: '/crroot', pathMatch: 'full'},    
 ];
 
 @NgModule({
