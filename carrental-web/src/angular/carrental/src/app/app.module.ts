@@ -31,7 +31,6 @@ import { CrrootComponent } from './crroot/crroot.component';
 import { CruploadComponent } from './crupload/crupload.component';
 //import { MyErrorHandler } from './shared/my-error-handler';
 import { BaseHrefInterceptor } from './services/base-href-interceptor';
-import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
   declarations: [
