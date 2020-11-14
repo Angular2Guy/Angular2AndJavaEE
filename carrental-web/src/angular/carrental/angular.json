@@ -47,7 +47,7 @@
       		},
             "production": {
               "budgets": [
-              	{
+                {
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
@@ -63,17 +63,16 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "baseHref" : "/carrental-web",
+              "baseHref": "/carrental-web",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "localize": true,
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true               
+              "buildOptimizer": true
             }
           }
         },        

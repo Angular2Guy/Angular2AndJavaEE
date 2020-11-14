@@ -13,6 +13,6 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject, waitForAsync } from '@angular/core/testing';
 import { CrRestService } from './crrest.service';
 

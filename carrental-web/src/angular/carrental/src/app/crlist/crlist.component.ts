@@ -18,6 +18,7 @@ import {ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Observable,of } from 'rxjs';
 import {CrRestService} from '../services/crrest.service';
 import {CrTableRow} from '../dtos/crTypes';
+import { PlatformLocation } from '@angular/common';
 
 @Component({  
   selector: 'app-crlist',
@@ -29,7 +30,7 @@ export class CrlistComponent implements OnInit {
   errorMsg: string;  
   modalvisible = false;
     
-  constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService ) {}
+  constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private platformLocation: PlatformLocation ) {}
 
   ngOnInit(): void {
       let mnr = this.route.snapshot.paramMap.get('mnr');
@@ -37,9 +38,14 @@ export class CrlistComponent implements OnInit {
   }
   
   showPdf(mietNr: string) {
-      window.open(`/rest/model/crTable/mietNr/${mietNr}/pdf`);
+      window.open(`${this.getBaseHref()}/rest/model/crTable/mietNr/${mietNr}/pdf`);
   }
   
+  private getBaseHref(): string {
+	const myBaseHref = !this.platformLocation.getBaseHrefFromDOM() || this.platformLocation.getBaseHrefFromDOM().length < 2 ? '//'.split('/') : this.platformLocation.getBaseHrefFromDOM().split('/');
+	return (myBaseHref[1].length > 0 ? '/'+myBaseHref[1] : '');
+}
+
   showModal() {
       this.modalvisible = !this.modalvisible;
   }

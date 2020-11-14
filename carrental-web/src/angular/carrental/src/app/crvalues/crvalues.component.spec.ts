@@ -17,7 +17,7 @@
 
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
 import { CrValuesComponent } from './crvalues.component';
 import { CrPortfolio } from '../dtos/crTypes';
