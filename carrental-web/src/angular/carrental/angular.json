@@ -9,16 +9,16 @@
       "projectType": "application",
       "prefix": "app",
       "i18n": {
-  		"locales": {
+        "locales": {
           "en": "src/locale/messages.en.xlf"
-  		},
-  		"sourceLocale": "de"
-	  },
-      "schematics": {      
+        },
+        "sourceLocale": "de"
+      },
+      "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
-      },      
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -28,7 +28,7 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",            
+            "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -38,13 +38,17 @@
             ],
             "scripts": []
           },
-          "configurations": {          	
-          	"de": {
-        	  "localize": ["de"]
-      		},
-      		"en": {
-              "localize": ["en"]
-      		},
+          "configurations": {
+            "de": {
+              "localize": [
+                "de"
+              ]
+            },
+            "en": {
+              "localize": [
+                "en"
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -75,7 +79,7 @@
               "buildOptimizer": true
             }
           }
-        },        
+        },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
@@ -84,10 +88,10 @@
           "configurations": {
             "production": {
               "browserTarget": "testproject:build:production"
-            },            
+            },
             "en": {
               "browserTarget": "testproject:build:en"
-            }            
+            }
           }
         },
         "extract-i18n": {
@@ -114,14 +118,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         }
@@ -139,11 +140,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
             ]
           }
         }

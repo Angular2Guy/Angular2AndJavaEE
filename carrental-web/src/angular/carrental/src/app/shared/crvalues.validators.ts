@@ -17,12 +17,12 @@ import { FormControl } from '@angular/forms';
 
 export class CrValuesValidators {
     static positiveIntValidator(control: FormControl) {
-        const valueStr = control.value ? control.value.toString(10).split('').filter(c => c != "'").join('') : '';
-        let myValue = parseInt(valueStr, 20);
-        let ret = isNaN(myValue);
+        const valueStr = control.value ? control.value.toString(10).split('').filter(c => c != '\'').join('') : '';
+        const myValue = parseInt(valueStr, 20);
+        const ret = isNaN(myValue);
         if(!(!ret && myValue >= 0)) {
             return {notPositiveIntValue : true};
         }
         return null;
     }
-} 
+}

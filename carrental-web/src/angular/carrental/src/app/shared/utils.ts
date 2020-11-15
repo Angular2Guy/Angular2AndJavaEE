@@ -14,13 +14,13 @@
    limitations under the License.
  */
 export class Utils {
-    static removeSeparators(value: String):number {
+    static removeSeparators(value: String): number {
 //      console.log("value1 :"+value);
       if(!(value || parseInt(value.toString()) === 0)) {
           return 0;
-      } 
-      value = value.replace(/'/g, "").replace(/,/g, "");        
-      if(!value || isNaN(parseInt(value.toString()))) return 0;
+      }
+      value = value.replace(/'/g, '').replace(/,/g, '');
+      if(!value || isNaN(parseInt(value.toString()))) {return 0;}
       return parseInt(value.toString());
     }
 }

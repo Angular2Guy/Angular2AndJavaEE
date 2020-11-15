@@ -26,7 +26,7 @@ import { CrValuesComponent } from '../crvalues/crvalues.component';
     styleUrls: ['./crdetail.component.scss'],
 } )
 export class CrdetailComponent implements OnInit {
-    
+
     crDetail: CrDetail;
     crPeriods: CrPeriod[];
     crEditmode: boolean;
@@ -42,13 +42,13 @@ export class CrdetailComponent implements OnInit {
         this.init();
     }
 
-    init():void {
+    init(): void {
         this.mnr = this.route.snapshot.paramMap.get( 'mnr' );
         this.jahr = this.route.snapshot.paramMap.get( 'jahr' );
         this.service.getCrDetail( this.mnr, this.jahr )
             .subscribe( lsdD => { this.crDetail = <CrDetail>lsdD; this.crPeriods = ( <CrDetail>lsdD ).crPeriods; });
     }
-    
+
     valuesValid( valid: boolean ) {
         this.valid = valid;
     }
@@ -60,13 +60,13 @@ export class CrdetailComponent implements OnInit {
     update(): void {
         if ( this.valid ) {
             if ( this.crDetail.id) {
-                this.service.putCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => { 
-                    let urltree = this.router.createUrlTree( ['crlist/mietenr/', this.mnr] );
+                this.service.putCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
+                    const urltree = this.router.createUrlTree( ['crlist/mietenr/', this.mnr] );
                     this.router.navigateByUrl( urltree );
                     });
             } else {
                 this.service.postCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
-                    let urltree = 'crlist/mietenr/' + 1;
+                    const urltree = 'crlist/mietenr/' + 1;
                     this.router.navigateByUrl( urltree );
                 });
             }
@@ -74,14 +74,14 @@ export class CrdetailComponent implements OnInit {
     }
 
     create(): void {
-        let urlStr = 'crdetail/mietenr/' + CrRestService.NEWID + '/jahr/' + CrRestService.NEWID;
-        this.router.navigateByUrl( urlStr ).then(result => this.init());        
+        const urlStr = 'crdetail/mietenr/' + CrRestService.NEWID + '/jahr/' + CrRestService.NEWID;
+        this.router.navigateByUrl( urlStr ).then(result => this.init());
     }
 
     delete(): void {
         if ( this.valid ) {
             this.service.deleteCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
-                let urltree = 'crlist/mietenr/' + 1;
+                const urltree = 'crlist/mietenr/' + 1;
                 this.router.navigateByUrl( urltree );
             });
         }

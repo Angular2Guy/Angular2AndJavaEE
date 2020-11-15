@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Component } from '@angular/core';

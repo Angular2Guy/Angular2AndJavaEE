@@ -42,12 +42,12 @@ export interface CrPeriod {
     id: number;
     from: Date;
     to: Date;
-    crPortfolios: CrPortfolio[];    
+    crPortfolios: CrPortfolio[];
 }
 
 export interface CrPortfolio {
-    id: number;  
-    bezeichnung: string; 
+    id: number;
+    bezeichnung: string;
     anzahlPkw: number;
     anzahlLkw: number;
     anzahlTotal: number;
@@ -62,7 +62,7 @@ export interface CrPortfolio {
 export interface CrMessage {
     id: number;
     msgType: string;
-    msg: string;  
+    msg: string;
 }
 
 export interface CrLogMsg {

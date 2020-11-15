@@ -26,14 +26,14 @@ import { environment } from '../../environments/environment';
 export class CrRestService {
     static readonly NEWID = 'newId';
 
-    constructor( private http: HttpClient ) {        
+    constructor( private http: HttpClient ) {
     }
 
-    getCrTableRows( mietNr: string ) : Observable<CrTableRow[]> {
+    getCrTableRows( mietNr: string ): Observable<CrTableRow[]> {
         return this.http.get<CrTableRow[]>(`/rest/model/crTable/mietNr/${mietNr}`);
     }
 
-    getCrDetail( mietNr: string, jahr: string ) : Observable<CrDetail>{
+    getCrDetail( mietNr: string, jahr: string ): Observable<CrDetail>{
         if(mietNr === CrRestService.NEWID || jahr === CrRestService.NEWID) {
             return Observable.create(observer => {
                 observer.next(this.createEmptyTree());
@@ -42,26 +42,26 @@ export class CrRestService {
         }
         return this.http.get<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`);
     }
- 
-    private createEmptyTree() : CrDetail {
-        let crPortfolio = new CrPortfolioImpl(null,null,null,null,null,null,null,null,null,null,null);
-        let crPeriod = new CrPeriodImpl(null,null,null,[crPortfolio]);        
-        let crDetail = new CrDetailImpl(null,true,null,null,null,[crPeriod],[]);
+
+    private createEmptyTree(): CrDetail {
+        const crPortfolio = new CrPortfolioImpl(null,null,null,null,null,null,null,null,null,null,null);
+        const crPeriod = new CrPeriodImpl(null,null,null,[crPortfolio]);
+        const crDetail = new CrDetailImpl(null,true,null,null,null,[crPeriod],[]);
         return crDetail;
     }
-    
-    postCrDetail(mietNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+
+    postCrDetail(mietNr: string, jahr: string, crDetail: CrDetail): Observable<CrDetail> {
         return this.http.post<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`, crDetail);
     }
-    
-    putCrDetail(mietNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+
+    putCrDetail(mietNr: string, jahr: string, crDetail: CrDetail): Observable<CrDetail> {
         return this.http.put<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`, crDetail);
     }
-    
-    deleteCrDetail(mietNr: string, jahr: string, crDetail: CrDetail) : Observable<CrDetail> {
+
+    deleteCrDetail(mietNr: string, jahr: string, crDetail: CrDetail): Observable<CrDetail> {
         return this.http.delete<CrDetail>(`/rest/model/crDetail/mietNr/${mietNr}/jahr/${jahr}`);
     }
-   
+
     putCrLogMsg(crLogMsg: CrLogMsg): Observable<CrLogMsg> {
         return this.http.put<CrLogMsg>('/rest/model/crLog', crLogMsg);
     }

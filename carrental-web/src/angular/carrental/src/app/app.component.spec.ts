@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {APP_BASE_HREF} from '@angular/common';
-import {HttpTestingController} from "@angular/common/http/testing";
+import {HttpTestingController} from '@angular/common/http/testing';
 import { NumberSeparatorPipe } from './shared/number-separator.pipe';
 
 
@@ -45,14 +45,14 @@ describe('AppComponent', () => {
         CrValuesComponent,
         CrvaluesdComponent,
         CrdateComponent,
-        NumberSeparatorPipe, 
+        NumberSeparatorPipe,
         CruploadComponent
-      ], 
+      ],
       imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,        
+        HttpClientModule,
         AppRoutingModule
       ],
       providers: [{provide: APP_BASE_HREF, useValue : '/' }]
@@ -67,7 +67,7 @@ describe('AppComponent', () => {
   }));
 
   it(`should have as title 'app works!'`, waitForAsync(() => {
-    const fixture =  TestBed.createComponent(AppComponent);    
+    const fixture =  TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('carrental works!');
   }));
@@ -77,5 +77,5 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('carrental works!');
-  })); 
+  }));
 });

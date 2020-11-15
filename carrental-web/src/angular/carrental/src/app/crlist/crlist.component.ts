@@ -20,27 +20,27 @@ import {CrRestService} from '../services/crrest.service';
 import {CrTableRow} from '../dtos/crTypes';
 import { PlatformLocation } from '@angular/common';
 
-@Component({  
+@Component({
   selector: 'app-crlist',
   templateUrl: './crlist.component.html',
-  styleUrls: ['./crlist.component.scss'],    
+  styleUrls: ['./crlist.component.scss'],
 })
 export class CrlistComponent implements OnInit {
   tableRows: Observable<CrTableRow[]>;
-  errorMsg: string;  
+  errorMsg: string;
   modalvisible = false;
-    
+
   constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private platformLocation: PlatformLocation ) {}
 
   ngOnInit(): void {
-      let mnr = this.route.snapshot.paramMap.get('mnr');
+      const mnr = this.route.snapshot.paramMap.get('mnr');
       this.tableRows = this.service.getCrTableRows(mnr);
   }
-  
+
   showPdf(mietNr: string) {
       window.open(`${this.getBaseHref()}/rest/model/crTable/mietNr/${mietNr}/pdf`);
   }
-  
+
   private getBaseHref(): string {
 	const myBaseHref = !this.platformLocation.getBaseHrefFromDOM() || this.platformLocation.getBaseHrefFromDOM().length < 2 ? '//'.split('/') : this.platformLocation.getBaseHrefFromDOM().split('/');
 	return (myBaseHref[1].length > 0 ? '/'+myBaseHref[1] : '');

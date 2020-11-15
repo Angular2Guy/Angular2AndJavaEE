@@ -30,11 +30,11 @@ export class CrvaluesdComponent implements OnInit {
 
   ngOnInit() {
       this.crvalues.anzahlTotal = this.crvalues.anzahlLkw + this.crvalues.anzahlPkw;
-      let abgPkw = Utils.removeSeparators( this.crvalues.mieteAbgerechnetPkw ? this.crvalues.mieteAbgerechnetPkw.toString() : '0');
-      let abgLkw = Utils.removeSeparators( this.crvalues.mieteAbgerechnetLkw ? this.crvalues.mieteAbgerechnetLkw.toString() : '0');
+      const abgPkw = Utils.removeSeparators( this.crvalues.mieteAbgerechnetPkw ? this.crvalues.mieteAbgerechnetPkw.toString() : '0');
+      const abgLkw = Utils.removeSeparators( this.crvalues.mieteAbgerechnetLkw ? this.crvalues.mieteAbgerechnetLkw.toString() : '0');
       this.crvalues.mieteAbgerechnetTotal = abgPkw + abgLkw;
-      let gplPkw = Utils.removeSeparators( this.crvalues.mieteGeplantPkw ? this.crvalues.mieteGeplantPkw.toString() : '0');
-      let gplLkw = Utils.removeSeparators( this.crvalues.mieteGeplantLkw ? this.crvalues.mieteGeplantLkw.toString() : '0');
+      const gplPkw = Utils.removeSeparators( this.crvalues.mieteGeplantPkw ? this.crvalues.mieteGeplantPkw.toString() : '0');
+      const gplLkw = Utils.removeSeparators( this.crvalues.mieteGeplantLkw ? this.crvalues.mieteGeplantLkw.toString() : '0');
       this.crvalues.mieteGeplantTotal = gplPkw + gplLkw;
   }
 

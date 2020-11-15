@@ -33,14 +33,14 @@ export class CrTableRowImpl implements CrTableRow {
 }
 
 export class CrDetailImpl implements CrDetail {
-    
+
     constructor(
             public id: number,
-            public changeable: boolean, 
-            public mieteNr: string, 
-            public jahr: string, 
-            public crTableRow: CrTableRow, 
-            public crPeriods: CrPeriod[], 
+            public changeable: boolean,
+            public mieteNr: string,
+            public jahr: string,
+            public crTableRow: CrTableRow,
+            public crPeriods: CrPeriod[],
             public crMessages: CrMessage[]) {}
 }
 
@@ -54,8 +54,8 @@ export class CrPeriodImpl implements CrPeriod {
 
 export class CrPortfolioImpl implements CrPortfolio {
     constructor(
-            public id: number,  
-            public bezeichnung: string, 
+            public id: number,
+            public bezeichnung: string,
             public anzahlPkw: number,
             public anzahlLkw: number,
             public anzahlTotal: number,

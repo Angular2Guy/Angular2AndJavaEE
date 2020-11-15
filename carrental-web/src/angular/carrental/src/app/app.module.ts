@@ -49,10 +49,10 @@ import { BaseHrefInterceptor } from './services/base-href-interceptor';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,	
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [      
+  providers: [
               //{provide: ErrorHandler, useClass: MyErrorHandler},
 			  { provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true },
 			],

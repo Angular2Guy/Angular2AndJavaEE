@@ -28,33 +28,33 @@ export class CrdateComponent implements OnInit {
   @Input() mytype: string;
   newDate: number;
   newString: string;
-  
+
   ngOnInit() {
-      if(!this.myobject) return; //for the tests
+      if(!this.myobject) {return;} //for the tests
       if(!this.mytype) {
-          this.newDate = this.myobject[this.myvalue];          
+          this.newDate = this.myobject[this.myvalue];
       } else {
           this.newString = this.myobject[this.myvalue];
 //          console.log(this.newString);
       }
   }
-  
-  setStr(event: any) : void {
+
+  setStr(event: any): void {
       this.myobject[this.myvalue] = event.target.value;
       //console.log(event.target.value);
   }
-  
-  convertToDate(event: any) : void {
-     let myDate = this.myobject[this.myvalue];
-     console.log(this.myvalue+": "+myDate);
-     let dateStr = event.target.value;
-     let dtStr = dateStr.split("-");
-     let newStr = dtStr[1]+"/"+dtStr[2]+"/"+dtStr[0];
-     let newDate = new Date(newStr);
+
+  convertToDate(event: any): void {
+     const myDate = this.myobject[this.myvalue];
+     console.log(this.myvalue+': '+myDate);
+     const dateStr = event.target.value;
+     const dtStr = dateStr.split('-');
+     const newStr = dtStr[1]+'/'+dtStr[2]+'/'+dtStr[0];
+     const newDate = new Date(newStr);
      //console.log(newStr);
      //console.log(newDate.getTime());
      this.myobject[this.myvalue] = newDate.getTime();
      this.newDate = newDate.getTime();
   }
-  
-} 
+
+}

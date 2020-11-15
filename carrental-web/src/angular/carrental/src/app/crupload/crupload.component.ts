@@ -21,42 +21,42 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
   templateUrl: './crupload.component.html',
   styleUrls: ['./crupload.component.scss']
 })
-export class CruploadComponent implements OnInit, OnChanges {    
+export class CruploadComponent implements OnInit, OnChanges {
   @Input() visible: boolean;
-  currentFile:File;  
+  currentFile: File;
   filetext: string;
-  
+
   constructor() { }
 
-  filechange(fileInput:any){
+  filechange(fileInput: any){
       this.currentFile = fileInput.target.files[0];
 
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = () => {
-              let textstr:string = <string> reader.result;
-              let textstrs = textstr.split("base64,");
+              const textstr: string = <string> reader.result;
+              const textstrs = textstr.split('base64,');
               this.filetext = atob(textstrs[1]);
               //console.log(textstr);
           };
       reader.readAsDataURL(this.currentFile);
   }
- 
+
   ngOnInit() {
-      let modal = document.getElementById('crModal'); 
-      modal.style.display = this.visible ? "block" : "none";      
+      const modal = document.getElementById('crModal');
+      modal.style.display = this.visible ? 'block' : 'none';
   }
-  
+
   ngOnChanges(changes: {[propKey: string]: SimpleChange}): void {
-      for (let propName in changes) {
-          let changedProp = changes[propName];
+      for (const propName in changes) {
+          const changedProp = changes[propName];
           console.log(propName+' '+changedProp.currentValue);
-          let modal = document.getElementById('crModal');
-          modal.style.display = "block";
+          const modal = document.getElementById('crModal');
+          modal.style.display = 'block';
       }
   }
-  
-  close() {      
-      let modal = document.getElementById('crModal');
-      modal.style.display = "none";
+
+  close() {
+      const modal = document.getElementById('crModal');
+      modal.style.display = 'none';
   }
 }

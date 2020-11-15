@@ -20,16 +20,16 @@ import { CrValuesValidators } from '../shared/crvalues.validators';
 import { Subscription }   from 'rxjs';
 import { Utils } from '../shared/utils';
 
-@Component({    
+@Component({
     selector: 'app-crvalues',
     templateUrl: './crvalues.component.html',
-    styleUrls: ['./crvalues.component.scss']         
+    styleUrls: ['./crvalues.component.scss']
 })
 export class CrValuesComponent implements OnInit, OnDestroy {
     form: FormGroup;
     fcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
     @Input() crvalues: CrPortfolio;
-    updateTotalsSub: any[] = [];  
+    updateTotalsSub: any[] = [];
     @Output() valuesValid = new EventEmitter<boolean>();
 
     constructor(fb: FormBuilder) {
@@ -43,42 +43,42 @@ export class CrValuesComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         let fc = <FormControl>this.form.controls[this.fcNames[0]];
-        fc.setValue(this.crvalues.anzahlPkw);        
-        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlPkw = value; this.updateTotals(value)}));      
+        fc.setValue(this.crvalues.anzahlPkw);
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlPkw = value; this.updateTotals(value);}));
         fc = <FormControl>this.form.controls[this.fcNames[1]];
-        fc.setValue(this.crvalues.anzahlLkw);        
-        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlLkw = value; this.updateTotals(value)}));
+        fc.setValue(this.crvalues.anzahlLkw);
+        this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlLkw = value; this.updateTotals(value);}));
         fc = <FormControl>this.form.controls[this.fcNames[2]];
         fc.setValue(this.crvalues.mieteAbgerechnetPkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
-                let myValue = Utils.removeSeparators(value); 
-                this.crvalues.mieteAbgerechnetPkw = value; 
+                const myValue = Utils.removeSeparators(value);
+                this.crvalues.mieteAbgerechnetPkw = value;
                 this.updateTotals(value);
-                
-                }));        
+
+                }));
         fc = <FormControl>this.form.controls[this.fcNames[3]];
-        fc.setValue(this.crvalues.mieteAbgerechnetLkw);  
+        fc.setValue(this.crvalues.mieteAbgerechnetLkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
-                let myValue = Utils.removeSeparators(value); 
-                this.crvalues.mieteAbgerechnetLkw = value; 
-                this.updateTotals(value)}));    
+                const myValue = Utils.removeSeparators(value);
+                this.crvalues.mieteAbgerechnetLkw = value;
+                this.updateTotals(value);}));
         this.crvalues.mieteGeplantTotal = this.crvalues.mieteGeplantPkw + this.crvalues.mieteGeplantLkw;
         this.updateTotals(null);
     }
 
     ngOnDestroy() {
-        for(let sub of this.updateTotalsSub) {
+        for(const sub of this.updateTotalsSub) {
             sub.unsubscribe();
         }
     }
-  
-    updateTotals(value: any): void {         
-        this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[this.fcNames[0]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[0]].value))  
+
+    updateTotals(value: any): void {
+        this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[this.fcNames[0]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[0]].value))
             + (isNaN(parseInt(this.form.controls[this.fcNames[1]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[1]].value));
-        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) 
+        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10)))
             + (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10)));
         //console.log("updateTotals("+value+") called.");
         this.valuesValid.emit(this.form.valid);
     }
-  
+
 }
