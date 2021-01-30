@@ -11,7 +11,8 @@
     "test-chromium": "ng test --browsers ChromiumHeadless --watch=false",
     "test-local": "ng test --browsers Chromium --watch=true",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
