@@ -2,6 +2,13 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="de" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="2d5e0f6c742a08d470ff05c48e424dabeaba6c4b" datatype="html">
+        <source>Link zu crroot</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="a8156a194b08696ecdfefce4e842fd512936e9b5" datatype="html">
         <source>Link zu crdetail</source>
         <target>Link to crdetail</target>
