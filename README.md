@@ -19,7 +19,7 @@ Target Project: Java EE 6
 * [The Recipe for Angular 2 in a Java EE Environment: Maven Build](https://dzone.com/articles/the-recipe-for-angular-2-in-a-java-ee-environment-3)
 * [The Recipe for Angular in a Java EE Environment: Aot Build](https://dzone.com/articles/the-recipe-for-angular-in-a-java-ee-environment-ao)
 * [The Recipe for Angular in a Java EE Environment: Two Improvements](https://dzone.com/articles/the-recipe-for-angular-in-a-java-ee-environment-2)
-* [Angular Interceptor for a BaseHref Path in Services](https://dzone.com/articles/angular-interceptor-for-a-basehref-in-services)
+* [Angular Interceptor for a BaseHref Path in Services](https://angular2guy.wordpress.com/2021/07/31/angular-interceptor-for-a-basehref-path-in-services/)
 
 What is it?
 -----------
