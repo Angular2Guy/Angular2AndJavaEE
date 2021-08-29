@@ -50,6 +50,12 @@ public class CrLogMsg {
 		this.logMsg = logMsg;
 	}
 
+	public CrLogMsg(LogLevel logLevel, String logMsg) {
+		super();
+		this.logLevel = logLevel.getLevel();
+		this.logMsg = logMsg;
+	}
+	
 	public String getLogLevel() {
 		return logLevel;
 	}

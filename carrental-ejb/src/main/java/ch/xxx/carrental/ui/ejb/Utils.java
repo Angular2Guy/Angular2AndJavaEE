@@ -15,15 +15,19 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.apache.log4j.Logger;
 
+@Named
 public class Utils {
-	private static final Logger LOG = Logger.getLogger(Utils.class);
+	@Inject
+	private Logger LOG;
 	
-	public static boolean checkForWildflyorWS() {
+	public boolean checkForWildflyorWS() {
 		String namingFactoryKey = null;
 		try {
 			InitialContext ic = new InitialContext();	

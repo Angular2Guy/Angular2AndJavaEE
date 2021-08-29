@@ -19,6 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
@@ -32,7 +33,8 @@ import ch.xxx.carrental.ui.exception.LocalValidationException;
 @AutoLogging
 @Interceptor
 public class LoggingInterceptor {
-	private static final Logger LOG = Logger.getLogger(LoggingInterceptor.class);
+	@Inject
+	private Logger LOG;
 
 	@AroundInvoke
 	public Object interceptLogging(InvocationContext ctx) throws Exception {

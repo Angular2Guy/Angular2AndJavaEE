@@ -23,6 +23,7 @@ import java.util.Locale;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -35,18 +36,19 @@ import ch.xxx.carrental.ui.service.CrTableService;
 @Local(CrTableService.class)
 @Stateless
 public class CrTableServiceSLB implements CrTableService {
-
 	@EJB
 	private CrServerSIB server;
 	@PersistenceContext
 	private EntityManager em;
 	private Converter conv = new Converter();
+	@Inject
+	private Utils myUtils;
 
 	@AutoLogging
 	@Override
 	public List<CrTableRow> readCrRowsByMiete(String mietNr, Locale locale) {		
 		this.checkForMietNr(mietNr);
-		if (Utils.checkForWildflyorWS()) {
+		if (this.myUtils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr", CrDetailDB.class)
 					.setParameter("mietNr", mietNr).getResultList();

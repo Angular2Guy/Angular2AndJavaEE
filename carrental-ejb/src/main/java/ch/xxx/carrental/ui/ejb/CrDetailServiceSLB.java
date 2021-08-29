@@ -25,23 +25,28 @@ import java.util.Optional;
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.log4j.Logger;
-
 import ch.xxx.carrental.ui.dto.CrDetail;
+import ch.xxx.carrental.ui.dto.CrLogMsg;
+import ch.xxx.carrental.ui.dto.CrLogMsg.LogLevel;
 import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
 import ch.xxx.carrental.ui.exception.LocalValidationException;
 import ch.xxx.carrental.ui.model.CrDetailDB;
 import ch.xxx.carrental.ui.model.CrPeriodDB;
 import ch.xxx.carrental.ui.model.CrPortfolioDB;
 import ch.xxx.carrental.ui.service.CrDetailService;
+import ch.xxx.carrental.ui.service.CrLoggingService;
 
 @Local(CrDetailService.class)
 @Stateless
 public class CrDetailServiceSLB implements CrDetailService {
-	private static final Logger LOG = Logger.getLogger(CrDetailServiceSLB.class);
+	@EJB
+	private CrLoggingService logService;
+	@Inject
+	private Utils myUtils;
 	@EJB
 	private CrServerSIB server;
 	@PersistenceContext
@@ -53,7 +58,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@Override
 	public CrDetail readCrDetail(String mietNr, String jahr, Locale locale) {
 		this.checkForMietNrAndJahr(mietNr, jahr);
-		if (Utils.checkForWildflyorWS()) {
+		if (this.myUtils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
 					.setParameter("mietNr", mietNr).setParameter("jahr", jahr).getResultList();
@@ -69,7 +74,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@Override
 	public boolean createCrDetail(CrDetail crDetail) {
 		this.checkForCrDetail(crDetail);
-		if (Utils.checkForWildflyorWS()) {
+		if (this.myUtils.checkForWildflyorWS()) {
 			CrDetailDB crDetailDB = new CrDetailDB();
 			CrPeriodDB crPeriodDB = new CrPeriodDB();
 			crDetailDB.getCrPeriods().add(crPeriodDB);
@@ -81,7 +86,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 			Calendar gc = GregorianCalendar.getInstance();
 			gc.setTime(crDetail.getCrPeriods().get(0).getFrom());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			LOG.info(sdf.format(crDetail.getCrPeriods().get(0).getFrom()));
+			this.logService.logMsg(new CrLogMsg(LogLevel.INFO, sdf.format(crDetail.getCrPeriods().get(0).getFrom())));
 			if(gc.get(Calendar.DAY_OF_MONTH) == 31 && gc.get(Calendar.MONTH) == 11) {
 				gc.add(Calendar.DAY_OF_YEAR, 1);
 			}
@@ -100,7 +105,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@Override
 	public boolean updateCrDetail(CrDetail crDetail) {
 		this.checkForCrDetail(crDetail);
-		if (Utils.checkForWildflyorWS()) {
+		if (this.myUtils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
 					.setParameter("mietNr", crDetail.getMieteNr()).setParameter("jahr", crDetail.getJahr()).getResultList();
@@ -117,7 +122,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@Override
 	public boolean deleteCrDetail(String mietNr, String jahr) {
 		this.checkForMietNrAndJahr(mietNr, jahr);
-		if (Utils.checkForWildflyorWS()) {
+		if (this.myUtils.checkForWildflyorWS()) {
 			List<CrDetailDB> resultList = em
 					.createQuery("select c from CrDetailDB c where c.mietNr=:mietNr and c.jahr=:jahr", CrDetailDB.class)
 					.setParameter("mietNr", mietNr).setParameter("jahr", jahr).getResultList();

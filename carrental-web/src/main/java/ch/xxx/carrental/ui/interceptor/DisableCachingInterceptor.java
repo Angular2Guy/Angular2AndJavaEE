@@ -26,7 +26,6 @@ import org.apache.log4j.Logger;
 @DisableCaching 
 @Interceptor
 public class DisableCachingInterceptor {
-	private static final Logger LOG = Logger.getLogger(DisableCachingInterceptor.class);
 	
 	@AroundInvoke
 	public Object interceptNoCache(InvocationContext ctx) throws Exception {		
