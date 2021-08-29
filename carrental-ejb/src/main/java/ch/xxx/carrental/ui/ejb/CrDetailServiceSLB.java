@@ -28,8 +28,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 
 import ch.xxx.carrental.ui.dto.CrDetail;
 import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
@@ -42,7 +41,7 @@ import ch.xxx.carrental.ui.service.CrDetailService;
 @Local(CrDetailService.class)
 @Stateless
 public class CrDetailServiceSLB implements CrDetailService {
-	private static final Logger LOG = LogManager.getLogger(CrDetailServiceSLB.class);
+	private static final Logger LOG = Logger.getLogger(CrDetailServiceSLB.class);
 	@EJB
 	private CrServerSIB server;
 	@PersistenceContext

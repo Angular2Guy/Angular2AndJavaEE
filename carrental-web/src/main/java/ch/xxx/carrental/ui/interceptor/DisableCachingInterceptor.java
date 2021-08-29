@@ -21,13 +21,12 @@ import javax.interceptor.InvocationContext;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Response;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 
 @DisableCaching 
 @Interceptor
 public class DisableCachingInterceptor {
-	private static final Logger LOG = LogManager.getLogger(DisableCachingInterceptor.class);
+	private static final Logger LOG = Logger.getLogger(DisableCachingInterceptor.class);
 	
 	@AroundInvoke
 	public Object interceptNoCache(InvocationContext ctx) throws Exception {		
