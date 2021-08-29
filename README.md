@@ -11,6 +11,16 @@ Summary: Example Project for the integration of Maven, Angular, Java EE 6
 
 Target Project: Java EE 6
 
+## Articles
+* [The Recipe for Angular 2 in a Java EE Environment](https://dzone.com/articles/recipe-for-angular-2-in-a-java-ee-environment)
+* [The Recipe for Angular 2 in a Java EE Environment: Rest Service](https://dzone.com/articles/the-recipe-for-angular-2-in-a-java-ee-environment)
+* [The Recipe for Angular 2 in a Java EE Environment: Frontend 1](https://dzone.com/articles/the-recipe-for-angular-2-in-a-java-ee-environment-1)
+* [The Recipe for Angular 2 in a Java EE Environment: Frontend 2](https://dzone.com/articles/the-recipe-for-angular-2-in-a-java-ee-environment-2)
+* [The Recipe for Angular 2 in a Java EE Environment: Maven Build](https://dzone.com/articles/the-recipe-for-angular-2-in-a-java-ee-environment-3)
+* [The Recipe for Angular in a Java EE Environment: Aot Build](https://dzone.com/articles/the-recipe-for-angular-in-a-java-ee-environment-ao)
+* [The Recipe for Angular in a Java EE Environment: Two Improvements](https://dzone.com/articles/the-recipe-for-angular-in-a-java-ee-environment-2)
+* [Angular Interceptor for a BaseHref Path in Services](https://angular2guy.wordpress.com/2021/07/31/angular-interceptor-for-a-basehref-path-in-services/)
+
 What is it?
 -----------
 
