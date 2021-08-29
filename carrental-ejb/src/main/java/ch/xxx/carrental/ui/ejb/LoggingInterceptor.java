@@ -23,7 +23,8 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import ch.xxx.carrental.ui.dto.BusinessException;
 import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
@@ -32,7 +33,7 @@ import ch.xxx.carrental.ui.exception.LocalValidationException;
 @AutoLogging
 @Interceptor
 public class LoggingInterceptor {
-	private static final Logger LOG = Logger.getLogger(LoggingInterceptor.class);
+	private static final Logger LOG = LogManager.getLogger(LoggingInterceptor.class);
 
 	@AroundInvoke
 	public Object interceptLogging(InvocationContext ctx) throws Exception {

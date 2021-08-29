@@ -18,7 +18,9 @@ package ch.xxx.carrental.ui.ejb;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import ch.xxx.carrental.ui.dto.CrLogMsg;
 import ch.xxx.carrental.ui.service.CrLoggingService;
@@ -26,7 +28,7 @@ import ch.xxx.carrental.ui.service.CrLoggingService;
 @Local(CrLoggingService.class)
 @Stateless
 public class CrLoggingServiceSLB implements CrLoggingService {
-	private static final Logger LOG = Logger.getLogger(CrLoggingServiceSLB.class);
+	private static final Logger LOG = LogManager.getLogger(CrLoggingServiceSLB.class);
 	
 	@Override
 	public boolean logMsg(CrLogMsg crLogMsg) {

@@ -18,10 +18,11 @@ package ch.xxx.carrental.ui.ejb;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Utils {
-	private static final Logger LOG = Logger.getLogger(Utils.class);
+	private static final Logger LOG = LogManager.getLogger(Utils.class);
 	
 	public static boolean checkForWildflyorWS() {
 		String namingFactoryKey = null;
