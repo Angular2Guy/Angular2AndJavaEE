@@ -62,7 +62,7 @@
 						in easy way to package any libraries needed in the ear, and automatically 
 						have any modules (EJB-JARs and WARs) use them -->
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
-					<fileNameMapping>no-version</fileNameMapping>
+					<outputFileNameMapping>no-version</outputFileNameMapping>
 				</configuration>
 			</plugin>
 			<!-- The WildFly plugin deploys your ear to a local WildFly container -->
