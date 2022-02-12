@@ -3,6 +3,7 @@ Carrental: Example Using Angular with Angular Cli and Java EE 6 Deployed as an E
 Author: Sven Loesekann
 
 ![Build Status](https://travis-ci.org/Angular2Guy/Angular2AndJavaEE.svg?branch=master)
+[![CodeQL](https://github.com/Angular2Guy/Angular2AndJavaEE/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Angular2Guy/Angular2AndJavaEE/actions/workflows/codeql-analysis.yml)
 
 
 Technologies: EAR, Rest, Angular, Angular Cli
