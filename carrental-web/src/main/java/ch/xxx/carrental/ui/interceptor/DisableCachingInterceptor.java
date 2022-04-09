@@ -15,13 +15,13 @@
  */
 package ch.xxx.carrental.ui.interceptor;
 
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptor;
-import javax.interceptor.InvocationContext;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Response;
 
-import org.apache.log4j.Logger;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptor;
+import jakarta.interceptor.InvocationContext;
+
 
 @DisableCaching 
 @Interceptor

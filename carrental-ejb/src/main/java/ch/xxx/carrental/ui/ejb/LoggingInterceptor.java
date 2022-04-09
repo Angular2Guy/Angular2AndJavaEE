@@ -20,15 +20,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.inject.Inject;
-import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptor;
-import javax.interceptor.InvocationContext;
 
-import org.apache.log4j.Logger;
+import org.jboss.logging.Logger;
 
 import ch.xxx.carrental.ui.dto.BusinessException;
 import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
 import ch.xxx.carrental.ui.exception.LocalValidationException;
+import jakarta.interceptor.AroundInvoke;
+import jakarta.interceptor.Interceptor;
+import jakarta.interceptor.InvocationContext;
 
 @AutoLogging
 @Interceptor

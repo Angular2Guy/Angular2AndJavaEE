@@ -19,7 +19,7 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Singleton;
 
-import org.apache.log4j.Logger;
+import org.jboss.logging.Logger;
 
 @Singleton
 public class LogInjector {

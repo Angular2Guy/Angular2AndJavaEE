@@ -20,7 +20,8 @@ import javax.inject.Named;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.apache.log4j.Logger;
+import org.jboss.logging.Logger;
+
 
 @Named
 public class Utils {

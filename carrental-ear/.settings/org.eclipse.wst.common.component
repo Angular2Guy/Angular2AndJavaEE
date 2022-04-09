@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    	
     <wb-module deploy-name="carrental-ear">
+        		
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        		
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
         <dependent-module archiveName="carrental-web.war" deploy-path="/" handle="module:/resource/carrental-web/carrental-web">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="carrental-ejb.jar" deploy-path="/" handle="module:/resource/carrental-ejb/carrental-ejb">
-            <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="jakarta.interceptor-api.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/jakarta/interceptor/jakarta.interceptor-api/2.0.1/jakarta.interceptor-api-2.0.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jakarta.annotation-api.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/jakarta/annotation/jakarta.annotation-api/2.0.0/jakarta.annotation-api-2.0.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jboss-annotations-api_1.3_spec.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/org/jboss/spec/javax/annotation/jboss-annotations-api_1.3_spec/2.0.1.Final/jboss-annotations-api_1.3_spec-2.0.1.Final.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        	
     </wb-module>
+    
 </project-modules>

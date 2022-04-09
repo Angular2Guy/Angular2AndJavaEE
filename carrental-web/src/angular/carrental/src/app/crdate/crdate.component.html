@@ -1,5 +1,6 @@
 <div class='input-group date' id='datetimepicker1'>
-	<input type="date" class="form-control" [value]="newDate | date:'yyyy-MM-dd'" 
-		(input)="convertToDate($event)" *ngIf="!mytype"/>	                  
-	<input type="text" class="form-control" [value]="newString" (input)="setStr($event)" *ngIf="mytype"/>
+	<input type="date" class="form-control"
+		[value]="newDate | date:'yyyy-MM-dd'" (input)="convertToDate($event)"
+		*ngIf="!mytype" /> <input type="text" class="form-control"
+		[value]="newString" (input)="setStr($event)" *ngIf="mytype" />
 </div>

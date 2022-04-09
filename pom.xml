@@ -9,133 +9,223 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<name>carrental</name>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>ch.xxx</groupId>
-	<artifactId>carrental</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <name>carrental</name>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.wildfly.quickstarts</groupId>
+        <artifactId>wildfly-quickstart-parent</artifactId>
+        <!-- Maintain separation between the artifact id and the version to help 
+			prevent merge conflicts between commits changing the GA and those changing 
+			the V. -->
+        <version>2</version>
+        <relativePath />
+    </parent>
+    <groupId>ch.xxx</groupId>
+    <artifactId>carrental</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-	<url>http://wildfly.org</url>
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<distribution>repo</distribution>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-		</license>
-	</licenses>
-	<modules>
-		<module>carrental-ejb</module>
-		<module>carrental-web</module>
-		<module>carrental-ear</module>
-	</modules>
+    <url>http://wildfly.org</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <distribution>repo</distribution>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
+    <modules>
+        <module>carrental-ejb</module>
+        <module>carrental-web</module>
+        <module>carrental-ear</module>
+    </modules>
 
-	<properties>
-		<!-- Explicitly declaring the source encoding eliminates the following 
+    <properties>
+        <!-- Explicitly declaring the source encoding eliminates the following 
 			message: -->
-		<!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
+        <!-- [WARNING] Using platform encoding (UTF-8 actually) to copy filtered 
 			resources, i.e. build is platform dependent! -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<!-- JBoss dependency versions -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
-		<version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
-
-		<!-- Define the version of the JBoss BOMs we want to import to specify 
+        <!-- Define the version of the JBoss BOMs we want to import to specify 
 			tested stacks. -->
-		<version.jboss.bom>8.2.1.Final</version.jboss.bom>
-		<version.wildfly>9.0.0.Alpha1</version.wildfly>
+        <version.server.bom>23.0.0.Final</version.server.bom>
 
+        <!-- <npm.test.script>test-chromium</npm.test.script> -->
+        <npm.test.script>test</npm.test.script>
+    </properties>
 
-		<!-- other plugin versions -->
-		<version.compiler.plugin>3.8.1</version.compiler.plugin>
-		<version.ear.plugin>3.2.0</version.ear.plugin>
-		<version.ejb.plugin>3.1.0</version.ejb.plugin>
-		<version.surefire.plugin>2.16</version.surefire.plugin>
-		<version.war.plugin>3.3.2</version.war.plugin>
+    <repositories>
+        <repository>
+            <id>jboss-public-maven-repository</id>
+            <name>JBoss Public Maven Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>redhat-ga-maven-repository</id>
+            <name>Red Hat GA Maven Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jboss-public-maven-repository</id>
+            <name>JBoss Public Maven Repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>redhat-ga-maven-repository</id>
+            <name>Red Hat GA Maven Repository</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
-		<!-- maven-compiler-plugin -->
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<!-- <npm.test.script>test-chromium</npm.test.script> -->
-		<npm.test.script>test</npm.test.script>
-	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-
-			<!-- Define the version of the EJB jar so that we don't need to repeat 
+    <dependencyManagement>
+        <dependencies>
+            <!-- importing the jakartaee8-with-tools BOM adds specs and other useful 
+				artifacts as managed dependencies -->
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-jakartaee8-with-tools</artifactId>
+                <version>${version.server.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Define the version of the EJB jar so that we don't need to repeat 
 				ourselves in every module -->
-			<dependency>
-				<groupId>ch.xxx</groupId>
-				<artifactId>carrental-ejb</artifactId>
-				<version>${project.version}</version>
-				<type>ejb</type>
-			</dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>carrental-ejb</artifactId>
+                <version>${project.version}</version>
+                <type>ejb</type>
+            </dependency>
 
-			<!-- Define the version of the WAR so that we don't need to repeat ourselves 
+            <!-- Define the version of the WAR so that we don't need to repeat ourselves 
 				in every module -->
-			<dependency>
-				<groupId>ch.xxx</groupId>
-				<artifactId>carrental-web</artifactId>
-				<version>${project.version}</version>
-				<type>war</type>
-				<scope>compile</scope>
-			</dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>carrental-web</artifactId>
+                <version>${project.version}</version>
+                <type>war</type>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-			<!-- JBoss distributes a complete set of Java EE 7 APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-javaee-7.0-with-tools stack (you can 
-				read this as the JBoss stack of the Java EE 7 APIs, with some extras tools 
-				for your project, such as Arquillian for testing) and the jboss-javaee-7.0-with-hibernate 
-				stack you can read this as the JBoss stack of the Java EE 7 APIs, with extras 
-				from the Hibernate family of projects) -->
-			<dependency>
-				<groupId>org.wildfly.bom</groupId>
-				<artifactId>jboss-javaee-7.0-with-tools</artifactId>
-				<version>${version.jboss.bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.wildfly.bom</groupId>
-				<artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
-				<version>${version.jboss.bom}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-		</dependencies>
-	</dependencyManagement>
-
-	<build>
-		<pluginManagement>
-			<plugins>
-				<!-- The WildFly plugin deploys your ear to a local JBoss AS container -->
-				<!-- Due to Maven's lack of intelligence with EARs we need to configure 
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- The WildFly plugin deploys your ear to a local JBoss AS container -->
+                <!-- Due to Maven's lack of intelligence with EARs we need to configure 
 					the wildfly maven plugin to skip deployment for all modules. We then enable 
 					it specifically in the ear module. -->
-				<plugin>
-					<groupId>org.wildfly.plugins</groupId>
-					<artifactId>wildfly-maven-plugin</artifactId>
-					<version>${version.wildfly.maven.plugin}</version>
-					<inherited>true</inherited>
-					<configuration>
-						<skip>true</skip>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>io.fabric8</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<version>0.26.0</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${version.wildfly.maven.plugin}</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <!-- An optional Arquillian testing profile that executes tests in your 
+				JBoss EAP instance. This profile will start a new JBoss EAP instance, and 
+				execute the test, shutting it down when done. Run with: mvn clean verify 
+				-Parq-managed -->
+            <id>arq-managed</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${version.failsafe.plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- An optional Arquillian testing profile that executes tests in a remote 
+				JBoss EAP instance. Run with: mvn clean verify -Parq-remote -->
+            <id>arq-remote</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly.arquillian</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${version.failsafe.plugin}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

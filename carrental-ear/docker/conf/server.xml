@@ -27,24 +27,27 @@
 
 	<!-- To allow access to this server from a remote client host="*" has been 
 		added to the following element -->
-	<httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080"
-		httpsPort="9443" />
+	<httpEndpoint id="defaultHttpEndpoint" host="*"
+		httpPort="9080" httpsPort="9443" />
 
 	<!-- Automatically expand WAR files and EAR files -->
 	<applicationManager autoExpand="true" />
 
 	<dataSource id="mydb" jndiName="datasources/carrentalDS"
 		type="javax.sql.ConnectionPoolDataSource">
-		<jdbcDriver javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
+		<jdbcDriver
+			javax.sql.ConnectionPoolDataSource="org.h2.jdbcx.JdbcDataSource"
 			javax.sql.DataSource="org.h2.jdbcx.JdbcDataSource"
-			javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource" libraryRef="SharedLibrary_H2" />
+			javax.sql.XADataSource="org.h2.jdbcx.JdbcDataSource"
+			libraryRef="SharedLibrary_H2" />
 		<properties
 			URL="jdbc:h2:mem:test;INIT=runscript from '/config/import.sql';DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
-			 user="sa" password="sa" />
+			user="sa" password="sa" />
 	</dataSource>
 
 	<library id="SharedLibrary_H2">
-		<fileset dir="/opt/ibm/wlp/usr/shared/resources" includes="h2-1.4.193.jar" id="Fileset_H2" />
+		<fileset dir="/opt/ibm/wlp/usr/shared/resources"
+			includes="h2-1.4.193.jar" id="Fileset_H2" />
 	</library>
 
 </server>

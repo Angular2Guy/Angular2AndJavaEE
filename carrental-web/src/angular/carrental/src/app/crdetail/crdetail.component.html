@@ -1,101 +1,39 @@
 <p i18n>crdetail works!</p>
 <div class="wrapper">
-<div *ngIf="!crEditmode" class="flex-container-column">
-	<div *ngFor="let period of crPeriods" class="flex-column">
-		<div class="flex-container-row">
-			<div class="flex-row1">
-				<div class="row-content">					
+	<div *ngIf="!crEditmode" class="flex-container-column">
+		<div *ngFor="let period of crPeriods" class="flex-column">
+			<div class="flex-container-row">
+				<div class="flex-row1">
+					<div class="row-content">
 						<div class="column-text">
-							<ng-container i18n>Mietperiode</ng-container><br />
-							{{period.from | date:'dd.MM.yyyy'}} <ng-container i18n>bis</ng-container>
+							<ng-container i18n>Mietperiode</ng-container>
+							<br /> {{period.from | date:'dd.MM.yyyy'}}
+							<ng-container i18n>bis</ng-container>
 							{{period.to | date:'dd.MM.yyyy'}}
-						</div>					
-            	</div>
-				<div class="bottom-buttons">
-					<button type="button" class="btn btn-primary" (click)="toggleEditmode()">
-		                Edit
-                   	</button>
-        	    </div>			
-			</div>
-			<div class="flex-row2">	
-				<div class="flex-container-column">
-					<div *ngFor="let pf of period.crPortfolios" class="flex-column">
-						<div class="flex-container-row">
-							<div class="flex-row1">
-								<div class="row-content">
-									<div class="column-text">
-										<ng-container i18n>Mieter</ng-container><br />
-										{{pf.bezeichnung}}
-									</div>
-								</div>
-								<div class="bottom-buttons">
-								 
-								</div>
-							</div>
-							<div class="flex-row2">
-								<ng-container i18n>Details</ng-container>
-								<app-crvaluesd [crvalues]="pf"></app-crvaluesd>
-							</div>	
-						</div>						
-					</div>								
+						</div>
+					</div>
+					<div class="bottom-buttons">
+						<button type="button" class="btn btn-primary"
+							(click)="toggleEditmode()">Edit</button>
+					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div *ngIf="crEditmode" class="flex-container-column">
-	<div *ngFor="let period of crPeriods" class="flex-column">
-		<div class="flex-container-row">
-			<div class="flex-row1">	
-				<div class="row-content">
-					<div class="column-text">
-						<ng-container i18n>Mietperiode</ng-container> yyyy-MM-dd<br />				
-						
-						<app-crdate [myobject]="period" [myvalue]="'from'"></app-crdate>
-						
-						 <ng-container i18n>bis</ng-container>
-						 <app-crdate [myobject]="period" [myvalue]="'to'"></app-crdate>
-					 </div>
-	            </div>    
-				<div class="bottom-buttons button-center">
-		                <button type="button" class="btn btn-primary" (click)="create()">
-		                	New
-		                </button>
-		                <button type="button" class="btn btn-primary" (click)="update()">
-		                	Update
-		                </button>
-		                <button type="button" class="btn btn-primary" (click)="delete()">
-		                	Delete
-		                </button>
-		                <button type="button"  class="btn btn-primary" (click)="toggleEditmode()">
-		                	Display
-		                </button>
-	            </div>
-	                <!--
-	                <button type="button" class="btn btn-primary" (click)="update()">
-	                      Update
-	                </button>
-	                -->                
-            </div>
-            <div class="flex-row2">	
-				<div class="flex-container-column">
-					<div *ngFor="let pf of period.crPortfolios" class="flex-column">
-						<div class="flex-container-row">
-							<div class="flex-row1">
-								<div class="row-content">
-									<div class="column-text">
-										<ng-container i18n>Mieter</ng-container><br />
-										<app-crdate [myobject]="pf" [myvalue]="'bezeichnung'" mytype="'text'"></app-crdate>										
+				<div class="flex-row2">
+					<div class="flex-container-column">
+						<div *ngFor="let pf of period.crPortfolios" class="flex-column">
+							<div class="flex-container-row">
+								<div class="flex-row1">
+									<div class="row-content">
+										<div class="column-text">
+											<ng-container i18n>Mieter</ng-container>
+											<br /> {{pf.bezeichnung}}
+										</div>
 									</div>
+									<div class="bottom-buttons"></div>
 								</div>
-								<div class="bottom-buttons">
-								 
+								<div class="flex-row2">
+									<ng-container i18n>Details</ng-container>
+									<app-crvaluesd [crvalues]="pf"></app-crvaluesd>
 								</div>
-							</div>
-							<div class="flex-row2">
-								<ng-container i18n>Details</ng-container>
-								<app-crvalues [crvalues]="pf" (valuesValid)="valuesValid($event)"></app-crvalues>
 							</div>
 						</div>
 					</div>
@@ -103,4 +41,62 @@
 			</div>
 		</div>
 	</div>
-</div>
+
+	<div *ngIf="crEditmode" class="flex-container-column">
+		<div *ngFor="let period of crPeriods" class="flex-column">
+			<div class="flex-container-row">
+				<div class="flex-row1">
+					<div class="row-content">
+						<div class="column-text">
+							<ng-container i18n>Mietperiode</ng-container>
+							yyyy-MM-dd<br />
+
+							<app-crdate [myobject]="period" [myvalue]="'from'"></app-crdate>
+
+							<ng-container i18n>bis</ng-container>
+							<app-crdate [myobject]="period" [myvalue]="'to'"></app-crdate>
+						</div>
+					</div>
+					<div class="bottom-buttons button-center">
+						<button type="button" class="btn btn-primary" (click)="create()">
+							New</button>
+						<button type="button" class="btn btn-primary" (click)="update()">
+							Update</button>
+						<button type="button" class="btn btn-primary" (click)="delete()">
+							Delete</button>
+						<button type="button" class="btn btn-primary"
+							(click)="toggleEditmode()">Display</button>
+					</div>
+					<!--
+	                <button type="button" class="btn btn-primary" (click)="update()">
+	                      Update
+	                </button>
+	                -->
+				</div>
+				<div class="flex-row2">
+					<div class="flex-container-column">
+						<div *ngFor="let pf of period.crPortfolios" class="flex-column">
+							<div class="flex-container-row">
+								<div class="flex-row1">
+									<div class="row-content">
+										<div class="column-text">
+											<ng-container i18n>Mieter</ng-container>
+											<br />
+											<app-crdate [myobject]="pf" [myvalue]="'bezeichnung'"
+												mytype="'text'"></app-crdate>
+										</div>
+									</div>
+									<div class="bottom-buttons"></div>
+								</div>
+								<div class="flex-row2">
+									<ng-container i18n>Details</ng-container>
+									<app-crvalues [crvalues]="pf"
+										(valuesValid)="valuesValid($event)"></app-crvalues>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

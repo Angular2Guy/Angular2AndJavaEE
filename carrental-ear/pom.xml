@@ -9,7 +9,8 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -54,71 +55,40 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
-				<version>${version.ear.plugin}</version>
 				<configuration>
-					<!-- Tell Maven we are using Java EE 7 -->
+					<!-- Tell Maven we are using Jakarta EE -->
 					<version>7</version>
-					<!-- Use Java EE ear libraries as needed. Java EE ear libraries are 
-						in easy way to package any libraries needed in the ear, and automatically 
+					<!-- Use Jakarta EE ear libraries as needed. Jakarta EE ear libraries 
+						are in easy way to package any libraries needed in the ear, and automatically 
 						have any modules (EJB-JARs and WARs) use them -->
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
-					<outputFileNameMapping>no-version</outputFileNameMapping>
+					<modules>
+						<!-- Default context root of the web app is /kitchensink-ear-web. If 
+							a custom context root is needed, uncomment the following snippet to register 
+							our War as a web module and set the contextRoot property -->
+						<!-- <webModule> <groupId>${project.groupId}</groupId> <artifactId>kitchensink-ear-web</artifactId> 
+							<contextRoot>/kitchensink-ear</contextRoot> </webModule> -->
+					</modules>
+					<outputFileNameMapping>@{artifactId}@@{dashClassifier?}@.@{extension}@</outputFileNameMapping>
 				</configuration>
 			</plugin>
-			<!-- The WildFly plugin deploys your ear to a local WildFly container -->
-			<!-- Due to Maven's lack of intelligence with EARs we need to configure 
-				the wildfly maven plugin to skip deployment for all modules. We then enable 
-				it specifically in the ear module. -->
+			<!-- The WildFly plug-in deploys your ear to a local JBoss EAP container. 
+				Due to Maven's lack of intelligence with EARs we need to configure the WildFly 
+				Maven plug-in to skip deployment for all modules. We then enable it specifically 
+				in the ear module. -->
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
 				<configuration>
-					<filename>${project.artifactId}.ear</filename>
 					<skip>false</skip>
 				</configuration>
 			</plugin>
+
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.apache.maven.plugins
-										</groupId>
-										<artifactId>
-											maven-ear-plugin
-										</artifactId>
-										<versionRange>
-											[2.10,)
-										</versionRange>
-										<goals>
-											<goal>
-												generate-application-xml
-											</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>				
-			</plugins>
-		</pluginManagement>
 	</build>
 
 	<profiles>
+		<!--
 		<profile>
 			<id>prodDockerWildfly</id>
 			<activation>
@@ -127,39 +97,39 @@
 			<build>
 				<plugins>
 					<plugin>
-					<groupId>io.fabric8</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<configuration>
-						<images>
-							<image>
-								<alias>carrental</alias>
-								<name>carrental:${project.version}</name>
-								<build>									
-									<dockerFile>${project.basedir}/Dockerfile</dockerFile>
-									<ports>
-										<port>8080</port>
-									</ports>
-								</build>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<configuration>
+							<images>
+								<image>
+									<alias>carrental</alias>
+									<name>carrental:${project.version}</name>
+									<build>
+										<dockerFile>${project.basedir}/Dockerfile</dockerFile>
+										<ports>
+											<port>8080</port>
+										</ports>
+									</build>
 
-								<run>
-									<ports>
-										<port>8080:8080</port>
-									</ports>
-									<log>
-										<enabled>true</enabled>
-										<prefix>Wildfly</prefix>
-									</log>
-									<wait>
-										<http>
-											<url>http://localhost:8080/carrental-web/</url>
-										</http>
-										<time>30000</time>
-									</wait>
-								</run>
-							</image>
-						</images>
-					</configuration>
-				</plugin>	
+									<run>
+										<ports>
+											<port>8080:8080</port>
+										</ports>
+										<log>
+											<enabled>true</enabled>
+											<prefix>Wildfly</prefix>
+										</log>
+										<wait>
+											<http>
+												<url>http://localhost:8080/carrental-web/</url>
+											</http>
+											<time>30000</time>
+										</wait>
+									</run>
+								</image>
+							</images>
+						</configuration>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -175,64 +145,43 @@
 			<build>
 				<plugins>
 					<plugin>
-					<groupId>io.fabric8</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<configuration>
-						<images>
-							<image>
-								<alias>carrentalws</alias>
-								<name>carrentalws:${project.version}</name>
-								<build>																										
-									<dockerFile>${project.basedir}/Dockerfile-ws</dockerFile>									
-									<ports>
-										<port>9080</port>
-									</ports>
-								</build>
-
-								<run>
-									<ports>
-										<port>9080:9080</port>
-									</ports>
-									<log>
-										<enabled>true</enabled>
-										<prefix>WS</prefix>
-									</log>
-									<wait>
-										<http>
-											<url>http://localhost:9080/carrental-web/</url>
-										</http>
-										<time>60000</time>
-									</wait>
-								</run>
-							</image>
-						</images>
-					</configuration>
-				</plugin>	
-				</plugins>
-			</build>
-		</profile>
-		
-		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when 
-				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app 
-				will need. -->
-			<!-- By default that is to put the resulting archive into the 'deployments' 
-				folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-			<id>openshift</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-ear-plugin</artifactId>
-						<version>${version.ear.plugin}</version>
+						<groupId>io.fabric8</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
 						<configuration>
-							<outputDirectory>deployments</outputDirectory>
+							<images>
+								<image>
+									<alias>carrentalws</alias>
+									<name>carrentalws:${project.version}</name>
+									<build>
+										<dockerFile>${project.basedir}/Dockerfile-ws</dockerFile>
+										<ports>
+											<port>9080</port>
+										</ports>
+									</build>
+
+									<run>
+										<ports>
+											<port>9080:9080</port>
+										</ports>
+										<log>
+											<enabled>true</enabled>
+											<prefix>WS</prefix>
+										</log>
+										<wait>
+											<http>
+												<url>http://localhost:9080/carrental-web/</url>
+											</http>
+											<time>60000</time>
+										</wait>
+									</run>
+								</image>
+							</images>
 						</configuration>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
+-->
 	</profiles>
 
 </project>

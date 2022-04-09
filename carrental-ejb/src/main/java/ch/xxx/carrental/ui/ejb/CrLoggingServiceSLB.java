@@ -19,7 +19,7 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
+import org.jboss.logging.Logger;
 
 import ch.xxx.carrental.ui.dto.CrLogMsg;
 import ch.xxx.carrental.ui.service.CrLoggingService;

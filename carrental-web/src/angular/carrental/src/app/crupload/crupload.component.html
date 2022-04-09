@@ -1,10 +1,15 @@
-<div id="crModal" class="modal" >
+<div id="crModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close" (click)="close()">&times;</span>
-    <div>Input File: <input class="myInline" type="file" (change)="filechange($event)"></div>
-    <div><textarea  rows="20" [value]="filetext"></textarea></div>
-  </div>
+	<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close" (click)="close()">&times;</span>
+		<div>
+			Input File: <input class="myInline" type="file"
+				(change)="filechange($event)">
+		</div>
+		<div>
+			<textarea rows="20" [value]="filetext"></textarea>
+		</div>
+	</div>
 
 </div>

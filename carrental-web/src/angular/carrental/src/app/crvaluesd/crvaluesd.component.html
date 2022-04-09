@@ -1,31 +1,41 @@
-	<table class="table borderless">
-		<tr>
-			<th></th>
-			
-			<th i18n>Anzahl Fahrzeuge</th>
-			<th i18n>Miete geplant</th>
-			<th i18n>Miete abgerechnet</th>
-			
-		</tr>
-		<tr>
-			<td i18n>Pkw</td>
-			
-			<td><div class="divboxmodel">{{crvalues.anzahlPkw | numberSeparator: 3 }}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw | numberSeparator: 3 }}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetPkw | numberSeparator: 3 }}</div></td>
-		</tr>
-		<tr>
-			<td i18n>Lkw</td>
-			
-			<td><div class="divboxmodel">{{crvalues.anzahlLkw | numberSeparator: 3}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw | numberSeparator: 3 }}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetLkw | numberSeparator: 3 }}</div></td>
-		</tr>
-		<tr>
-			<td i18n>Total</td>
-			
-			<td><div class="divboxmodel">{{crvalues.anzahlTotal | numberSeparator: 3}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal | numberSeparator: 3 }}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal | numberSeparator: 3 }}</div></td>
-		</tr>
-	</table>
+
+<table class="table borderless">
+	<tr>
+		<th></th>
+
+		<th i18n>Anzahl Fahrzeuge</th>
+		<th i18n>Miete geplant</th>
+		<th i18n>Miete abgerechnet</th>
+
+	</tr>
+	<tr>
+		<td i18n>Pkw</td>
+
+		<td><div class="divboxmodel">{{crvalues.anzahlPkw |
+				numberSeparator: 3 }}</div></td>
+		<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw |
+				numberSeparator: 3 }}</div></td>
+		<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetPkw
+				| numberSeparator: 3 }}</div></td>
+	</tr>
+	<tr>
+		<td i18n>Lkw</td>
+
+		<td><div class="divboxmodel">{{crvalues.anzahlLkw |
+				numberSeparator: 3}}</div></td>
+		<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw |
+				numberSeparator: 3 }}</div></td>
+		<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetLkw
+				| numberSeparator: 3 }}</div></td>
+	</tr>
+	<tr>
+		<td i18n>Total</td>
+
+		<td><div class="divboxmodel">{{crvalues.anzahlTotal |
+				numberSeparator: 3}}</div></td>
+		<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal |
+				numberSeparator: 3 }}</div></td>
+		<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal
+				| numberSeparator: 3 }}</div></td>
+	</tr>
+</table>
