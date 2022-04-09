@@ -1,21 +1,11 @@
 package ch.xxx.carrrental.ui.rest.model;
 
-import java.util.Locale;
 
-import javax.ws.rs.core.Response;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
-import ch.xxx.carrental.ui.dto.CrDetail;
-import ch.xxx.carrental.ui.rest.model.CrDetailResource;
-import ch.xxx.carrental.ui.service.CrDetailService;
 
 
 public class CrDetailResourceTest {
-	CrDetailService service;
+/*
+    CrDetailService service;
 	
 	@Before
 	public void init() {
@@ -50,7 +40,8 @@ public class CrDetailResourceTest {
 	@Test
 	public void updateTest() {
 		CrDetailResource testee = new CrDetailResource(this.service);
-		Response resp = testee.updateDetails(new CrDetail());
+		Response resp = testee.updateDetails(new CrDetail());		
 		Assert.assertEquals(200, resp.getStatus());
 	}
+	*/
 }

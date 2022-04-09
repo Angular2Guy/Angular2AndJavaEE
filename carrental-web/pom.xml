@@ -235,7 +235,7 @@
                         <goals>
                             <goal>exec</goal>
                         </goals>
-                        <phase>test</phase>
+                        <phase>generate-test-sources</phase>
                         <configuration>
                             <executable>npm</executable>
                             <arguments>
