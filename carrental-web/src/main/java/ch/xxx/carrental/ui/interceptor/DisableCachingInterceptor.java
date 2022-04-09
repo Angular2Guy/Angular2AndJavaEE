@@ -18,6 +18,7 @@ package ch.xxx.carrental.ui.interceptor;
 import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.Response;
 
+import jakarta.annotation.Priority;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
@@ -25,6 +26,7 @@ import jakarta.interceptor.InvocationContext;
 
 @DisableCaching 
 @Interceptor
+@Priority(Interceptor.Priority.APPLICATION)
 public class DisableCachingInterceptor {
 	
 	@AroundInvoke

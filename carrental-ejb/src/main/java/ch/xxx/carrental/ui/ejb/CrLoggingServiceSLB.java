@@ -15,31 +15,33 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import org.jboss.logging.Logger;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ch.xxx.carrental.ui.dto.CrLogMsg;
 import ch.xxx.carrental.ui.service.CrLoggingService;
 
 @Local(CrLoggingService.class)
 @Stateless
-public class CrLoggingServiceSLB implements CrLoggingService {
-	@Inject
+public class CrLoggingServiceSLB implements CrLoggingService {	
+    @Inject
 	private Logger LOG;
 	
 	@Override
 	public boolean logMsg(CrLogMsg crLogMsg) {
 		if(CrLogMsg.LogLevel.ERROR.getLevel().equals(crLogMsg.getLogLevel())) {
-			LOG.error(crLogMsg.getLogMsg());
+			LOG.log(Level.SEVERE, crLogMsg.getLogMsg());
 		} else if(CrLogMsg.LogLevel.WARN.getLevel().equals(crLogMsg.getLogLevel())) {
-			LOG.warn(crLogMsg.getLogMsg());
+			LOG.log(Level.WARNING, crLogMsg.getLogMsg());
 		} else if(CrLogMsg.LogLevel.INFO.getLevel().equals(crLogMsg.getLogLevel())) {
 			LOG.info(crLogMsg.getLogMsg());
 		} else {
-			LOG.error("Log Level not found.");
+			LOG.log(Level.SEVERE, "Log Level not found.");
 			return false;
 		}
 		return true;

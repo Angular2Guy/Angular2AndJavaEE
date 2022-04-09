@@ -15,16 +15,15 @@
  */
 package ch.xxx.carrental.ui.config;
 
+import java.util.logging.Logger;
+
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
-import javax.inject.Singleton;
 
-import org.jboss.logging.Logger;
 
-@Singleton
 public class LogInjector {
-    @Produces
+   @Produces
     public Logger injectLogger(InjectionPoint injectionPoint) {
-        return Logger.getLogger(injectionPoint.getBean().getBeanClass());
+        return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
     }
 }

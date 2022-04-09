@@ -46,7 +46,7 @@ public class CrDetailServiceSLB implements CrDetailService {
 	@EJB
 	private CrLoggingService logService;
 	@Inject
-	private Utils myUtils;
+	private JakartaUtils myUtils;
 	@EJB
 	private CrServerSIB server;
 	@PersistenceContext

@@ -21,6 +21,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import jakarta.annotation.Priority;
+import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InterceptorBinding;
 
 
@@ -28,6 +30,7 @@ import jakarta.interceptor.InterceptorBinding;
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE,ElementType.METHOD})
+@Priority(Interceptor.Priority.APPLICATION)
 public @interface AutoLogging {
 
 }

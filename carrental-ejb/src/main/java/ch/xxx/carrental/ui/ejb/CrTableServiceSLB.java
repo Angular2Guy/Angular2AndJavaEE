@@ -42,7 +42,7 @@ public class CrTableServiceSLB implements CrTableService {
 	private EntityManager em;
 	private Converter conv = new Converter();
 	@Inject
-	private Utils myUtils;
+	private JakartaUtils myUtils;
 
 	@AutoLogging
 	@Override

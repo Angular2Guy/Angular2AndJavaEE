@@ -15,16 +15,20 @@
  */
 package ch.xxx.carrental.ui.ejb;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.jboss.logging.Logger;
 
 
+@Default
 @Named
-public class Utils {
+public class JakartaUtils {
 	@Inject
 	private Logger LOG;
 	
@@ -38,7 +42,7 @@ public class Utils {
 				namingFactoryKey = o != null ? o.getClass().getName() : "Not JBoss or Websphere";
 			}
 		} catch (NamingException e) {			
-			LOG.warn("No NamingFactory found -> using singleton bean data service.");
+			LOG.log(Level.WARNING, "No NamingFactory found -> using singleton bean data service.");
 			return false;
 		}
 		boolean result = EjbNaming.JBOSS.getValue().contains(namingFactoryKey) || EjbNaming.WEBSPHERE.getValue().equals(namingFactoryKey);

@@ -18,20 +18,22 @@ package ch.xxx.carrental.ui.ejb;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
-
-import org.jboss.logging.Logger;
 
 import ch.xxx.carrental.ui.dto.BusinessException;
 import ch.xxx.carrental.ui.exception.LocalEntityNotFoundException;
 import ch.xxx.carrental.ui.exception.LocalValidationException;
+import jakarta.annotation.Priority;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
 @AutoLogging
 @Interceptor
+@Priority(Interceptor.Priority.APPLICATION)
 public class LoggingInterceptor {
 	@Inject
 	private Logger LOG;
@@ -55,10 +57,10 @@ public class LoggingInterceptor {
 					((InvocationTargetException) e).getTargetException() instanceof LocalValidationException 
 					|| ((InvocationTargetException) e).getTargetException() instanceof LocalEntityNotFoundException)) {
 				RuntimeException re = (RuntimeException) ((InvocationTargetException) e).getTargetException();
-				LOG.warn(signature, re);
+				LOG.log(Level.WARNING, signature, re);
 				throw re;
 			}
-			LOG.error(signature, e);
+			LOG.log(Level.SEVERE, signature, e);
 			throw new BusinessException(signature, e);
 		} finally {
 			Date now2 = new Date(System.currentTimeMillis());
