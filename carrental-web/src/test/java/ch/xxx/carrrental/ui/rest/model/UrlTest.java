@@ -15,11 +15,8 @@
  */
 package ch.xxx.carrrental.ui.rest.model;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 public class UrlTest {
-
+/*
     private String regexStr = "^\\/de\\/[a-zA-Z_0-9\\/]+$";
 	
 	@Test
@@ -45,5 +42,5 @@ public class UrlTest {
 		String testStr = "/de/";
 		Assert.assertFalse(testStr.matches(regexStr));
 	}
-
+*/
 }
