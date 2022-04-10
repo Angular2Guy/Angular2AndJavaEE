@@ -1,4 +1,4 @@
-Carrental: Example Using Angular with Angular Cli and Java EE 6 Deployed as an EAR
+Carrental: Example Using Angular with Angular Cli and Java/Jakarta EE 8 Deployed as an EAR
 ==============================================================================================
 Author: Sven Loesekann
 
@@ -8,9 +8,9 @@ Author: Sven Loesekann
 
 Technologies: EAR, Rest, Angular, Angular Cli
 
-Summary: Example Project for the integration of Maven, Angular, Java EE 6
+Summary: Example Project for the integration of Maven, Angular, Java/Jakarta EE 8
 
-Target Project: Java EE 6
+Target Project: Java/Jakarta EE 8
 
 ## Articles
 * [The Recipe for Angular 2 in a Java EE Environment](https://dzone.com/articles/recipe-for-angular-2-in-a-java-ee-environment)
@@ -22,49 +22,53 @@ Target Project: Java EE 6
 * [The Recipe for Angular in a Java EE Environment: Two Improvements](https://dzone.com/articles/the-recipe-for-angular-in-a-java-ee-environment-2)
 * [Angular Interceptor for a BaseHref Path in Services](https://angular2guy.wordpress.com/2021/07/31/angular-interceptor-for-a-basehref-path-in-services/)
 
+Update
+-----------
+The project has been updated to **Jakarta EE 8** and **Java 11** on **Wildfly 23**. 
+
 What is it?
 -----------
 
-The project shows the integration of Angular with Angular Cli as UI. The Rest services are provided by JavaEE 6, in this example is with WildFly. The build is done in Maven. 
+The project shows the integration of Angular with Angular Cli as UI. The Rest services are provided by Jakarta EE 8, in this example is with WildFly. The build is done in Maven. 
 
-The development setup is Eclipse with Typescript Plugin or Webstorm. JBoss is integrated with the JBoss Plugin to provide re-deployments. Angular Cli provides the UI, redeploys the UI on change and optimizes production build.
+Wildfly is integrated with the JBoss Plugin to provide re-deployments. Angular Cli provides the UI, redeploys the UI on change and optimizes production build.
 
 The Ear that is build can be tested in a Docker Image that Maven builds.
 
 Development Requirements
 -------------------
 
-Java 8 JDK or newer. 
+Java 11 JDK or newer. 
 
-Eclipse Oxygen JEE or newer.
+Eclipse JEE.
 
-WildFly 10 or newer. (Any JavaEE 6 Appserver will do)
+WildFly 23 or newer. (Any JavaEE 8 Appserver should do)
 
-JBoss Plugin JBoss AS, WildFly & EAP Server Tools	4.5.0 or newer.
+JBoss Plugin JBoss AS, WildFly & EAP Server Tools.
 
 Install Eclipse Plugin Eclipse Wild Web Developer of the Eclipse Marketplace.
 
-Maven 3.3.3 or newer. 
+Maven 3.5.4 or newer. 
 
-Nodejs 12.16.x or newer 
+Nodejs 14.x.x or newer 
 
-Npm 6.13.4 or newer
+Npm 6.x.x or newer
 
-Angular Cli 9 or newer. 
+Angular Cli 13 or newer. 
 
 Build Server Requirements
 -------------------------
-Java 8 JDK or newer. 
+Java 11 JDK or newer. 
 
-Maven 3.3.3 or newer. 
+Maven 3.5.4 or newer. 
 
-Nodejs 12.16.x 
+Nodejs 14.x.x 
 
-Npm 12.16.x 
+Npm 6.x.x 
 
 Setup
 -----
-JDK 8, Wildfly 10(or an other Java EE6 server), Nodejs, Eclipse, Maven must be installed.
+JDK 11, Wildfly 23(or an other Jakarta EE8 server), Nodejs, Eclipse, Maven must be installed.
 
 Install Angular Cli "npm install -g angular-cli@latest".
 
@@ -73,8 +77,6 @@ Install Eclipse JBoss Plugin "http://download.jboss.org/jbosstools/oxygen/stable
 Add the server runtime environment for Wildfly and connect it to the WildFly installation.
 
 Install Eclipse Plugin Eclipse Wild Web Developer of the Eclipse Marketplace.
-
-Optionally install Webstorm for the UI.
 
 Development Setup
 -----------------
@@ -107,4 +109,8 @@ With such a setup Angular can be used on Java EE environment.
 
 Testing the Ear
 ---------------
-To provide a method to test the Ear of the Build a Docker Image can be build. The image uses Wildfly and deploys the Ear in the server. The server can then be started and the optimized build can be tested. That enables testing the Ear without changing the setup of the development environment. Docker Images of other Application Servers are availiable and provide the opportunity to test the Ear on different platforms. Images for Wildfly and Websphere Liberty can be build.
+To provide a method to test the Ear of the Build a Docker Image can be build. The image uses Wildfly and deploys the Ear in the server. The server can then be started and the optimized build can be tested. That enables testing the Ear without changing the setup of the development environment. Docker Images of other Application Servers are available at [Docker Hub](https://hub.docker.com/u/angular2guy/) and provide the opportunity to test the Ear on different platforms. 
+
+Build the Docker Image
+----------------
+For building the Docker Image the Docker needs to be installed and started. To build the Docker image the lines in buildDocker.sh can be used. First the ear needs to be build with 'mvnw'. Then the Docker image with the ear is created. Then the Docker image can be run locally.
