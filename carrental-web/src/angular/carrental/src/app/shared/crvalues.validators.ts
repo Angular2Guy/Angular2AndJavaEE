@@ -13,10 +13,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 export class CrValuesValidators {
-    static positiveIntValidator(control: FormControl) {
+    static positiveIntValidator(control: UntypedFormControl) {
         const valueStr = control.value ? control.value.toString(10).split('').filter(c => c != '\'').join('') : '';
         const myValue = parseInt(valueStr, 20);
         const ret = isNaN(myValue);

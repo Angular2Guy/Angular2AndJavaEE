@@ -18,14 +18,14 @@
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { CrValuesComponent } from './crvalues.component';
 import { CrPortfolio } from '../dtos/crTypes';
 
 describe('Component: CrValues', () => {
 
   it('validate should return false', () => {
-    const component = new CrValuesComponent(new FormBuilder());
+    const component = new CrValuesComponent(new UntypedFormBuilder());
     const param = new CrPortfolioImplTest(null, null, null, null);
     component.crvalues = param;
     component.ngOnInit();
@@ -33,7 +33,7 @@ describe('Component: CrValues', () => {
   });
 
   it('validate should return true', () => {
-    const component = new CrValuesComponent(new FormBuilder());
+    const component = new CrValuesComponent(new UntypedFormBuilder());
     const param = new CrPortfolioImplTest(1, 1, 1, 1);
     component.crvalues = param;
     component.ngOnInit();
@@ -41,7 +41,7 @@ describe('Component: CrValues', () => {
   });
 
   it('validate should return false', () => {
-    const component = new CrValuesComponent(new FormBuilder());
+    const component = new CrValuesComponent(new UntypedFormBuilder());
     const param = new CrPortfolioImplTest(-1, -1, -1, -1);
     component.crvalues = param;
     component.ngOnInit();

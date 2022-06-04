@@ -14,7 +14,7 @@
    limitations under the License.
  */
 import { Component, OnInit, Input , OnDestroy, EventEmitter, Output} from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { CrPortfolio } from '../dtos/crTypes';
 import { CrValuesValidators } from '../shared/crvalues.validators';
 import { Subscription }   from 'rxjs';
@@ -26,13 +26,13 @@ import { Utils } from '../shared/utils';
     styleUrls: ['./crvalues.component.scss']
 })
 export class CrValuesComponent implements OnInit, OnDestroy {
-    form: FormGroup;
+    form: UntypedFormGroup;
     fcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
     @Input() crvalues: CrPortfolio;
     updateTotalsSub: any[] = [];
     @Output() valuesValid = new EventEmitter<boolean>();
 
-    constructor(fb: FormBuilder) {
+    constructor(fb: UntypedFormBuilder) {
         this.form = fb.group({
             anzahlPkw: ['', CrValuesValidators.positiveIntValidator],
             mieteAbgerechnetPkw: ['', CrValuesValidators.positiveIntValidator],
@@ -42,13 +42,13 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        let fc = <FormControl>this.form.controls[this.fcNames[0]];
+        let fc = <UntypedFormControl>this.form.controls[this.fcNames[0]];
         fc.setValue(this.crvalues.anzahlPkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlPkw = value; this.updateTotals(value);}));
-        fc = <FormControl>this.form.controls[this.fcNames[1]];
+        fc = <UntypedFormControl>this.form.controls[this.fcNames[1]];
         fc.setValue(this.crvalues.anzahlLkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlLkw = value; this.updateTotals(value);}));
-        fc = <FormControl>this.form.controls[this.fcNames[2]];
+        fc = <UntypedFormControl>this.form.controls[this.fcNames[2]];
         fc.setValue(this.crvalues.mieteAbgerechnetPkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
                 const myValue = Utils.removeSeparators(value);
@@ -56,7 +56,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
                 this.updateTotals(value);
 
                 }));
-        fc = <FormControl>this.form.controls[this.fcNames[3]];
+        fc = <UntypedFormControl>this.form.controls[this.fcNames[3]];
         fc.setValue(this.crvalues.mieteAbgerechnetLkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
                 const myValue = Utils.removeSeparators(value);
