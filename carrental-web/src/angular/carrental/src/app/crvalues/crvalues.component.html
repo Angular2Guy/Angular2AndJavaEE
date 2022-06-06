@@ -13,14 +13,14 @@
 
 			<td><div
 					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
-					<input type="text" class="form-control" formControlName="anzahlPkw" />
+					<input type="text" class="form-control" formControlName="{{FormFields.AnzahlPkw}}" />
 				</div></td>
 			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw |
 					numberSeparator:3 }}</div></td>
 			<td><div
 					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
 					<input myNumberseparator type="text" class="form-control"
-						formControlName="mieteAbgerechnetPkw" />
+						formControlName="{{FormFields.MieteAbgerechnetPkw}}" />
 				</div></td>
 		</tr>
 		<tr>
@@ -28,14 +28,14 @@
 
 			<td><div
 					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
-					<input type="text" class="form-control" formControlName="anzahlLkw" />
+					<input type="text" class="form-control" formControlName="{{FormFields.AnzahlLkw}}" />
 				</div></td>
 			<td><div class="divboxmodel">{{crvalues.mieteGeplantLkw |
 					numberSeparator:3 }}</div></td>
 			<td><div
 					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
 					<input myNumberseparator type="text" class="form-control"
-						formControlName="mieteAbgerechnetLkw" />
+						formControlName="{{FormFields.MieteAbgerechnetLkw}}" />
 				</div></td>
 		</tr>
 		<tr>

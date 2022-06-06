@@ -14,11 +14,18 @@
    limitations under the License.
  */
 import { Component, OnInit, Input , OnDestroy, EventEmitter, Output} from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { CrPortfolio } from '../dtos/crTypes';
 import { CrValuesValidators } from '../shared/crvalues.validators';
 import { Subscription }   from 'rxjs';
 import { Utils } from '../shared/utils';
+
+enum FormFields {
+    AnzahlPkw = 'anzahlPkw',
+    AnzahlLkw = 'anzahlLkw',
+    MieteAbgerechnetPkw = 'mieteAbgerechnetPkw',
+    MieteAbgerechnetLkw = 'mieteAbgerechnetLkw'
+}
 
 @Component({
     selector: 'app-crvalues',
@@ -26,29 +33,29 @@ import { Utils } from '../shared/utils';
     styleUrls: ['./crvalues.component.scss']
 })
 export class CrValuesComponent implements OnInit, OnDestroy {
-    form: UntypedFormGroup;
-    fcNames = ['anzahlPkw', 'anzahlLkw', 'mieteAbgerechnetPkw', 'mieteAbgerechnetLkw'];
+    form: FormGroup;
     @Input() crvalues: CrPortfolio;
     updateTotalsSub: any[] = [];
     @Output() valuesValid = new EventEmitter<boolean>();
+    FormFields = FormFields;
 
-    constructor(fb: UntypedFormBuilder) {
+    constructor(fb: FormBuilder) {
         this.form = fb.group({
-            anzahlPkw: ['', CrValuesValidators.positiveIntValidator],
-            mieteAbgerechnetPkw: ['', CrValuesValidators.positiveIntValidator],
-            anzahlLkw: ['', CrValuesValidators.positiveIntValidator],
-            mieteAbgerechnetLkw: ['', CrValuesValidators.positiveIntValidator]
+            [FormFields.AnzahlPkw]: ['', CrValuesValidators.positiveIntValidator],
+            [FormFields.MieteAbgerechnetPkw]: ['', CrValuesValidators.positiveIntValidator],
+            [FormFields.AnzahlLkw]: ['', CrValuesValidators.positiveIntValidator],
+            [FormFields.MieteAbgerechnetLkw]: ['', CrValuesValidators.positiveIntValidator]
         });
     }
 
     ngOnInit() {
-        let fc = <UntypedFormControl>this.form.controls[this.fcNames[0]];
+        let fc = <FormControl>this.form.controls[FormFields.AnzahlPkw];
         fc.setValue(this.crvalues.anzahlPkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlPkw = value; this.updateTotals(value);}));
-        fc = <UntypedFormControl>this.form.controls[this.fcNames[1]];
+        fc = <FormControl>this.form.controls[FormFields.AnzahlLkw];
         fc.setValue(this.crvalues.anzahlLkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {this.crvalues.anzahlLkw = value; this.updateTotals(value);}));
-        fc = <UntypedFormControl>this.form.controls[this.fcNames[2]];
+        fc = <FormControl>this.form.controls[FormFields.MieteAbgerechnetPkw];
         fc.setValue(this.crvalues.mieteAbgerechnetPkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
                 const myValue = Utils.removeSeparators(value);
@@ -56,7 +63,7 @@ export class CrValuesComponent implements OnInit, OnDestroy {
                 this.updateTotals(value);
 
                 }));
-        fc = <UntypedFormControl>this.form.controls[this.fcNames[3]];
+        fc = <FormControl>this.form.controls[FormFields.MieteAbgerechnetLkw];
         fc.setValue(this.crvalues.mieteAbgerechnetLkw);
         this.updateTotalsSub.push(fc.valueChanges.subscribe(value => {
                 const myValue = Utils.removeSeparators(value);
@@ -73,10 +80,10 @@ export class CrValuesComponent implements OnInit, OnDestroy {
     }
 
     updateTotals(value: any): void {
-        this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[this.fcNames[0]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[0]].value))
-            + (isNaN(parseInt(this.form.controls[this.fcNames[1]].value)) ? 0 : parseInt(this.form.controls[this.fcNames[1]].value));
-        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[2]].value)).toString(10)))
-            + (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[this.fcNames[3]].value)).toString(10)));
+        this.crvalues.anzahlTotal = (isNaN(parseInt(this.form.controls[FormFields.AnzahlPkw].value)) ? 0 : parseInt(this.form.controls[FormFields.AnzahlPkw].value))
+            + (isNaN(parseInt(this.form.controls[FormFields.AnzahlLkw].value)) ? 0 : parseInt(this.form.controls[FormFields.AnzahlLkw].value));
+        this.crvalues.mieteAbgerechnetTotal = (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[FormFields.MieteAbgerechnetPkw].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[FormFields.MieteAbgerechnetPkw].value)).toString(10)))
+            + (isNaN(parseInt(Utils.removeSeparators(String(this.form.controls[FormFields.MieteAbgerechnetLkw].value)).toString(10))) ? 0 : parseInt(Utils.removeSeparators(String(this.form.controls[FormFields.MieteAbgerechnetLkw].value)).toString(10)));
         //console.log("updateTotals("+value+") called.");
         this.valuesValid.emit(this.form.valid);
     }
