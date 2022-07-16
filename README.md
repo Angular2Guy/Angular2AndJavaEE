@@ -24,7 +24,7 @@ Target Project: Java/Jakarta EE 8
 
 Update
 -----------
-The project has been updated to **Jakarta EE 8** and **Java 11** on **Wildfly 23**. 
+The project has been updated to **Jakarta EE 8** and **Java 11 minimum** on **Wildfly 26**. 
 
 What is it?
 -----------
@@ -42,7 +42,7 @@ Java 11 JDK or newer.
 
 Eclipse JEE.
 
-WildFly 23 or newer. (Any JavaEE 8 Appserver should do)
+WildFly 26 or newer. (Any JavaEE 8 Appserver should do)
 
 JBoss Plugin JBoss AS, WildFly & EAP Server Tools.
 
@@ -54,7 +54,7 @@ Nodejs 14.x.x or newer
 
 Npm 6.x.x or newer
 
-Angular Cli 13 or newer. 
+Angular Cli 14 or newer. 
 
 Build Server Requirements
 -------------------------
@@ -113,4 +113,4 @@ To provide a method to test the Ear of the Build a Docker Image can be build. Th
 
 Build the Docker Image
 ----------------
-For building the Docker Image the Docker needs to be installed and started. To build the Docker image the lines in buildDocker.sh can be used. First the ear needs to be build with 'mvnw'. Then the Docker image with the ear is created. Then the Docker image can be run locally.
+For building the Docker Image the Docker needs to be installed and started. To build the Docker image the lines in buildDocker.sh can be used. First the ear needs to be build with 'mvnw' **Jdk 11 required** due to the wildfly base image. Then the docker command creates the image with the ear and the Docker image can be run locally.
