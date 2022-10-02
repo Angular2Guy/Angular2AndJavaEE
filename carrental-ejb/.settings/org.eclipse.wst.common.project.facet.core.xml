@@ -2,5 +2,5 @@
 <faceted-project>
   <installed facet="jpt.jpa" version="2.1"/>
   <installed facet="jst.ejb" version="3.2"/>
-  <installed facet="java" version="11"/>
+  <installed facet="java" version="17"/>
 </faceted-project>
