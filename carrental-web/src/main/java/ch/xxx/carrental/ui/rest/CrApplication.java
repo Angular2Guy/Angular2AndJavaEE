@@ -15,6 +15,8 @@
  */
 package ch.xxx.carrental.ui.rest;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,9 +40,8 @@ public class CrApplication extends Application {
 	
 	public CrApplication() {
 		BeanConfig beanConfig = new BeanConfig();
-        beanConfig.setVersion("1.5.10");
-        beanConfig.setSchemes(new String[]{"http"});
-        beanConfig.setHost("localhost:8080");
+        beanConfig.setVersion("4.14.2");
+        beanConfig.setSchemes(new String[]{"http", "https"});
         beanConfig.setBasePath("/carrental-web/rest");
         beanConfig.setResourcePackage("ch.xxx.carrental.ui.rest.model");
         beanConfig.setScan(true);
