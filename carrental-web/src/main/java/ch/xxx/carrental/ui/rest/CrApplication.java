@@ -15,8 +15,6 @@
  */
 package ch.xxx.carrental.ui.rest;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
