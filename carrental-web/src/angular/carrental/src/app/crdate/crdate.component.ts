@@ -26,8 +26,8 @@ export class CrdateComponent implements OnInit {
   @Input() myobject: any;
   @Input() myvalue: string;
   @Input() mytype: string;
-  newDate: number;
-  newString: string;
+  protected newDate: number;
+  protected newString: string;
 
   ngOnInit() {
       if(!this.myobject) {return;} //for the tests

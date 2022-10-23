@@ -26,9 +26,9 @@ import { PlatformLocation } from '@angular/common';
   styleUrls: ['./crlist.component.scss'],
 })
 export class CrlistComponent implements OnInit {
-  tableRows: Observable<CrTableRow[]>;
-  errorMsg: string;
-  modalvisible = false;
+  protected tableRows: Observable<CrTableRow[]>;
+  protected errorMsg: string;
+  protected modalvisible = false;
 
   constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private platformLocation: PlatformLocation ) {}
 

@@ -27,9 +27,9 @@ import { CrValuesComponent } from '../crvalues/crvalues.component';
 } )
 export class CrdetailComponent implements OnInit {
 
-    crDetail: CrDetail;
-    crPeriods: CrPeriod[];
-    crEditmode: boolean;
+    protected crDetail: CrDetail;
+    protected crPeriods: CrPeriod[];
+    protected crEditmode: boolean;
     private mnr: string;
     private jahr: string;
     private valid: boolean;

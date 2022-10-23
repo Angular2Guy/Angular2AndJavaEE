@@ -10,9 +10,9 @@
       "prefix": "app",
       "i18n": {
         "locales": {
-          "en": "src/locale/messages.en.xlf"
+          "de": "src/locale/messages.de.json"
         },
-        "sourceLocale": "de"
+        "sourceLocale": "en"
       },
       "schematics": {
         "@schematics/angular:component": {

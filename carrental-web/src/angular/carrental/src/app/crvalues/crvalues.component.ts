@@ -17,7 +17,6 @@ import { Component, OnInit, Input , OnDestroy, EventEmitter, Output} from '@angu
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { CrPortfolio } from '../dtos/crTypes';
 import { CrValuesValidators } from '../shared/crvalues.validators';
-import { Subscription }   from 'rxjs';
 import { Utils } from '../shared/utils';
 
 enum FormFields {
@@ -33,11 +32,11 @@ enum FormFields {
     styleUrls: ['./crvalues.component.scss']
 })
 export class CrValuesComponent implements OnInit, OnDestroy {
-    form: FormGroup;
     @Input() crvalues: CrPortfolio;
-    updateTotalsSub: any[] = [];
+    protected updateTotalsSub: any[] = [];
     @Output() valuesValid = new EventEmitter<boolean>();
-    FormFields = FormFields;
+    protected FormFields = FormFields;
+    form: FormGroup;
 
     constructor(fb: FormBuilder) {
         this.form = fb.group({

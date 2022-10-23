@@ -23,8 +23,8 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
 })
 export class CruploadComponent implements OnInit, OnChanges {
   @Input() visible: boolean;
-  currentFile: File;
-  filetext: string;
+  protected currentFile: File;
+  protected filetext: string;
 
   constructor() { }
 

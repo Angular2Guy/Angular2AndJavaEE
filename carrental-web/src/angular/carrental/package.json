@@ -10,6 +10,7 @@
     "test": "ng test --browsers ChromeHeadless --watch=false --code-coverage=true",
     "test-chromium": "ng test --browsers ChromiumHeadless --watch=false --code-coverage=true",
     "test-local": "ng test --browsers Chromium --watch=true",
+    "extract-i18n": "ng extract-i18n --format=json",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ngcc"

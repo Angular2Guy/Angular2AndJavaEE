@@ -8,12 +8,12 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/co
 })
 export class CrrootComponent implements OnInit {
 
-  title = 'Please choose a link.';
+  protected title = 'Please choose a link.';
   @ViewChild('myCanvas', { static: true }) canvas: ElementRef;
-  ctx: CanvasRenderingContext2D;
-  width: number;
-  height: number;
-  ballArray = [];
+  protected ctx: CanvasRenderingContext2D;
+  protected width: number;
+  protected height: number;
+  protected ballArray = [];
 
   constructor() { }
 
