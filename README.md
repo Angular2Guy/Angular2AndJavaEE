@@ -24,7 +24,7 @@ Target Project: Java/Jakarta EE 8
 
 Update
 -----------
-The project has been updated to **Jakarta EE 8** and **Java 11 minimum** on **Wildfly 26**. 
+The project has been updated to **Jakarta EE 8** and **Java 17 minimum** on **Wildfly 26**. 
 
 What is it?
 -----------
@@ -38,7 +38,7 @@ The Ear that is build can be tested in a Docker Image that Maven builds.
 Development Requirements
 -------------------
 
-Java 11 JDK or newer. 
+Java 17 JDK or newer. 
 
 Eclipse JEE.
 
@@ -58,9 +58,9 @@ Angular Cli 14 or newer.
 
 Build Server Requirements
 -------------------------
-Java 11 JDK or newer. 
+Java 17 JDK or newer. 
 
-Maven 3.5.4 or newer. 
+Maven 3.8.x or newer. 
 
 Nodejs 14.x.x 
 
@@ -68,7 +68,7 @@ Npm 6.x.x
 
 Setup
 -----
-JDK 11, Wildfly 23(or an other Jakarta EE8 server), Nodejs, Eclipse, Maven must be installed.
+JDK 17, Wildfly 23(or an other Jakarta EE8 server), Nodejs, Eclipse, Maven must be installed.
 
 Install Angular Cli "npm install -g angular-cli@latest".
 
@@ -113,4 +113,4 @@ To provide a method to test the Ear of the Build a Docker Image can be build. Th
 
 Build the Docker Image
 ----------------
-For building the Docker Image the Docker needs to be installed and started. To build the Docker image the lines in buildDocker.sh can be used. First the ear needs to be build with 'mvnw' **Jdk 11 required** due to the wildfly base image. Then the docker command creates the image with the ear and the Docker image can be run locally.
+For building the Docker Image the Docker needs to be installed and started. To build the Docker image the lines in buildDocker.sh can be used. First the ear needs to be build with 'mvnw' **Jdk 17 required** due to the wildfly base image. Then the docker command creates the image with the ear and the Docker image can be run locally.
