@@ -55,11 +55,12 @@
 @import "bootstrap/scss/utilities";
 @import "bootstrap/scss/print";
 
-.borderless td, .borderless th {
-    border: none !important;
+.borderless td,
+.borderless th {
+  border: none !important;
 }
 .divboxmodel {
-	padding: 9px !important;
-	border-right-width: 8px !important;
-	border-left-width: 8px !important;
+  padding: 9px !important;
+  border-right-width: 8px !important;
+  border-left-width: 8px !important;
 }

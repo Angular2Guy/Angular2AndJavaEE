@@ -1,42 +1,52 @@
 <div class="container-fluid">
-	<app-crupload [visible]="modalvisible"></app-crupload>
-	<div class="row">
-		<p id="myListId">crlist works!</p>
-		<button type="button" class="btn btn-primary" (click)="showPdf('1')">Pdf1</button>
-		<button type="button" class="btn btn-primary" (click)="showPdf('2')">Pdf2</button>
-		<button type="button" class="btn btn-primary" (click)="showModal()">FileUpload</button>
-	</div>
-	<div class="row">
-		<table class="table table-striped borderless">
-			<tr>
-				<th class="col-md-1" i18n>Jahr</th>
-				<th class="col-md-1" i18n>Status</th>
-				<th class="col-md-1" i18n>Grund</th>
-				<th class="col-md-1" i18n>Fahrzeuge Total</th>
-				<th class="col-md-1" i18n>Miete geplant Total</th>
-				<th class="col-md-1" i18n>Miete abgerechnet Total</th>
-				<th class="col-md-1" i18n>Anzahl Pkw</th>
-				<th class="col-md-1" i18n>Anzahl Lkw</th>
-				<th class="col-md-1" i18n>Datum</th>
-				<th class="col-md-1" i18n>Mutierer</th>
-				<th class="col-md-1" i18n>Mahnstop</th>
-
-			</tr>
-			<tr *ngFor="let row of tableRows | async">
-				<td class="col-md-1"><a
-					[routerLink]="['/crdetail/mietenr',row.mietNr, 'jahr', row.jahr]">{{row.jahr}}</a></td>
-				<td class="col-md-1">{{row.status}}</td>
-				<td class="col-md-1">{{row.grund}}</td>
-				<td class="col-md-1">{{row.fahrzeugeTotal}}</td>
-				<td class="col-md-1">{{row.mieteGeplantTotal}}</td>
-				<td class="col-md-1">{{row.mieteAbgerechnetTotal}}</td>
-				<td class="col-md-1">{{row.anzahlPkw}}</td>
-				<td class="col-md-1">{{row.anzahlLkw}}</td>
-				<td class="col-md-1">{{row.mutatedAt | date:'dd.MM.yyyy'}}</td>
-				<td class="col-md-1">{{row.mutatedBy}}</td>
-				<td class="col-md-1"><input type="checkbox"
-					[value]="row.mahnstop"></td>
-			</tr>
-		</table>
-	</div>
+  <app-crupload [visible]="modalvisible"></app-crupload>
+  <div class="row">
+    <p id="myListId">crlist works!</p>
+    <button type="button" class="btn btn-primary" (click)="showPdf('1')">
+      Pdf1
+    </button>
+    <button type="button" class="btn btn-primary" (click)="showPdf('2')">
+      Pdf2
+    </button>
+    <button type="button" class="btn btn-primary" (click)="showModal()">
+      FileUpload
+    </button>
+  </div>
+  <div class="row">
+    <table class="table table-striped borderless">
+      <tr>
+        <th class="col-md-1" i18n>Jahr</th>
+        <th class="col-md-1" i18n>Status</th>
+        <th class="col-md-1" i18n>Grund</th>
+        <th class="col-md-1" i18n>Fahrzeuge Total</th>
+        <th class="col-md-1" i18n>Miete geplant Total</th>
+        <th class="col-md-1" i18n>Miete abgerechnet Total</th>
+        <th class="col-md-1" i18n>Anzahl Pkw</th>
+        <th class="col-md-1" i18n>Anzahl Lkw</th>
+        <th class="col-md-1" i18n>Datum</th>
+        <th class="col-md-1" i18n>Mutierer</th>
+        <th class="col-md-1" i18n>Mahnstop</th>
+      </tr>
+      <tr *ngFor="let row of tableRows | async">
+        <td class="col-md-1">
+          <a
+            [routerLink]="['/crdetail/mietenr', row.mietNr, 'jahr', row.jahr]"
+            >{{ row.jahr }}</a
+          >
+        </td>
+        <td class="col-md-1">{{ row.status }}</td>
+        <td class="col-md-1">{{ row.grund }}</td>
+        <td class="col-md-1">{{ row.fahrzeugeTotal }}</td>
+        <td class="col-md-1">{{ row.mieteGeplantTotal }}</td>
+        <td class="col-md-1">{{ row.mieteAbgerechnetTotal }}</td>
+        <td class="col-md-1">{{ row.anzahlPkw }}</td>
+        <td class="col-md-1">{{ row.anzahlLkw }}</td>
+        <td class="col-md-1">{{ row.mutatedAt | date : "dd.MM.yyyy" }}</td>
+        <td class="col-md-1">{{ row.mutatedBy }}</td>
+        <td class="col-md-1">
+          <input type="checkbox" [value]="row.mahnstop" />
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

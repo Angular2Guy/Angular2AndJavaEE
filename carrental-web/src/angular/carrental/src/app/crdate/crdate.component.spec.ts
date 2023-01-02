@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { CrdateComponent } from './crdate.component';
+import { CrdateComponent } from "./crdate.component";
 
-describe('CrdateComponent', () => {
+describe("CrdateComponent", () => {
   let component: CrdateComponent;
   let fixture: ComponentFixture<CrdateComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrdateComponent ]
-    })
-    .compileComponents();
+      declarations: [CrdateComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('CrdateComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

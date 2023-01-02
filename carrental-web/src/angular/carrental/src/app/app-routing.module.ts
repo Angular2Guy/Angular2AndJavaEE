@@ -13,23 +13,23 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CrlistComponent } from './crlist/crlist.component';
-import { CrdetailComponent } from './crdetail/crdetail.component';
-import { AppComponent } from './app.component';
-import { CrrootComponent } from './crroot/crroot.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { CrlistComponent } from "./crlist/crlist.component";
+import { CrdetailComponent } from "./crdetail/crdetail.component";
+import { AppComponent } from "./app.component";
+import { CrrootComponent } from "./crroot/crroot.component";
 
 const routes: Routes = [
-  {path: 'crdetail/mietenr/:mnr/jahr/:jahr', component: CrdetailComponent},
-  {path: 'crlist/mietenr/:mnr', component: CrlistComponent},
-  {path: 'crroot', component: CrrootComponent},
-  {path: '**', redirectTo: '/crroot', pathMatch: 'full'},
+  { path: "crdetail/mietenr/:mnr/jahr/:jahr", component: CrdetailComponent },
+  { path: "crlist/mietenr/:mnr", component: CrlistComponent },
+  { path: "crroot", component: CrrootComponent },
+  { path: "**", redirectTo: "/crroot", pathMatch: "full" },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {})],
   exports: [RouterModule],
-  providers: []
+  providers: [],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

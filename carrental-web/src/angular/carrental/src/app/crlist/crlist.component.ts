@@ -13,40 +13,51 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute, Router, ParamMap } from '@angular/router';
-import { Observable,of } from 'rxjs';
-import {CrRestService} from '../services/crrest.service';
-import {CrTableRow} from '../dtos/crTypes';
-import { PlatformLocation } from '@angular/common';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { Observable, of } from "rxjs";
+import { CrRestService } from "../services/crrest.service";
+import { CrTableRow } from "../dtos/crTypes";
+import { PlatformLocation } from "@angular/common";
 
 @Component({
-  selector: 'app-crlist',
-  templateUrl: './crlist.component.html',
-  styleUrls: ['./crlist.component.scss'],
+  selector: "app-crlist",
+  templateUrl: "./crlist.component.html",
+  styleUrls: ["./crlist.component.scss"],
 })
 export class CrlistComponent implements OnInit {
   protected tableRows: Observable<CrTableRow[]>;
   protected errorMsg: string;
   protected modalvisible = false;
 
-  constructor(private route: ActivatedRoute,private router: Router, private service: CrRestService, private platformLocation: PlatformLocation ) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: CrRestService,
+    private platformLocation: PlatformLocation
+  ) {}
 
   ngOnInit(): void {
-      const mnr = this.route.snapshot.paramMap.get('mnr');
-      this.tableRows = this.service.getCrTableRows(mnr);
+    const mnr = this.route.snapshot.paramMap.get("mnr");
+    this.tableRows = this.service.getCrTableRows(mnr);
   }
 
   showPdf(mietNr: string) {
-      window.open(`${this.getBaseHref()}/rest/model/crTable/mietNr/${mietNr}/pdf`);
+    window.open(
+      `${this.getBaseHref()}/rest/model/crTable/mietNr/${mietNr}/pdf`
+    );
   }
 
   private getBaseHref(): string {
-	const myBaseHref = !this.platformLocation.getBaseHrefFromDOM() || this.platformLocation.getBaseHrefFromDOM().length < 2 ? '//'.split('/') : this.platformLocation.getBaseHrefFromDOM().split('/');
-	return (myBaseHref[1].length > 0 ? '/'+myBaseHref[1] : '');
-}
+    const myBaseHref =
+      !this.platformLocation.getBaseHrefFromDOM() ||
+      this.platformLocation.getBaseHrefFromDOM().length < 2
+        ? "//".split("/")
+        : this.platformLocation.getBaseHrefFromDOM().split("/");
+    return myBaseHref[1].length > 0 ? "/" + myBaseHref[1] : "";
+  }
 
   showModal() {
-      this.modalvisible = !this.modalvisible;
+    this.modalvisible = !this.modalvisible;
   }
 }

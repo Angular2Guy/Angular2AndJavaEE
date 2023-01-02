@@ -1,4 +1,4 @@
-import { NumberseparatorDirective } from './numberseparator.directive';
+import { NumberseparatorDirective } from "./numberseparator.directive";
 
 //describe('NumberseparatorDirective', () => {
 //  it('should create an instance', () => {

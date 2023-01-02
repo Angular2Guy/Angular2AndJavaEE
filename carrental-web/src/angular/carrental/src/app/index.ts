@@ -13,6 +13,5 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-export * from './app.component';
-export * from './app.module';
-
+export * from "./app.component";
+export * from "./app.module";

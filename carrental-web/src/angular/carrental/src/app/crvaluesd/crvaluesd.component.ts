@@ -13,29 +13,44 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { Component, OnInit, Input } from '@angular/core';
-import { CrPortfolio } from '../dtos/crTypes';
-import { NumberSeparatorPipe } from '../shared/number-separator.pipe';
-import { Utils } from '../shared/utils';
-
+import { Component, OnInit, Input } from "@angular/core";
+import { CrPortfolio } from "../dtos/crTypes";
+import { NumberSeparatorPipe } from "../shared/number-separator.pipe";
+import { Utils } from "../shared/utils";
 
 @Component({
-  selector: 'app-crvaluesd',
-  templateUrl: './crvaluesd.component.html',
-  styleUrls: ['./crvaluesd.component.scss']
+  selector: "app-crvaluesd",
+  templateUrl: "./crvaluesd.component.html",
+  styleUrls: ["./crvaluesd.component.scss"],
 })
 export class CrvaluesdComponent implements OnInit {
   @Input() crvalues: CrPortfolio;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-      this.crvalues.anzahlTotal = this.crvalues.anzahlLkw + this.crvalues.anzahlPkw;
-      const abgPkw = Utils.removeSeparators( this.crvalues.mieteAbgerechnetPkw ? this.crvalues.mieteAbgerechnetPkw.toString() : '0');
-      const abgLkw = Utils.removeSeparators( this.crvalues.mieteAbgerechnetLkw ? this.crvalues.mieteAbgerechnetLkw.toString() : '0');
-      this.crvalues.mieteAbgerechnetTotal = abgPkw + abgLkw;
-      const gplPkw = Utils.removeSeparators( this.crvalues.mieteGeplantPkw ? this.crvalues.mieteGeplantPkw.toString() : '0');
-      const gplLkw = Utils.removeSeparators( this.crvalues.mieteGeplantLkw ? this.crvalues.mieteGeplantLkw.toString() : '0');
-      this.crvalues.mieteGeplantTotal = gplPkw + gplLkw;
+    this.crvalues.anzahlTotal =
+      this.crvalues.anzahlLkw + this.crvalues.anzahlPkw;
+    const abgPkw = Utils.removeSeparators(
+      this.crvalues.mieteAbgerechnetPkw
+        ? this.crvalues.mieteAbgerechnetPkw.toString()
+        : "0"
+    );
+    const abgLkw = Utils.removeSeparators(
+      this.crvalues.mieteAbgerechnetLkw
+        ? this.crvalues.mieteAbgerechnetLkw.toString()
+        : "0"
+    );
+    this.crvalues.mieteAbgerechnetTotal = abgPkw + abgLkw;
+    const gplPkw = Utils.removeSeparators(
+      this.crvalues.mieteGeplantPkw
+        ? this.crvalues.mieteGeplantPkw.toString()
+        : "0"
+    );
+    const gplLkw = Utils.removeSeparators(
+      this.crvalues.mieteGeplantLkw
+        ? this.crvalues.mieteGeplantLkw.toString()
+        : "0"
+    );
+    this.crvalues.mieteGeplantTotal = gplPkw + gplLkw;
   }
-
 }

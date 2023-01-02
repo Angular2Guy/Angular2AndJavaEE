@@ -15,26 +15,25 @@
  */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { AppRoutingModule }  from './app-routing.module';
-import { CrlistComponent } from './crlist/crlist.component';
-import { CrdetailComponent } from './crdetail/crdetail.component';
-import { CrValuesComponent } from './crvalues/crvalues.component';
-import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
-import { CrdateComponent } from './crdate/crdate.component';
-import { CrrootComponent } from './crroot/crroot.component';
-import { CruploadComponent } from './crupload/crupload.component';
+import { TestBed, waitForAsync } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { CrlistComponent } from "./crlist/crlist.component";
+import { CrdetailComponent } from "./crdetail/crdetail.component";
+import { CrValuesComponent } from "./crvalues/crvalues.component";
+import { CrvaluesdComponent } from "./crvaluesd/crvaluesd.component";
+import { CrdateComponent } from "./crdate/crdate.component";
+import { CrrootComponent } from "./crroot/crroot.component";
+import { CruploadComponent } from "./crupload/crupload.component";
 
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import {APP_BASE_HREF} from '@angular/common';
-import {HttpTestingController} from '@angular/common/http/testing';
-import { NumberSeparatorPipe } from './shared/number-separator.pipe';
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { APP_BASE_HREF } from "@angular/common";
+import { HttpTestingController } from "@angular/common/http/testing";
+import { NumberSeparatorPipe } from "./shared/number-separator.pipe";
 
-
-describe('AppComponent', () => {
+describe("AppComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -46,36 +45,38 @@ describe('AppComponent', () => {
         CrvaluesdComponent,
         CrdateComponent,
         NumberSeparatorPipe,
-        CruploadComponent
+        CruploadComponent,
       ],
       imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
       ],
-      providers: [{provide: APP_BASE_HREF, useValue : '/' }]
+      providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
     });
     TestBed.compileComponents();
   });
 
-  it('should create the app', waitForAsync(() => {
+  it("should create the app", waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 
   it(`should have as title 'app works!'`, waitForAsync(() => {
-    const fixture =  TestBed.createComponent(AppComponent);
+    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('carrental works!');
+    expect(app.title).toEqual("carrental works!");
   }));
 
-  it('should render title in a h1 tag', waitForAsync(() => {
+  it("should render title in a h1 tag", waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('carrental works!');
+    expect(compiled.querySelector("h1").textContent).toContain(
+      "carrental works!"
+    );
   }));
 });

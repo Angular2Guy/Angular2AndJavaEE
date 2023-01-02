@@ -1,52 +1,85 @@
 <form novalidate [formGroup]="form">
-	<table class="table borderless">
-		<tr>
-			<th></th>
+  <table class="table borderless">
+    <tr>
+      <th></th>
 
-			<th i18n>Anzahl Fahrzeuge</th>
-			<th i18n>Miete geplant</th>
-			<th i18n>Miete abgerechnet</th>
+      <th i18n>Anzahl Fahrzeuge</th>
+      <th i18n>Miete geplant</th>
+      <th i18n>Miete abgerechnet</th>
+    </tr>
+    <tr>
+      <td i18n>Pkw</td>
 
-		</tr>
-		<tr>
-			<td i18n>Pkw</td>
+      <td>
+        <div [ngClass]="{ 'form-group': true, 'has-error': !form.valid }">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="{{ FormFields.AnzahlPkw }}"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="divboxmodel">
+          {{ crvalues.mieteGeplantPkw | numberSeparator : 3 }}
+        </div>
+      </td>
+      <td>
+        <div [ngClass]="{ 'form-group': true, 'has-error': !form.valid }">
+          <input
+            myNumberseparator
+            type="text"
+            class="form-control"
+            formControlName="{{ FormFields.MieteAbgerechnetPkw }}"
+          />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td i18n>Lkw</td>
 
-			<td><div
-					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
-					<input type="text" class="form-control" formControlName="{{FormFields.AnzahlPkw}}" />
-				</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantPkw |
-					numberSeparator:3 }}</div></td>
-			<td><div
-					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
-					<input myNumberseparator type="text" class="form-control"
-						formControlName="{{FormFields.MieteAbgerechnetPkw}}" />
-				</div></td>
-		</tr>
-		<tr>
-			<td i18n>Lkw</td>
+      <td>
+        <div [ngClass]="{ 'form-group': true, 'has-error': !form.valid }">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="{{ FormFields.AnzahlLkw }}"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="divboxmodel">
+          {{ crvalues.mieteGeplantLkw | numberSeparator : 3 }}
+        </div>
+      </td>
+      <td>
+        <div [ngClass]="{ 'form-group': true, 'has-error': !form.valid }">
+          <input
+            myNumberseparator
+            type="text"
+            class="form-control"
+            formControlName="{{ FormFields.MieteAbgerechnetLkw }}"
+          />
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td i18n>Total</td>
 
-			<td><div
-					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
-					<input type="text" class="form-control" formControlName="{{FormFields.AnzahlLkw}}" />
-				</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantLkw |
-					numberSeparator:3 }}</div></td>
-			<td><div
-					[ngClass]="{'form-group': true, 'has-error': !form.valid}">
-					<input myNumberseparator type="text" class="form-control"
-						formControlName="{{FormFields.MieteAbgerechnetLkw}}" />
-				</div></td>
-		</tr>
-		<tr>
-			<td i18n>Total</td>
-
-			<td><div class="divboxmodel">{{crvalues.anzahlTotal}}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteGeplantTotal
-					| numberSeparator: 3 }}</div></td>
-			<td><div class="divboxmodel">{{crvalues.mieteAbgerechnetTotal
-					| numberSeparator:3 }}</div></td>
-		</tr>
-	</table>
+      <td>
+        <div class="divboxmodel">{{ crvalues.anzahlTotal }}</div>
+      </td>
+      <td>
+        <div class="divboxmodel">
+          {{ crvalues.mieteGeplantTotal | numberSeparator : 3 }}
+        </div>
+      </td>
+      <td>
+        <div class="divboxmodel">
+          {{ crvalues.mieteAbgerechnetTotal | numberSeparator : 3 }}
+        </div>
+      </td>
+    </tr>
+  </table>
 </form>
-{{form.valid}}
+{{ form.valid }}

@@ -13,17 +13,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { ErrorHandler, Injectable } from '@angular/core';
-import { CrRestService } from '../services/crrest.service';
-import { CrLogMsgImpl } from '../dtos/crClasses';
+import { ErrorHandler, Injectable } from "@angular/core";
+import { CrRestService } from "../services/crrest.service";
+import { CrLogMsgImpl } from "../dtos/crClasses";
 
 @Injectable()
 export class MyErrorHandler implements ErrorHandler {
+  constructor(private crRestService: CrRestService) {}
 
-    constructor(private crRestService: CrRestService) {}
-
-    handleError(error: any): void {
-        console.log(error);
-        this.crRestService.putCrLogMsg(new CrLogMsgImpl('Error', error.message)).subscribe();
-    }
+  handleError(error: any): void {
+    console.log(error);
+    this.crRestService
+      .putCrLogMsg(new CrLogMsgImpl("Error", error.message))
+      .subscribe();
+  }
 }

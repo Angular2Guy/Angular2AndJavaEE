@@ -14,58 +14,58 @@
    limitations under the License.
  */
 export interface CrTableRow {
-    mietNr: string;
-    jahr: string;
-    status: string;
-    grund: string;
-    fahrzeugeTotal: number;
-    mieteGeplantTotal: number;
-    mieteAbgerechnetTotal: number;
-    anzahlPkw: number;
-    anzahlLkw: number;
-    mutatedAt: Date;
-    mutatedBy: string;
-    mahnstop: boolean;
+  mietNr: string;
+  jahr: string;
+  status: string;
+  grund: string;
+  fahrzeugeTotal: number;
+  mieteGeplantTotal: number;
+  mieteAbgerechnetTotal: number;
+  anzahlPkw: number;
+  anzahlLkw: number;
+  mutatedAt: Date;
+  mutatedBy: string;
+  mahnstop: boolean;
 }
 
 export interface CrDetail {
-    id: number;
-    changeable: boolean;
-    mieteNr: string;
-    jahr: string;
-    crTableRow: CrTableRow;
-    crPeriods: CrPeriod[];
-    crMessages: CrMessage[];
+  id: number;
+  changeable: boolean;
+  mieteNr: string;
+  jahr: string;
+  crTableRow: CrTableRow;
+  crPeriods: CrPeriod[];
+  crMessages: CrMessage[];
 }
 
 export interface CrPeriod {
-    id: number;
-    from: Date;
-    to: Date;
-    crPortfolios: CrPortfolio[];
+  id: number;
+  from: Date;
+  to: Date;
+  crPortfolios: CrPortfolio[];
 }
 
 export interface CrPortfolio {
-    id: number;
-    bezeichnung: string;
-    anzahlPkw: number;
-    anzahlLkw: number;
-    anzahlTotal: number;
-    mieteGeplantPkw: number;
-    mieteGeplantLkw: number;
-    mieteGeplantTotal: number;
-    mieteAbgerechnetPkw: number;
-    mieteAbgerechnetLkw: number;
-    mieteAbgerechnetTotal: number;
+  id: number;
+  bezeichnung: string;
+  anzahlPkw: number;
+  anzahlLkw: number;
+  anzahlTotal: number;
+  mieteGeplantPkw: number;
+  mieteGeplantLkw: number;
+  mieteGeplantTotal: number;
+  mieteAbgerechnetPkw: number;
+  mieteAbgerechnetLkw: number;
+  mieteAbgerechnetTotal: number;
 }
 
 export interface CrMessage {
-    id: number;
-    msgType: string;
-    msg: string;
+  id: number;
+  msgType: string;
+  msg: string;
 }
 
 export interface CrLogMsg {
-    logLevel: string;
-    logMsg: string;
+  logLevel: string;
+  logMsg: string;
 }

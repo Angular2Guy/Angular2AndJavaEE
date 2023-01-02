@@ -15,8 +15,8 @@
  */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { CrdetailComponent } from './crdetail.component';
+import { TestBed, waitForAsync } from "@angular/core/testing";
+import { CrdetailComponent } from "./crdetail.component";
 
 //describe('Component: MyComponent', () => {
 //  it('should create an instance', () => {
@@ -24,4 +24,3 @@ import { CrdetailComponent } from './crdetail.component';
 //    expect(component).toBeTruthy();
 //  });
 //});
-

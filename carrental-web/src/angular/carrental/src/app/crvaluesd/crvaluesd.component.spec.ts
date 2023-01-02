@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { CrvaluesdComponent } from './crvaluesd.component';
+import { CrvaluesdComponent } from "./crvaluesd.component";
 
 //describe('CrvaluesdComponent', () => {
 //  let component: CrvaluesdComponent;

@@ -13,36 +13,34 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'numberSeparator'
+  name: "numberSeparator",
 })
 export class NumberSeparatorPipe implements PipeTransform {
-
   transform(value: string | number, args?: number): string {
-      if(!(value)) {
-          return '0';
+    if (!value) {
+      return "0";
+    }
+    value = String(value).replace(/'/g, "").replace(/,/g, "");
+    //console.log("value: "+value);
+    if (!isNaN(parseInt(value)) && !isNaN(args)) {
+      const digits = args;
+      const arr = [];
+      let myValue = String(value);
+      while (myValue.length > digits) {
+        const str = myValue.slice(myValue.length - digits, myValue.length);
+        arr.push("'" + str);
+        myValue = myValue.slice(0, myValue.length - digits);
       }
-      value = String(value).replace(/'/g,'').replace(/,/g,'');
-      //console.log("value: "+value);
-      if(!isNaN(parseInt(value)) && !isNaN(args)) {
-          const digits = args;
-          const arr = [];
-          let myValue = String(value);
-          while(myValue.length > digits) {
-              const str = myValue.slice(myValue.length-digits, myValue.length);
-              arr.push('\''+str);
-              myValue = myValue.slice(0,myValue.length-digits);
-          }
-          arr.reverse();
-          let result = '' + myValue +arr;
-          result = result.replace(',','');
-//          console.log("result1 "+result);
-          return result;
-      }
-//      console.log("result2 "+value);
-      return value;
+      arr.reverse();
+      let result = "" + myValue + arr;
+      result = result.replace(",", "");
+      //          console.log("result1 "+result);
+      return result;
+    }
+    //      console.log("result2 "+value);
+    return value;
   }
-
 }

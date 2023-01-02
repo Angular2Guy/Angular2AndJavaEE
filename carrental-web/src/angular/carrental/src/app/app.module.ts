@@ -13,24 +13,24 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,ErrorHandler } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AppComponent } from './app.component';
-import { CrlistComponent } from './crlist/crlist.component';
-import { CrdetailComponent } from './crdetail/crdetail.component';
-import { CrValuesComponent } from './crvalues/crvalues.component';
-import { CrRestService } from './services/crrest.service';
-import { AppRoutingModule }  from './app-routing.module';
-import { CrvaluesdComponent } from './crvaluesd/crvaluesd.component';
-import { CrdateComponent } from './crdate/crdate.component';
-import { NumberSeparatorPipe } from './shared/number-separator.pipe';
-import { NumberseparatorDirective } from './shared/numberseparator.directive';
-import { CrrootComponent } from './crroot/crroot.component';
-import { CruploadComponent } from './crupload/crupload.component';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, ErrorHandler } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { AppComponent } from "./app.component";
+import { CrlistComponent } from "./crlist/crlist.component";
+import { CrdetailComponent } from "./crdetail/crdetail.component";
+import { CrValuesComponent } from "./crvalues/crvalues.component";
+import { CrRestService } from "./services/crrest.service";
+import { AppRoutingModule } from "./app-routing.module";
+import { CrvaluesdComponent } from "./crvaluesd/crvaluesd.component";
+import { CrdateComponent } from "./crdate/crdate.component";
+import { NumberSeparatorPipe } from "./shared/number-separator.pipe";
+import { NumberseparatorDirective } from "./shared/numberseparator.directive";
+import { CrrootComponent } from "./crroot/crroot.component";
+import { CruploadComponent } from "./crupload/crupload.component";
 //import { MyErrorHandler } from './shared/my-error-handler';
-import { BaseHrefInterceptor } from './services/base-href-interceptor';
+import { BaseHrefInterceptor } from "./services/base-href-interceptor";
 
 @NgModule({
   declarations: [
@@ -50,12 +50,12 @@ import { BaseHrefInterceptor } from './services/base-href-interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
-              //{provide: ErrorHandler, useClass: MyErrorHandler},
-			  { provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true },
-			],
-  bootstrap: [AppComponent]
+    //{provide: ErrorHandler, useClass: MyErrorHandler},
+    { provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

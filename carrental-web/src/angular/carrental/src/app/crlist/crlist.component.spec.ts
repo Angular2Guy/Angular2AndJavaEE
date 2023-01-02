@@ -15,10 +15,10 @@
  */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { CrlistComponent } from './crlist.component';
+import { TestBed, waitForAsync } from "@angular/core/testing";
+import { Component } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { CrlistComponent } from "./crlist.component";
 
 //describe('Component: MyComponent', () => {
 //  it('should create an instance', () => {

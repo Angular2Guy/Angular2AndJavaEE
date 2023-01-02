@@ -13,77 +13,95 @@
    See the License for the specific language governing permissions and
    limitations under the License.
  */
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Observable } from 'rxjs';
-import { CrRestService } from '../services/crrest.service';
-import { CrDetail, CrPeriod } from '../dtos/crTypes';
-import { CrValuesComponent } from '../crvalues/crvalues.component';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router, ActivatedRoute, ParamMap } from "@angular/router";
+import { Observable } from "rxjs";
+import { CrRestService } from "../services/crrest.service";
+import { CrDetail, CrPeriod } from "../dtos/crTypes";
+import { CrValuesComponent } from "../crvalues/crvalues.component";
 
-@Component( {
-    selector: 'app-crdetail',
-    templateUrl: './crdetail.component.html',
-    styleUrls: ['./crdetail.component.scss'],
-} )
+@Component({
+  selector: "app-crdetail",
+  templateUrl: "./crdetail.component.html",
+  styleUrls: ["./crdetail.component.scss"],
+})
 export class CrdetailComponent implements OnInit {
+  protected crDetail: CrDetail;
+  protected crPeriods: CrPeriod[];
+  protected crEditmode: boolean;
+  private mnr: string;
+  private jahr: string;
+  private valid: boolean;
 
-    protected crDetail: CrDetail;
-    protected crPeriods: CrPeriod[];
-    protected crEditmode: boolean;
-    private mnr: string;
-    private jahr: string;
-    private valid: boolean;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: CrRestService
+  ) {
+    this.crEditmode = false;
+  }
 
-    constructor( private route: ActivatedRoute, private router: Router, private service: CrRestService ) {
-        this.crEditmode = false;
+  ngOnInit(): void {
+    this.init();
+  }
+
+  init(): void {
+    this.mnr = this.route.snapshot.paramMap.get("mnr");
+    this.jahr = this.route.snapshot.paramMap.get("jahr");
+    this.service.getCrDetail(this.mnr, this.jahr).subscribe((lsdD) => {
+      this.crDetail = <CrDetail>lsdD;
+      this.crPeriods = (<CrDetail>lsdD).crPeriods;
+    });
+  }
+
+  valuesValid(valid: boolean) {
+    this.valid = valid;
+  }
+
+  toggleEditmode(): void {
+    this.crEditmode = !this.crEditmode;
+  }
+
+  update(): void {
+    if (this.valid) {
+      if (this.crDetail.id) {
+        this.service
+          .putCrDetail(this.mnr, this.jahr, this.crDetail)
+          .subscribe((lsdD) => {
+            const urltree = this.router.createUrlTree([
+              "crlist/mietenr/",
+              this.mnr,
+            ]);
+            this.router.navigateByUrl(urltree);
+          });
+      } else {
+        this.service
+          .postCrDetail(this.mnr, this.jahr, this.crDetail)
+          .subscribe((lsdD) => {
+            const urltree = "crlist/mietenr/" + 1;
+            this.router.navigateByUrl(urltree);
+          });
+      }
     }
+  }
 
-    ngOnInit(): void {
-        this.init();
-    }
+  create(): void {
+    const urlStr =
+      "crdetail/mietenr/" +
+      CrRestService.NEWID +
+      "/jahr/" +
+      CrRestService.NEWID;
+    this.router.navigateByUrl(urlStr).then((result) => this.init());
+  }
 
-    init(): void {
-        this.mnr = this.route.snapshot.paramMap.get( 'mnr' );
-        this.jahr = this.route.snapshot.paramMap.get( 'jahr' );
-        this.service.getCrDetail( this.mnr, this.jahr )
-            .subscribe( lsdD => { this.crDetail = <CrDetail>lsdD; this.crPeriods = ( <CrDetail>lsdD ).crPeriods; });
+  delete(): void {
+    if (this.valid) {
+      this.service
+        .deleteCrDetail(this.mnr, this.jahr, this.crDetail)
+        .subscribe((lsdD) => {
+          const urltree = "crlist/mietenr/" + 1;
+          this.router.navigateByUrl(urltree);
+        });
     }
-
-    valuesValid( valid: boolean ) {
-        this.valid = valid;
-    }
-
-    toggleEditmode(): void {
-        this.crEditmode = !this.crEditmode;
-    }
-
-    update(): void {
-        if ( this.valid ) {
-            if ( this.crDetail.id) {
-                this.service.putCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
-                    const urltree = this.router.createUrlTree( ['crlist/mietenr/', this.mnr] );
-                    this.router.navigateByUrl( urltree );
-                    });
-            } else {
-                this.service.postCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
-                    const urltree = 'crlist/mietenr/' + 1;
-                    this.router.navigateByUrl( urltree );
-                });
-            }
-        }
-    }
-
-    create(): void {
-        const urlStr = 'crdetail/mietenr/' + CrRestService.NEWID + '/jahr/' + CrRestService.NEWID;
-        this.router.navigateByUrl( urlStr ).then(result => this.init());
-    }
-
-    delete(): void {
-        if ( this.valid ) {
-            this.service.deleteCrDetail( this.mnr, this.jahr, this.crDetail ).subscribe( lsdD => {
-                const urltree = 'crlist/mietenr/' + 1;
-                this.router.navigateByUrl( urltree );
-            });
-        }
-    }
+  }
 }

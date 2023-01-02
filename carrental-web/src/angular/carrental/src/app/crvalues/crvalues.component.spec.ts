@@ -15,16 +15,15 @@
  */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { By }           from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { UntypedFormBuilder } from '@angular/forms';
-import { CrValuesComponent } from './crvalues.component';
-import { CrPortfolio } from '../dtos/crTypes';
+import { By } from "@angular/platform-browser";
+import { DebugElement } from "@angular/core";
+import { TestBed, waitForAsync } from "@angular/core/testing";
+import { UntypedFormBuilder } from "@angular/forms";
+import { CrValuesComponent } from "./crvalues.component";
+import { CrPortfolio } from "../dtos/crTypes";
 
-describe('Component: CrValues', () => {
-
-  it('validate should return false', () => {
+describe("Component: CrValues", () => {
+  it("validate should return false", () => {
     const component = new CrValuesComponent(new UntypedFormBuilder());
     const param = new CrPortfolioImplTest(null, null, null, null);
     component.crvalues = param;
@@ -32,7 +31,7 @@ describe('Component: CrValues', () => {
     expect(!component.form.valid).toBeTruthy();
   });
 
-  it('validate should return true', () => {
+  it("validate should return true", () => {
     const component = new CrValuesComponent(new UntypedFormBuilder());
     const param = new CrPortfolioImplTest(1, 1, 1, 1);
     component.crvalues = param;
@@ -40,7 +39,7 @@ describe('Component: CrValues', () => {
     expect(component.form.valid).toBeTruthy();
   });
 
-  it('validate should return false', () => {
+  it("validate should return false", () => {
     const component = new CrValuesComponent(new UntypedFormBuilder());
     const param = new CrPortfolioImplTest(-1, -1, -1, -1);
     component.crvalues = param;
@@ -48,30 +47,33 @@ describe('Component: CrValues', () => {
     expect(!component.form.valid).toBeTruthy();
   });
 
-
-//  it('make tests fail', () => {
-//      expect(false).toBeTruthy();
-//  })
+  //  it('make tests fail', () => {
+  //      expect(false).toBeTruthy();
+  //  })
 });
 
 class CrPortfolioImplTest implements CrPortfolio {
+  constructor(
+    anzahlPkw: number,
+    anzahlLkw: number,
+    mieteAbgerechnetPkw: number,
+    mieteAbgerechnetLkw: number
+  ) {
+    this.anzahlPkw = anzahlPkw;
+    this.anzahlLkw = anzahlLkw;
+    this.mieteAbgerechnetPkw = mieteAbgerechnetPkw;
+    this.mieteAbgerechnetLkw = mieteAbgerechnetLkw;
+  }
 
-    constructor(anzahlPkw: number, anzahlLkw: number, mieteAbgerechnetPkw: number, mieteAbgerechnetLkw: number) {
-        this.anzahlPkw = anzahlPkw;
-        this.anzahlLkw = anzahlLkw;
-        this.mieteAbgerechnetPkw = mieteAbgerechnetPkw;
-        this.mieteAbgerechnetLkw = mieteAbgerechnetLkw;
-    }
-
-    id: number;
-    bezeichnung: string;
-    anzahlPkw: number;
-    anzahlLkw: number;
-    anzahlTotal: number;
-    mieteGeplantPkw: number;
-    mieteGeplantLkw: number;
-    mieteGeplantTotal: number;
-    mieteAbgerechnetPkw: number;
-    mieteAbgerechnetLkw: number;
-    mieteAbgerechnetTotal: number;
+  id: number;
+  bezeichnung: string;
+  anzahlPkw: number;
+  anzahlLkw: number;
+  anzahlTotal: number;
+  mieteGeplantPkw: number;
+  mieteGeplantLkw: number;
+  mieteGeplantTotal: number;
+  mieteAbgerechnetPkw: number;
+  mieteAbgerechnetLkw: number;
+  mieteAbgerechnetTotal: number;
 }

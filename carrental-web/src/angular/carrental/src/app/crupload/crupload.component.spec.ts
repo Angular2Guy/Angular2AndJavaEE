@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { CruploadComponent } from './crupload.component';
+import { CruploadComponent } from "./crupload.component";
 
 //describe('CruploadComponent', () => {
 //  let component: CruploadComponent;
