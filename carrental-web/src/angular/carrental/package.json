@@ -12,8 +12,7 @@
     "test-local": "ng test --browsers Chromium --watch=true",
     "extract-i18n": "ng extract-i18n --format=json",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ngcc",
+    "e2e": "ng e2e",    
     "prettier": "npx prettier --write 'src/**/*.{ts,html,scss,json}'"
   },
   "private": true,
