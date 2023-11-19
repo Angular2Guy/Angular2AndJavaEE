@@ -54,7 +54,7 @@ Nodejs 16.20.x or newer
 
 Npm 8.9.x or newer
 
-Angular Cli 16 or newer. 
+Angular Cli 17 or newer. 
 
 Build Server Requirements
 -------------------------
@@ -62,9 +62,9 @@ Java 17 JDK or newer.
 
 Maven 3.8.x or newer. 
 
-Nodejs 16.20.x 
+Nodejs 18.13.x 
 
-Npm 8.9.x 
+Npm 8.19.x 
 
 Setup
 -----
