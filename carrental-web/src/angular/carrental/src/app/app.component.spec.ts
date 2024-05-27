@@ -28,7 +28,7 @@ import { CruploadComponent } from "./crupload/crupload.component";
 
 import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { APP_BASE_HREF } from "@angular/common";
 import { HttpTestingController } from "@angular/common/http/testing";
 import { NumberSeparatorPipe } from "./shared/number-separator.pipe";
@@ -36,7 +36,7 @@ import { NumberSeparatorPipe } from "./shared/number-separator.pipe";
 describe("AppComponent", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         AppComponent,
         CrrootComponent,
         CrlistComponent,
@@ -46,16 +46,13 @@ describe("AppComponent", () => {
         CrdateComponent,
         NumberSeparatorPipe,
         CruploadComponent,
-      ],
-      imports: [
-        BrowserModule,
+    ],
+    imports: [BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
-        AppRoutingModule,
-      ],
-      providers: [{ provide: APP_BASE_HREF, useValue: "/" }],
-    });
+        AppRoutingModule],
+    providers: [{ provide: APP_BASE_HREF, useValue: "/" }, provideHttpClient(withInterceptorsFromDi())]
+});
     TestBed.compileComponents();
   });
 

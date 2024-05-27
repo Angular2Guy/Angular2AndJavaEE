@@ -16,7 +16,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, ErrorHandler } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { CrlistComponent } from "./crlist/crlist.component";
 import { CrdetailComponent } from "./crdetail/crdetail.component";
@@ -32,30 +32,24 @@ import { CruploadComponent } from "./crupload/crupload.component";
 //import { MyErrorHandler } from './shared/my-error-handler';
 import { BaseHrefInterceptor } from "./services/base-href-interceptor";
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    CrlistComponent,
-    CrdetailComponent,
-    CrValuesComponent,
-    CrvaluesdComponent,
-    CrdateComponent,
-    NumberSeparatorPipe,
-    NumberseparatorDirective,
-    CrrootComponent,
-    CruploadComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-  ],
-  providers: [
-    //{provide: ErrorHandler, useClass: MyErrorHandler},
-    { provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true },
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        CrlistComponent,
+        CrdetailComponent,
+        CrValuesComponent,
+        CrvaluesdComponent,
+        CrdateComponent,
+        NumberSeparatorPipe,
+        NumberseparatorDirective,
+        CrrootComponent,
+        CruploadComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule], providers: [
+        //{provide: ErrorHandler, useClass: MyErrorHandler},
+        { provide: HTTP_INTERCEPTORS, useClass: BaseHrefInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {}
