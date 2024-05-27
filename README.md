@@ -50,11 +50,11 @@ Install Eclipse Plugin Eclipse Wild Web Developer of the Eclipse Marketplace.
 
 Maven 3.5.4 or newer. 
 
-Nodejs 16.20.x or newer 
+Nodejs 18.19.x or newer 
 
-Npm 8.9.x or newer
+Npm 10.2.x or newer
 
-Angular Cli 17 or newer. 
+Angular Cli 18 or newer. 
 
 Build Server Requirements
 -------------------------
@@ -62,9 +62,9 @@ Java 17 JDK or newer.
 
 Maven 3.8.x or newer. 
 
-Nodejs 18.13.x 
+Nodejs 18.19.x 
 
-Npm 8.19.x 
+Npm 10.2.x 
 
 Setup
 -----
