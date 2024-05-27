@@ -1,5 +1,5 @@
 #!/bin/sh
-# the Maven build needs to be run with Jdk 11!
+# the Maven build needs to be run with Jdk 17!
 #./mvnw clean install -Dnpm.test.script=test-chromium
 ./mvnw clean install -Ddocker=true
 docker build -t angular2guy/angular2andjavaee:latest --build-arg EAR_FILE=carrental-ear.ear --no-cache .
