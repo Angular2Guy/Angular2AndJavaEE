@@ -40,9 +40,10 @@ enum FormFields {
 }
 
 @Component({
-  selector: "app-crvalues",
-  templateUrl: "./crvalues.component.html",
-  styleUrls: ["./crvalues.component.scss"],
+    selector: "app-crvalues",
+    templateUrl: "./crvalues.component.html",
+    styleUrls: ["./crvalues.component.scss"],
+    standalone: false
 })
 export class CrValuesComponent implements OnInit, OnDestroy {
   @Input() crvalues: CrPortfolio;

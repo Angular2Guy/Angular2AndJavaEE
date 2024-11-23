@@ -23,9 +23,10 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "app-crupload",
-  templateUrl: "./crupload.component.html",
-  styleUrls: ["./crupload.component.scss"],
+    selector: "app-crupload",
+    templateUrl: "./crupload.component.html",
+    styleUrls: ["./crupload.component.scss"],
+    standalone: false
 })
 export class CruploadComponent implements OnInit, OnChanges {
   @Input() visible: boolean;

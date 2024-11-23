@@ -3,7 +3,8 @@ import { NgControl } from "@angular/forms";
 import { NumberSeparatorPipe } from "./number-separator.pipe";
 
 @Directive({
-  selector: "[myNumberseparator]",
+    selector: "[myNumberseparator]",
+    standalone: false
 })
 export class NumberseparatorDirective {
   constructor(private el: ElementRef, private control: NgControl) {}

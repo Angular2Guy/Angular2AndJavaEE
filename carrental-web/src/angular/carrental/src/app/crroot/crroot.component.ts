@@ -7,9 +7,10 @@ import {
 } from "@angular/core";
 
 @Component({
-  selector: "app-crroot",
-  templateUrl: "./crroot.component.html",
-  styleUrls: ["./crroot.component.scss"],
+    selector: "app-crroot",
+    templateUrl: "./crroot.component.html",
+    styleUrls: ["./crroot.component.scss"],
+    standalone: false
 })
 export class CrrootComponent implements OnInit {
   protected title = "Please choose a link.";

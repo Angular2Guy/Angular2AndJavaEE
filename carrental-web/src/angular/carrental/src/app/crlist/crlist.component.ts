@@ -21,9 +21,10 @@ import { CrTableRow } from "../dtos/crTypes";
 import { PlatformLocation } from "@angular/common";
 
 @Component({
-  selector: "app-crlist",
-  templateUrl: "./crlist.component.html",
-  styleUrls: ["./crlist.component.scss"],
+    selector: "app-crlist",
+    templateUrl: "./crlist.component.html",
+    styleUrls: ["./crlist.component.scss"],
+    standalone: false
 })
 export class CrlistComponent implements OnInit {
   protected tableRows: Observable<CrTableRow[]>;

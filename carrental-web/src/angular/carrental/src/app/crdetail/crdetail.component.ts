@@ -21,9 +21,10 @@ import { CrDetail, CrPeriod } from "../dtos/crTypes";
 import { CrValuesComponent } from "../crvalues/crvalues.component";
 
 @Component({
-  selector: "app-crdetail",
-  templateUrl: "./crdetail.component.html",
-  styleUrls: ["./crdetail.component.scss"],
+    selector: "app-crdetail",
+    templateUrl: "./crdetail.component.html",
+    styleUrls: ["./crdetail.component.scss"],
+    standalone: false
 })
 export class CrdetailComponent implements OnInit {
   protected crDetail: CrDetail;

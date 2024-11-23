@@ -19,9 +19,10 @@ import { NumberSeparatorPipe } from "../shared/number-separator.pipe";
 import { Utils } from "../shared/utils";
 
 @Component({
-  selector: "app-crvaluesd",
-  templateUrl: "./crvaluesd.component.html",
-  styleUrls: ["./crvaluesd.component.scss"],
+    selector: "app-crvaluesd",
+    templateUrl: "./crvaluesd.component.html",
+    styleUrls: ["./crvaluesd.component.scss"],
+    standalone: false
 })
 export class CrvaluesdComponent implements OnInit {
   @Input() crvalues: CrPortfolio;
