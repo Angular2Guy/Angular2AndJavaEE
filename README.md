@@ -22,9 +22,15 @@ Target Project: Java/Jakarta EE 8
 * [The Recipe for Angular in a Java EE Environment: Two Improvements](https://dzone.com/articles/the-recipe-for-angular-in-a-java-ee-environment-2)
 * [Angular Interceptor for a BaseHref Path in Services](https://angular2guy.wordpress.com/2021/07/31/angular-interceptor-for-a-basehref-path-in-services/)
 
+## Retirement announcement
+-----------
+This project is now 9 years old and the technology has moved on. Jakarta EE projects are now legacy they have been moved to Angular or will never be moved. The purpose of this project no longer exists. I will try to update to Angular 21 and after that the project will be archived. If anybody still needs it, I suggest to fork it.
+
+
 Update
 -----------
 The project has been updated to **Jakarta EE 8** and **Java 17 minimum** on **Wildfly 26**. 
+
 
 What is it?
 -----------
@@ -52,9 +58,9 @@ Maven 3.5.4 or newer.
 
 Nodejs 18.19.x or newer 
 
-Npm 10.2.x or newer
+Npm 22.x.x or newer
 
-Angular Cli 18 or newer. 
+Angular Cli 20 or newer. 
 
 Build Server Requirements
 -------------------------
@@ -62,7 +68,7 @@ Java 17 JDK or newer.
 
 Maven 3.8.x or newer. 
 
-Nodejs 18.19.x 
+Nodejs 22.x.x 
 
 Npm 10.2.x 
 
