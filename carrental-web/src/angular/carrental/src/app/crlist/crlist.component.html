@@ -27,26 +27,28 @@
         <th class="col-md-1" i18n>Mutierer</th>
         <th class="col-md-1" i18n>Mahnstop</th>
       </tr>
-      <tr *ngFor="let row of tableRows | async">
-        <td class="col-md-1">
-          <a
-            [routerLink]="['/crdetail/mietenr', row.mietNr, 'jahr', row.jahr]"
-            >{{ row.jahr }}</a
-          >
-        </td>
-        <td class="col-md-1">{{ row.status }}</td>
-        <td class="col-md-1">{{ row.grund }}</td>
-        <td class="col-md-1">{{ row.fahrzeugeTotal }}</td>
-        <td class="col-md-1">{{ row.mieteGeplantTotal }}</td>
-        <td class="col-md-1">{{ row.mieteAbgerechnetTotal }}</td>
-        <td class="col-md-1">{{ row.anzahlPkw }}</td>
-        <td class="col-md-1">{{ row.anzahlLkw }}</td>
-        <td class="col-md-1">{{ row.mutatedAt | date : "dd.MM.yyyy" }}</td>
-        <td class="col-md-1">{{ row.mutatedBy }}</td>
-        <td class="col-md-1">
-          <input type="checkbox" [value]="row.mahnstop" />
-        </td>
-      </tr>
-    </table>
+      @for (row of tableRows | async; track row) {
+        <tr>
+          <td class="col-md-1">
+            <a
+              [routerLink]="['/crdetail/mietenr', row.mietNr, 'jahr', row.jahr]"
+              >{{ row.jahr }}</a
+              >
+            </td>
+            <td class="col-md-1">{{ row.status }}</td>
+            <td class="col-md-1">{{ row.grund }}</td>
+            <td class="col-md-1">{{ row.fahrzeugeTotal }}</td>
+            <td class="col-md-1">{{ row.mieteGeplantTotal }}</td>
+            <td class="col-md-1">{{ row.mieteAbgerechnetTotal }}</td>
+            <td class="col-md-1">{{ row.anzahlPkw }}</td>
+            <td class="col-md-1">{{ row.anzahlLkw }}</td>
+            <td class="col-md-1">{{ row.mutatedAt | date : "dd.MM.yyyy" }}</td>
+            <td class="col-md-1">{{ row.mutatedBy }}</td>
+            <td class="col-md-1">
+              <input type="checkbox" [value]="row.mahnstop" />
+            </td>
+          </tr>
+        }
+      </table>
+    </div>
   </div>
-</div>
