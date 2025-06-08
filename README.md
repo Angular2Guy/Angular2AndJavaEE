@@ -22,7 +22,7 @@ Target Project: Java/Jakarta EE 8
 * [The Recipe for Angular in a Java EE Environment: Two Improvements](https://dzone.com/articles/the-recipe-for-angular-in-a-java-ee-environment-2)
 * [Angular Interceptor for a BaseHref Path in Services](https://angular2guy.wordpress.com/2021/07/31/angular-interceptor-for-a-basehref-path-in-services/)
 
-## Retirement announcement
+Retirement announcement
 -----------
 This project is now 9 years old and the technology has moved on. Jakarta EE projects are now legacy they have been moved to Angular or will never be moved. The purpose of this project no longer exists. I will try to update to Angular 21 and after that the project will be archived. If anybody still needs it, I suggest to fork it.
 
