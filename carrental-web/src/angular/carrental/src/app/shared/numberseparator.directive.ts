@@ -9,7 +9,7 @@ import { NumberSeparatorPipe } from "./number-separator.pipe";
 export class NumberseparatorDirective {
   constructor(private el: ElementRef, private control: NgControl) {}
 
-  @HostListener("input", ["onchange"]) onEvent() {
+  @HostListener("input") onEvent() {
     let myNumber = this.el.nativeElement.value;
     //        console.log("myNumber: "+myNumber);
     const pipe = new NumberSeparatorPipe();
