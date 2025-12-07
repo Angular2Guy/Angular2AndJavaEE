@@ -24,7 +24,7 @@ Target Project: Java/Jakarta EE 8
 
 Retirement announcement
 -----------
-This project is now 9 years old and the technology has moved on. Jakarta EE projects are now legacy they have been moved to Angular or will never be moved. The purpose of this project no longer exists. I will try to update to Angular 21 and after that the project will be archived. If anybody still needs it, I suggest to fork it.
+This project is now 9 years old and the technology has moved on. Jakarta EE projects are now legacy and they have been moved to Angular or will never be moved. The purpose of this project no longer exists. The Angular 21 update is done. When Angular 22 is released the project will be archived. If anybody still needs it, I suggest to fork it.
 
 
 Update
