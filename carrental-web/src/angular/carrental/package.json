@@ -61,12 +61,12 @@
     "eslint": "^9.15.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "@angular-eslint/builder": "^20.0.0-alpha.1",
-    "@angular-eslint/eslint-plugin": "^20.0.0-alpha.1",
-    "@angular-eslint/eslint-plugin-template": "^20.0.0-alpha.1",
-    "@angular-eslint/schematics": "^20.0.0-alpha.1",
-    "@angular-eslint/template-parser": "^20.0.0-alpha.1",
-    "@typescript-eslint/eslint-plugin": "^8.15.0",
-    "@typescript-eslint/parser": "^8.15.0"
+    "@angular-eslint/builder": "^21.0.0",
+    "@angular-eslint/eslint-plugin": "^21.0.0",
+    "@angular-eslint/eslint-plugin-template": "^21.0.0",
+    "@angular-eslint/schematics": "^21.0.0",
+    "@angular-eslint/template-parser": "^21.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0"
   }
 }
